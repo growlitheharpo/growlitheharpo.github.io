@@ -1,8 +1,23 @@
-<nav>
-    {% for item in site.data.navigation %}
-        <a href="{{ item.link }}" 
-            {% if page.url == item.link %} class="selected" {% endif %}>
-            {{ item.name }}
-        </a>
-    {% endfor %}
-</nav>
+<div class="headerContainer">
+    <div class="mainContentWidth">
+        <div class="clearDiv">
+            <div class="floatLeft">
+                <span class="headerSitename">James Keats</span>
+            </div>
+            <div class="floatRight">
+                <div id="navigation">
+                    <ul id="nav-top" data-navorientation=horizontal>
+                            {% for item in site.data.navigation %}
+                            <li {%if page.url == item.link %} class="selected" {% endif %}>
+                                <a href="{{ item.link }}"><span>{{ item.name }}</span></a>
+                            </li>
+                            {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clearDiv">
+            <span class="headerSiteCaption">Game Programmer</span>
+        </div>
+    </div>
+</div>

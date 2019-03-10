@@ -1,0 +1,43 @@
+@import "constants.scss";
+@import "text_styles.scss";
+@import "nav.scss";
+@import "containers.scss";
+
+a img {
+  border: 0 solid;
+}
+
+:focus {
+  outline: none;
+}
+
+ul,
+ol {
+  padding: 0 0 0 25px;
+}
+
+li {
+  padding: 5px 0;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #e6e6e6;
+}
+
+.floatLeft {
+  float: left;
+}
+
+.floatRight {
+  float: right;
+}
+
+.clearDiv {
+  clear: both;
+}
+
+.mainContentWidth {
+  width: 1000px;
+  margin: 0px auto;
+}

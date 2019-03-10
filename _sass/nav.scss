@@ -1,0 +1,35 @@
+@import "constants.scss";
+
+#navigation {
+    ul {
+      list-style: none;
+      padding: 1px 0;
+      margin: 0;
+    }
+  
+    li {
+      float: left;
+      margin: 0;
+      padding: 0;
+    }
+  
+    li a {
+      font-family: $font-head-lite;
+      color: #5b5b5b;
+      font-size: 13px;
+      margin: 0 15px;
+      line-height: 2.2;
+      font-weight: 400;
+      float: left;
+    }
+  
+    li.selected a {
+      border-bottom: 1px solid $splash-highlight;
+    }
+  
+    li:hover a,
+    li.active a,
+    li.selected a {
+      color: $splash-dark;
+    }
+  }

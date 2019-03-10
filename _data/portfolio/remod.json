@@ -1,0 +1,12 @@
+{
+    "title": "re[Mod] - Champlain College Senior Capstone",
+    "year": "2017-2018",
+    "blurb": "re[Mod] is a multiplayer on-the-fly weapon-building arena first-person shooter brought from an initial concept to a pre-production vertical slice in 12 weeks. Modify your weapon on-the-fly to become the strongest player and dominate the arena in this networked, 6-player experience.",
+    "focuses": [
+        "Implementing gameplay mechanics, systems and networking",
+        "Code architecture and documentation",
+        "Designing a design and art pipeline compatible with rapid iteration"
+    ],
+    "img": "/assets/img/portfolio/remod/s2_cover1.jpg",
+    "link": "/portfolio/remod.html"
+}

@@ -8,6 +8,14 @@
 
     <body>
         {% include navigation.html %}
-        {{ content }}
+        
+        <div class="mainContentWidth">
+            <div class="mainContentArea floatLeft" style="width:100%">
+                {{ content }}
+            </div>
+            <div class="clearDiv"></div>
+        </div>
+
+        {% include footer.html %}
     </body>
 </html>
