@@ -1,12 +1,86 @@
 @import "constants.scss";
 
+* {
+  box-sizing: border-box;
+}
+
+/* For mobile phones: (from w3schools) */
+[class*="col-"] {
+  float: left;
+  width: 100%;
+  padding: 0 7px;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+}
+
+.float-left-always {
+  float: left;
+}
+
+.float-right-always {
+  float: right;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-s-0 {width: 0px;}
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+  .float-left-s {float: left;}
+  .float-right-s {float:right;}
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-0 {width: 0px;}
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+  .float-left-lg {float:left;}
+  .float-right-lg {float:right;}
+}
+
+.mainContentWidth {
+  max-width: 1000px;
+  margin: 0px auto;
+}
+
+.mainContentArea {
+  overflow: hidden;
+  min-height: 400px;
+  height: auto !important;
+  padding: 20px 25px;
+}
+
 .headerContainer {
-  padding: 0 0 15px;
+  padding: 0 15px 15px;
   background: #ffffff;
   border-bottom: 1px solid #eaeaea;
   box-shadow: 0 1px 0 0 #f8f8f8;
-  margin-bottom: 30px;
-  margin-top: 30px;
+  margin-bottom: 25px;
+  margin-top: 25px;
   overflow: hidden;
 }
 
@@ -30,13 +104,6 @@
   overflow: hidden;
 }
 
-.mainContentArea {
-  overflow: hidden;
-  min-height: 400px;
-  height: auto !important;
-  padding: 20px 0;
-}
-
 .contentBlock {
   overflow: hidden;
   padding-bottom: 0 !important;
@@ -47,13 +114,4 @@
   margin: 0 -7px;
   overflow: hidden;
   padding-bottom: 25px;
-}
-
-.columnContent {
-  margin: 0 7px;
-}
-
-.contentColumn50 {
-  float: left;
-  width: 50%;
 }

@@ -1,23 +1,22 @@
 <div class="headerContainer">
     <div class="mainContentWidth">
-        <div class="clearDiv">
-            <div class="floatLeft">
-                <span class="headerSitename">James Keats</span>
-            </div>
-            <div class="floatRight">
+        <div class="col-4 col-s-12">
+            <span class="headerSitename">James Keats</span>
+            <div class="clearDiv"></div>
+            <span class="headerSiteCaption">Game Programmer</span>
+        </div>
+        <div class="col-8 col-s-12">
+            <div class="float-right-lg">
                 <div id="navigation">
                     <ul id="nav-top" data-navorientation=horizontal>
-                            {% for item in site.data.navigation %}
-                            <li {%if page.url == item.link %} class="selected" {% endif %}>
-                                <a href="{{ item.link }}"><span>{{ item.name }}</span></a>
-                            </li>
-                            {% endfor %}
+                        {% for item in site.data.navigation %}
+                        <li {%if page.url == item.link %} class="selected" {% endif %}>
+                            <a href="{{ item.link }}"><span>{{ item.name }}</span></a>
+                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="clearDiv">
-            <span class="headerSiteCaption">Game Programmer</span>
         </div>
     </div>
 </div>
