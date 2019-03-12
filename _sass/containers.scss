@@ -32,6 +32,10 @@ $col-percent: 100% / 12;
   height: 400px;
 }
 
+.mobile-hide {
+  display: none;
+}
+
 @media only screen and (min-width: 600px) {
   /* For tablets: */
   .col-s-0 {width: 0px;}
@@ -50,6 +54,7 @@ $col-percent: 100% / 12;
   .float-left-s {float: left;}
   .float-right-s {float:right;}
   .resume-container {height: 800px;}
+  .mobile-hide { display: inline; }
 }
 
 @media only screen and (min-width: 768px) {
@@ -70,6 +75,7 @@ $col-percent: 100% / 12;
   .float-left-lg {float:left;}
   .float-right-lg {float:right;}
   .resume-container {height: 1100px;}
+  .mobile-hide { display: inline; }
 }
 
 .mainContentWidth {

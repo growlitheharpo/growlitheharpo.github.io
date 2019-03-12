@@ -1,0 +1,25 @@
+---
+title: James Keats - Game Programmer
+layout: default
+picture: "/assets/img/about/me.jpg"
+---
+<div class="elementTextWrapper">
+    <h1>About Me</h1>
+</div>
+<div class="contentBlock">
+    <div class="columns">
+        <div class="col-6 col-s-12">
+            {% for block in site.data.about.about %}
+            <div class="elementTextWrapper">
+                <p>{{ block }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-6 col-s-12">
+            <div class="col-0 col-s-3"><span>&nbsp;</span></div>
+            <div class="col-12 col-s-6">
+                <img style="width: 100%;" src={{page.picture}}></img>
+            </div>
+        </div>
+    </div>
+</div>
