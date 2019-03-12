@@ -1,20 +1,22 @@
 @import "constants.scss";
 
+$header-padding: 1.25em;
+
 #navigation {
     ul {
       list-style: none;
-      padding: 1px 0;
+      padding: 0;
       margin: 0;
     }
   
     li {
       float: left;
-      margin: 0 15px;
+      margin: 0 $header-padding;
       padding: 0;
     }
 
     li:first-of-type {
-      margin: 0 15px 0 0;
+      margin: 0 $header-padding 0 0;
     }
   
     li a {
@@ -27,7 +29,7 @@
     }
   
     li.selected a {
-      border-bottom: 1px solid $splash-highlight;
+      border-bottom: 0.1em solid $splash-highlight;
     }
   
     li:hover a,
