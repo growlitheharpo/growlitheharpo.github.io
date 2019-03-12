@@ -1,0 +1,21 @@
+{
+    "title": "re[Mod] - Champlain College Senior Capstone",
+    "year": "2017-2018",
+    "team": [
+        "Tyler Bolster // Lead Artist & Animator",
+        "Charlie Carucci // Lead Designer & Product Owner",
+        "James Keats // Lead Programmer & Build Master",
+        "Max Sanel // Project Manager & Scrum Master"
+    ],
+    "auxteam": [
+        "Tim Eccleston // Level Designer",
+        "Natalie Frost // VFX Designer",
+        "Michael Manfredi // Environment Artist",
+        "Justin Mulkin // Gameplay & Analytics Programmer",
+        "Jake Buzzell & Max Johnson // Music Composer"
+    ],
+    "introp": [
+        "re[Mod] is an all-new first-person arena shooter that centers around a dynamic weapon building system. Players collect a diverse set of weapon parts strategically placed around the arena, modifying their weapon on-the-fly to destroy their opponents. Working with their team, players can capture stage areas to be awarded devastating LEGENDARY weapon parts. With over 1,000 possible combinations, players can explore and create their own unique weapons and dominate the battlefield.",
+        "For students in the game-related majors at Champlain, the first semester of the senior year  is spent on a single project with a small team in a pre-production environment, followed by a second semester of full production if the game is selected by the faculty.. You can take a more in-depth look at the development history of this project on my blog. This is the result of that process."
+    ]
+}

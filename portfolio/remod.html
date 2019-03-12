@@ -1,0 +1,60 @@
+---
+title: James Keats - Game Programmer
+layout: default
+picture1: "/assets/img/portfolio/remod/s2_cover1.jpg"
+picture2: "/assets/img/portfolio/remod/s2_cover2.jpg"
+---
+<div class="elementTextWrapper">
+    <h1>Aug 2017 - May 2018: Senior Capstone - re[Mod]</h1>
+</div>
+<div class="elementTextWrapper">
+    <h2>Full-Year Project - The Firing Squad</h2>
+    <h4>re[Mod] is <a href="https://thefiringsquad.itch.io/remod" title="re[Mod] by The Firing Squad">available on
+            itch.io</a>!</h4>
+</div>
+<div class="contentBlock">
+    <div class="columns">
+        <div class="col-0 col-s-12 elementTextWrapper">
+            <img style="width:100%;" src={{ page.picture1 }}></img>
+        </div>
+        <div class="col-6 col-s-12">
+            <div class="columns">
+                <div class="col-12 col-s-6 elementTextWrapper">
+                    <p><b>Core Team (Aug 2017 - May 2018)</b></p>
+                    {% for member in site.data.portfolio.details.remod.team %}
+                    <p>{{ member }}</p>
+                    {% endfor %}
+                </div>
+                <div class="col-12 col-s-6 elementTextWrapper">
+                    <p><b>Recruits (Jan - May 2018)</b></p>
+                    {% for member in site.data.portfolio.details.remod.auxteam %}
+                    <p>{{ member }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-s-0 mobile-hide">
+            <img style="width:100%;" src={{ page.picture1 }}></img>
+        </div>
+    </div>
+    <div class="columns" style="padding-bottom: 1.25em">
+        <div class="col-0 col-s-12 elementTextWrapper">
+            <img style="width:100%;" src={{ page.picture2 }}></img>
+        </div>
+        <div class="col-6 col-s-12">
+            {% for para in site.data.portfolio.details.remod.introp %}
+            <div class="elementTextWrapper">
+                <p>{{ para }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-6 col-s-0 mobile-hide">
+            <img style="width:100%;" src={{ page.picture2 }}></img>
+        </div>
+    </div>
+    <div>
+        <div style="text-align: center">
+            <iframe class="video-container" src="https://player.vimeo.com/video/269262863?color=ff9933&amp;byline=0&amp;portrait=0" allowfullscreen="true" width="100%" frameborder="0"></iframe>
+        </div>
+    </div>
+</div>
