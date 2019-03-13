@@ -8,6 +8,8 @@ picture: "/assets/img/about/me.jpg"
 </div>
 <div class="contentBlock">
     <div class="columns">
+        {% include image-left-mobile-bottom.html image=page.picture part="top" %}
+
         <div class="col-6 col-s-12">
             {% for block in site.data.about.about %}
             <div class="elementTextWrapper">
@@ -15,11 +17,9 @@ picture: "/assets/img/about/me.jpg"
             </div>
             {% endfor %}
         </div>
-        <div class="col-6 col-s-12">
-            <div class="col-0 col-s-3"><span>&nbsp;</span></div>
-            <div class="col-12 col-s-6">
-                <img style="width: 100%;" src={{page.picture}}></img>
-            </div>
+
+        <div style="text-align:center">
+            {% include image-left-mobile-bottom.html image=page.picture part="bottom" style="width:100%;max-width:350px;" %}
         </div>
     </div>
 </div>

@@ -1,0 +1,12 @@
+
+{% if include.part == "top" %}
+<div class="col-6 col-s-0 mobile-hide">
+    <img style={{ include.style | default:"width:100%;"}} src={{ include.image }}></img>
+</div>
+{% endif %}
+
+{% if include.part == "bottom" %}
+<div class="col-0 col-s-12 elementTextWrapper">
+    <img style={{ include.style | default:"width:100%;"}} src={{ include.image }}></img>
+</div>
+{% endif %}

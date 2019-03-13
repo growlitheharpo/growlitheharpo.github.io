@@ -3,6 +3,7 @@ title: James Keats - Game Programmer
 layout: default
 picture1: "/assets/img/portfolio/remod/s2_cover1.jpg"
 picture2: "/assets/img/portfolio/remod/s2_cover2.jpg"
+picture3: "/assets/img/portfolio/remod/s2_cover3.jpg"
 ---
 <div class="elementTextWrapper">
     <h1>Aug 2017 - May 2018: Senior Capstone - re[Mod]</h1>
@@ -14,9 +15,7 @@ picture2: "/assets/img/portfolio/remod/s2_cover2.jpg"
 </div>
 <div class="contentBlock">
     <div class="columns">
-        <div class="col-0 col-s-12 elementTextWrapper">
-            <img style="width:100%;" src={{ page.picture1 }}></img>
-        </div>
+        {% include image-right-mobile-top.html image=page.picture1 part="top" %}
         <div class="col-6 col-s-12">
             <div class="columns">
                 <div class="col-12 col-s-6 elementTextWrapper">
@@ -33,14 +32,10 @@ picture2: "/assets/img/portfolio/remod/s2_cover2.jpg"
                 </div>
             </div>
         </div>
-        <div class="col-6 col-s-0 mobile-hide">
-            <img style="width:100%;" src={{ page.picture1 }}></img>
-        </div>
+        {% include image-right-mobile-top.html image=page.picture1 part="bottom" %}
     </div>
     <div class="columns" style="padding-bottom: 1.25em">
-        <div class="col-0 col-s-12 elementTextWrapper">
-            <img style="width:100%;" src={{ page.picture2 }}></img>
-        </div>
+        {% include image-right-mobile-top.html image=page.picture2 part="top" %}
         <div class="col-6 col-s-12">
             {% for para in site.data.portfolio.details.remod.introp %}
             <div class="elementTextWrapper">
@@ -48,13 +43,75 @@ picture2: "/assets/img/portfolio/remod/s2_cover2.jpg"
             </div>
             {% endfor %}
         </div>
-        <div class="col-6 col-s-0 mobile-hide">
-            <img style="width:100%;" src={{ page.picture2 }}></img>
+        {% include image-right-mobile-top.html image=page.picture2 part="bottom" %}
+    </div>
+    <div style="padding-bottom: 1.25em">
+        <div style="text-align: center">
+            <iframe class="video-container"
+                src="https://player.vimeo.com/video/269262863?color=ff9933&amp;byline=0&amp;portrait=0"
+                allowfullscreen="true" width="100%" frameborder="0"></iframe>
         </div>
     </div>
-    <div>
+    <div class="columns" style="padding-bottom: 1.25em">
+        <div class="col-12 col-s-12 elementTextWrapper">
+            <p>{{ site.data.portfolio.details.remod.intrapara }}</p>
+        </div>
+        <div class="col-6 col-s-6 elementTextWrapper">
+            <div class="col-12 col-s-0 mobile-hide">
+                <img style="width:100%;" src={{ page.picture3 }}></img>
+            </div>
+            <ul>
+                <li>
+                    <p>{{ site.data.portfolio.details.remod.responsibilities[0].title }}</p>
+                    <ul>
+                        {% for r in site.data.portfolio.details.remod.responsibilities[0].items %}
+                        <li><span>{{ r }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+            <div class="col-0 col-s-12">
+                <img style="width:100%;" src={{ page.picture3 }}></img>
+            </div>
+        </div>
+        <div class="col-6 col-s-6 elementTextWrapper">
+            <ul>
+                <li>
+                    <p>{{ site.data.portfolio.details.remod.responsibilities[1].title }}</p>
+                    <ul>
+                        {% for r in site.data.portfolio.details.remod.responsibilities[1].items %}
+                        <li><span>{{ r }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li>
+                    <p>{{ site.data.portfolio.details.remod.responsibilities[2].title }}</p>
+                    <ul>
+                        {% for r in site.data.portfolio.details.remod.responsibilities[2].items %}
+                        <li><span>{{ r }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li>
+                    <p>{{ site.data.portfolio.details.remod.responsibilities[3].title }}</p>
+                    <ul>
+                        {% for r in site.data.portfolio.details.remod.responsibilities[3].items %}
+                        <li><span>{{ r }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="elementTextWrapper">
+        <h4>Original Pre-Production Trailer (November 2017)</h4>
+    </div>
+    <div style="padding-bottom: 1.25em">
         <div style="text-align: center">
-            <iframe class="video-container" src="https://player.vimeo.com/video/269262863?color=ff9933&amp;byline=0&amp;portrait=0" allowfullscreen="true" width="100%" frameborder="0"></iframe>
+            <iframe class="video-container"
+                src="https://player.vimeo.com/video/243548187?color=ff9933&amp;byline=0&amp;portrait=0"
+                allowfullscreen="true" width="100%" frameborder="0"></iframe>
         </div>
     </div>
 </div>
