@@ -36,8 +36,27 @@ $col-percent: 100% / 12;
   height: 200px;
 }
 
+.youtube-container {
+  height: 150px;
+}
+
 .mobile-hide {
   display: none;
+}
+
+/* This magic class courtesy of: https://www.ostraining.com/blog/coding/responsive-videos/ */
+.video-responsive{
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+}
+.video-responsive iframe{
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
 }
 
 @media only screen and (min-width: 600px) {
@@ -59,6 +78,7 @@ $col-percent: 100% / 12;
   .float-right-s {float:right;}
   .resume-container {height: 800px;}
   .video-container {height: 300px;}
+  .youtube-container {height: 200px;}
   .mobile-hide { display: inline; }
 }
 
@@ -81,6 +101,7 @@ $col-percent: 100% / 12;
   .float-right-lg {float:right;}
   .resume-container {height: 1100px;}
   .video-container {height: 400px;}
+  .youtube-container {height: 300px;}
   .mobile-hide { display: inline; }
 }
 
