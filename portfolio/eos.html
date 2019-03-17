@@ -6,10 +6,10 @@ picture2: "/assets/img/portfolio/eos/3.jpg"
 picture3: "/assets/img/portfolio/eos/4.jpg"
 ---
 <div class="elementTextWrapper">
-    <h1>{{site.data.portfolio.details.eos.title}}</h1>
+    <h1>{{site.data.portfolio.eos.details.title}}</h1>
 </div>
 <div class="elementTextWrapper">
-    <h2>{{site.data.portfolio.details.eos.byline}}</h2>
+    <h2>{{site.data.portfolio.eos.details.byline}}</h2>
     <h4>Eos is <a href="https://goodvivesdev.itch.io/eos" title="Eos by GoodVivesDev">available on
             itch.io</a>!</h4>
 </div>
@@ -18,15 +18,15 @@ picture3: "/assets/img/portfolio/eos/4.jpg"
         <div class="col-6 col-s-12">
             <div class="elementTextWrapper">
                 <p><b>Team (Jan 2017 - May 2017)</b></p>
-                {% for member in site.data.portfolio.details.eos.team %}
+                {% for member in site.data.portfolio.eos.details.team %}
                 <p>{{ member }}</p>
                 {% endfor %}
             </div>
             <div class="elementTextWrapper">
-                <p>{{ site.data.portfolio.details.eos.introp }}</p>
+                <p>{{ site.data.portfolio.eos.details.introp }}</p>
             </div>
             <div class="elementTextWrapper">
-                <p>{{ site.data.portfolio.details.eos.intrapara }}</p>
+                <p>{{ site.data.portfolio.eos.details.intrapara }}</p>
             </div>
         </div>
         <div class="col-6 col-s-12">
@@ -40,9 +40,9 @@ picture3: "/assets/img/portfolio/eos/4.jpg"
         {% include image-left-mobile-bottom.html image=page.picture2 part="top" %}
         <div class="col-6 col-s-12">
             <div class="elementTextWrapper">
-                <p>{{ site.data.portfolio.details.eos.responsibilities.title }}</p>
+                <p>{{ site.data.portfolio.eos.details.responsibilities.title }}</p>
                 <ul>
-                    {% for r in site.data.portfolio.details.eos.responsibilities.items %}
+                    {% for r in site.data.portfolio.eos.details.responsibilities.items %}
                     <li>{{r}}</li>
                     {% endfor %}
                 </ul>
@@ -58,7 +58,7 @@ picture3: "/assets/img/portfolio/eos/4.jpg"
     <div class="columns" style="padding-top: 1.25em">
         <div class="col-6 col-s-12">
             <div class="elementTextWrapper">
-                <p>{{site.data.portfolio.details.eos.closing}}</p>
+                <p>{{site.data.portfolio.eos.details.closing}}</p>
             </div>
             <div class="elementTextWrapper">
                 <p>If you're interested, you can see a visual history of the development of Eos at the

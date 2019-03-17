@@ -6,10 +6,10 @@ picture2: "/assets/img/portfolio/remod/s2_cover2.jpg"
 picture3: "/assets/img/portfolio/remod/s2_cover3.jpg"
 ---
 <div class="elementTextWrapper">
-    <h1>{{site.data.portfolio.details.remod.title}}</h1>
+    <h1>{{site.data.portfolio.remod.details.title}}</h1>
 </div>
 <div class="elementTextWrapper">
-    <h2>{{site.data.portfolio.details.remod.byline}}</h2>
+    <h2>{{site.data.portfolio.remod.details.byline}}</h2>
     <h4>re[Mod] is <a href="https://thefiringsquad.itch.io/remod" title="re[Mod] by The Firing Squad">available on
             itch.io</a>!</h4>
 </div>
@@ -20,13 +20,13 @@ picture3: "/assets/img/portfolio/remod/s2_cover3.jpg"
             <div class="columns">
                 <div class="col-12 col-s-6 elementTextWrapper">
                     <p><b>Core Team (Aug 2017 - May 2018)</b></p>
-                    {% for member in site.data.portfolio.details.remod.team %}
+                    {% for member in site.data.portfolio.remod.details.team %}
                     <p>{{ member }}</p>
                     {% endfor %}
                 </div>
                 <div class="col-12 col-s-6 elementTextWrapper">
                     <p><b>Recruits (Jan - May 2018)</b></p>
-                    {% for member in site.data.portfolio.details.remod.auxteam %}
+                    {% for member in site.data.portfolio.remod.details.auxteam %}
                     <p>{{ member }}</p>
                     {% endfor %}
                 </div>
@@ -37,7 +37,7 @@ picture3: "/assets/img/portfolio/remod/s2_cover3.jpg"
     <div class="columns" style="padding-bottom: 1.25em">
         {% include image-right-mobile-top.html image=page.picture2 part="top" %}
         <div class="col-6 col-s-12">
-            {% for para in site.data.portfolio.details.remod.introp %}
+            {% for para in site.data.portfolio.remod.details.introp %}
             <div class="elementTextWrapper">
                 <p>{{ para }}</p>
             </div>
@@ -54,7 +54,7 @@ picture3: "/assets/img/portfolio/remod/s2_cover3.jpg"
     </div>
     <div class="columns" style="padding-bottom: 1.25em">
         <div class="col-12 col-s-12 elementTextWrapper">
-            <p>{{ site.data.portfolio.details.remod.intrapara }}</p>
+            <p>{{ site.data.portfolio.remod.details.intrapara }}</p>
         </div>
         <div class="col-6 col-s-6 elementTextWrapper">
             <div class="col-12 col-s-0 mobile-hide">
@@ -62,9 +62,9 @@ picture3: "/assets/img/portfolio/remod/s2_cover3.jpg"
             </div>
             <ul>
                 <li>
-                    <p>{{ site.data.portfolio.details.remod.responsibilities[0].title }}</p>
+                    <p>{{ site.data.portfolio.remod.details.responsibilities[0].title }}</p>
                     <ul>
-                        {% for r in site.data.portfolio.details.remod.responsibilities[0].items %}
+                        {% for r in site.data.portfolio.remod.details.responsibilities[0].items %}
                         <li><span>{{ r }}</span></li>
                         {% endfor %}
                     </ul>
@@ -77,25 +77,25 @@ picture3: "/assets/img/portfolio/remod/s2_cover3.jpg"
         <div class="col-6 col-s-6 elementTextWrapper">
             <ul>
                 <li>
-                    <p>{{ site.data.portfolio.details.remod.responsibilities[1].title }}</p>
+                    <p>{{ site.data.portfolio.remod.details.responsibilities[1].title }}</p>
                     <ul>
-                        {% for r in site.data.portfolio.details.remod.responsibilities[1].items %}
+                        {% for r in site.data.portfolio.remod.details.responsibilities[1].items %}
                         <li><span>{{ r }}</span></li>
                         {% endfor %}
                     </ul>
                 </li>
                 <li>
-                    <p>{{ site.data.portfolio.details.remod.responsibilities[2].title }}</p>
+                    <p>{{ site.data.portfolio.remod.details.responsibilities[2].title }}</p>
                     <ul>
-                        {% for r in site.data.portfolio.details.remod.responsibilities[2].items %}
+                        {% for r in site.data.portfolio.remod.details.responsibilities[2].items %}
                         <li><span>{{ r }}</span></li>
                         {% endfor %}
                     </ul>
                 </li>
                 <li>
-                    <p>{{ site.data.portfolio.details.remod.responsibilities[3].title }}</p>
+                    <p>{{ site.data.portfolio.remod.details.responsibilities[3].title }}</p>
                     <ul>
-                        {% for r in site.data.portfolio.details.remod.responsibilities[3].items %}
+                        {% for r in site.data.portfolio.remod.details.responsibilities[3].items %}
                         <li><span>{{ r }}</span></li>
                         {% endfor %}
                     </ul>

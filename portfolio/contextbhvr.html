@@ -7,14 +7,14 @@ picture3: "/assets/img/portfolio/btvflight/3.png"
 picture4: "/assets/img/portfolio/btvflight/4.png"
 picture5: "/assets/img/portfolio/btvflight/5.png"
 picture6: "/assets/img/portfolio/btvflight/6.png"
-picture7: "/assets/img/portfolio/btvflight/btv_flight_with_vinyl.jpg"
+picture7: "/assets/img/portfolio/btvflight/btv_flight_with_vinyl.JPG"
 picture8: "/assets/img/portfolio/btvflight/cover.png"
 ---
 <div class="elementTextWrapper">
-    <h1>{{site.data.portfolio.btvflight.details.title}}</h1>
+    <h1>{{site.data.portfolio.details.btvflight.title}}</h1>
 </div>
 <div class="elementTextWrapper">
-    <h2>{{site.data.portfolio.btvflight.details.byline}}</h2>
+    <h2>{{site.data.portfolio.details.btvflight.byline}}</h2>
 </div>
 <div class="contentBlock">
     <div class="columns">
@@ -22,30 +22,32 @@ picture8: "/assets/img/portfolio/btvflight/cover.png"
         <div class="col-6 col-s-12">
             <div class="elementTextWrapper">
                 <p><b>Team (May 2016 - Aug 2016)</b></p>
-                {% for member in site.data.portfolio.btvflight.details.team %}
+                {% for member in site.data.portfolio.details.btvflight.team %}
                 <p>{{ member }}</p>
                 {% endfor %}
             </div>
             <div class="elementTextWrapper">
-                <p>{{ site.data.portfolio.btvflight.details.introp }}</p>
+                <p>{{ site.data.portfolio.details.btvflight.introp }}</p>
             </div>
         </div>
         {% include image-right-mobile-top.html image=page.picture1 part="bottom" %}
     </div>
 
+
+    
     <div class="columns" style="padding-bottom: 1.25em">
         <div class="col-4 col-s-6">
             <div class="elementTextWrapper">
-                <h4>{{ site.data.portfolio.btvflight.details.ai.title }}</h4>
+                <h4>{{ site.data.portfolio.details.btvflight.ai.title }}</h4>
             </div>
-            {% for p in site.data.portfolio.btvflight.details.ai.paras %}
+            {% for p in site.data.portfolio.details.btvflight.ai.paras %}
             <div class="elementTextWrapper">
                 <p>{{p}}</p>
             </div>
             {% endfor %}
             <div class="elementTextWrapper">
                 <ul>
-                    {% for i in site.data.portfolio.btvflight.details.ai.examples %}
+                    {% for i in site.data.portfolio.details.btvflight.ai.examples %}
                     <li>{{ i }}</li>
                     {% endfor %}
                 </ul>
@@ -60,14 +62,14 @@ picture8: "/assets/img/portfolio/btvflight/cover.png"
     </div>
 
     <div class="elementTextWrapper">
-        <h4>{{ site.data.portfolio.btvflight.details.gesture.title }}</h4>
+        <h4>{{ site.data.portfolio.details.btvflight.gesture.title }}</h4>
     </div>
     <div class="columns">
         <div class="col-6 col-s-12">
             <img style="width:100%; height:100%" src={{page.picture3}}></img>
         </div>
         <div class="col-6 col-s-12">
-            {% for p in site.data.portfolio.btvflight.details.gesture.paras %}
+            {% for p in site.data.portfolio.details.btvflight.gesture.paras %}
             <div class="elementTextWrapper">
                 <p>{{p}}</p>
             </div>
@@ -82,9 +84,9 @@ picture8: "/assets/img/portfolio/btvflight/cover.png"
         </div>
         <div class="col-7 col-s-12">
             <div class="elementTextWrapper">
-                <h4>{{ site.data.portfolio.btvflight.details.future.title }}</h4>
+                <h4>{{ site.data.portfolio.details.btvflight.future.title }}</h4>
             </div>
-            {% for p in site.data.portfolio.btvflight.details.future.paras %}
+            {% for p in site.data.portfolio.details.btvflight.future.paras %}
             <div class="elementTextWrapper">
                 <p>{{p}}</p>
             </div>
