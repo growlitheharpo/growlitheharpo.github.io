@@ -1,97 +1,408 @@
 ---
-title: James Keats - BTV Flight (Burlington International Airport)
+title: James Keats - Context Behaviors
 layout: default
-picture1: "/assets/img/portfolio/btvflight/1-2.png"
-picture2: "/assets/img/portfolio/btvflight/2.png"
-picture3: "/assets/img/portfolio/btvflight/3.png"
-picture4: "/assets/img/portfolio/btvflight/4.png"
-picture5: "/assets/img/portfolio/btvflight/5.png"
-picture6: "/assets/img/portfolio/btvflight/6.png"
-picture7: "/assets/img/portfolio/btvflight/btv_flight_with_vinyl.JPG"
-picture8: "/assets/img/portfolio/btvflight/cover.png"
+picture1: "/assets/img/portfolio/contextbhvr/cover.png"
 ---
 <div class="elementTextWrapper">
-    <h1>{{site.data.portfolio.details.btvflight.title}}</h1>
+    <h1>{{site.data.portfolio.contextbhvr.details.title}}</h1>
 </div>
 <div class="elementTextWrapper">
-    <h2>{{site.data.portfolio.details.btvflight.byline}}</h2>
+    <h2>{{site.data.portfolio.contextbhvr.details.byline}}</h2>
 </div>
 <div class="contentBlock">
-    <div class="columns">
-        {% include image-right-mobile-top.html image=page.picture1 part="top" %}
-        <div class="col-6 col-s-12">
-            <div class="elementTextWrapper">
-                <p><b>Team (May 2016 - Aug 2016)</b></p>
-                {% for member in site.data.portfolio.details.btvflight.team %}
-                <p>{{ member }}</p>
-                {% endfor %}
-            </div>
-            <div class="elementTextWrapper">
-                <p>{{ site.data.portfolio.details.btvflight.introp }}</p>
-            </div>
-        </div>
-        {% include image-right-mobile-top.html image=page.picture1 part="bottom" %}
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.intro}}</p>
     </div>
-
-
-    
-    <div class="columns" style="padding-bottom: 1.25em">
-        <div class="col-4 col-s-6">
-            <div class="elementTextWrapper">
-                <h4>{{ site.data.portfolio.details.btvflight.ai.title }}</h4>
-            </div>
-            {% for p in site.data.portfolio.details.btvflight.ai.paras %}
-            <div class="elementTextWrapper">
-                <p>{{p}}</p>
-            </div>
-            {% endfor %}
-            <div class="elementTextWrapper">
-                <ul>
-                    {% for i in site.data.portfolio.details.btvflight.ai.examples %}
-                    <li>{{ i }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-        <div class="col-4 col-s-6">
-            <img style="width:100%; height:100%" src={{page.picture5}}></img>
-        </div>
-        <div class="col-4 col-s-0 mobile-hide">
-            <img style="width:100%; height:100%" src={{page.picture4}}></img>
+    <div class="elementTextWrapper" style="text-align:center;">
+        <img src={{ page.picture1 }} style="width:90%; max-width:600px;">
+    </div>
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.lede}}</p>
+    </div>
+    <div class="elementTextWrapper">
+        <h3>The General Idea</h3>
+    </div>
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.p01}}</p>
+    </div>
+    <div class="elementTextWrapper">
+        <div>
+            <p style="text-align: center;"><span>
+                    <font size="3">{{site.data.portfolio.contextbhvr.details.q02}}</font>
+                </span></p>
         </div>
     </div>
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.p03}}</p>
+    </div>
+    <div class="elementTextWrapper" style="text-align:center;">
+        <img src={{site.data.portfolio.contextbhvr.details.i04}} style="width:90%; max-width:500px">
+    </div>
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.p05}}</p>
+    </div>
+    <div class="elementTextWrapper" style="text-align:center;">
+        <img src={{site.data.portfolio.contextbhvr.details.i06}} style="width:90%; max-width:550px">
+    </div>
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.p07}}</p>
+    </div>
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.p08}}</p>
+    </div>
+    <div class="elementTextWrapper">
+        <h3>C++ Implementation</h3>
+    </div>
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.p09}}</p>
+    </div>
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.p10}}</p>
+    </div>
+
+    <!-- Copied from Microsoft Word-->
+    <div class="WordSection1">
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:blue">void</span><span style="font-size:9.5pt;font-family:Consolas;
+            color:black"> </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:darkcyan">ContextDecisionMaker</span><span style="font-size:9.5pt;
+            font-family:Consolas;color:black">::update()</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">{</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:green">//Get the data we need.</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:darkcyan">Unit</span><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">* owner = gpGame-&gt;getUnitManager()-&gt;getUnit(</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkred">mOwnerID</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black">);</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:darkcyan">PhysicsData</span><span style="font-size:9.5pt;font-family:
+            Consolas;color:black"> data = owner-&gt;getPhysicsComponent()-&gt;getData();</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:darkcyan">Vector2</span><span style="font-size:9.5pt;font-family:Consolas;
+            color:black"> ownerPos = owner-&gt;getCurrentPosition();</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:green">//Create maps and initialize completely to zero.</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:darkcyan">context_map_t</span><span style="font-size:9.5pt;font-family:
+            Consolas;color:black"> dangerMap</span><span style="font-size:9.5pt;font-family:
+            Consolas;color:darkcyan">(</span><span style="font-size:9.5pt;font-family:Consolas;
+            color:darkred">NUMBER_OF_DIRECTIONS</span><span style="font-size:9.5pt;
+            font-family:Consolas;color:black">, 0.0f</span><span style="font-size:9.5pt;
+            font-family:Consolas;color:darkcyan">)</span><span style="font-size:9.5pt;
+            font-family:Consolas;color:black">;</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:darkcyan">context_map_t</span><span style="font-size:9.5pt;font-family:
+            Consolas;color:black"> interestMap</span><span style="font-size:9.5pt;
+            font-family:Consolas;color:darkcyan">(</span><span style="font-size:9.5pt;
+            font-family:Consolas;color:darkred">NUMBER_OF_DIRECTIONS</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black">, 0.0f</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">)</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black">;</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:green">//Fill danger map.</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fillDangerMap(dangerMap, ownerPos);</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:green">//Use the danger map to fill only the unblocked slots in the
+                interest map.</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fillInterestMap(dangerMap, interestMap, ownerPos);</span>
+        </p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:green">//Get the best direction to go in.</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:darkcyan">Direction</span><span style="font-size:9.5pt;font-family:Consolas;
+            color:black"> strongestInterest = chooseBestDirection(interestMap);</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:blue">if</span><span style="font-size:9.5pt;font-family:Consolas;
+            color:black"> (strongestInterest == </span><span style="font-size:9.5pt;
+            font-family:Consolas;color:darkcyan">Direction</span><span style="font-size:
+            9.5pt;font-family:Consolas;color:black">::</span><span style="font-size:9.5pt;
+            font-family:Consolas;color:darkred">NONE</span><span style="font-size:9.5pt;
+            font-family:Consolas;color:black">)</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                data.</span><span style="font-size:9.5pt;font-family:
+            Consolas;color:darkred">acc</span><span style="font-size:9.5pt;font-family:
+            Consolas;color:black"> </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:darkcyan">=</span><span style="font-size:9.5pt;font-family:Consolas;
+            color:black"> data.</span><span style="font-size:9.5pt;font-family:Consolas;
+            color:darkred">vel</span><span style="font-size:9.5pt;font-family:Consolas;
+            color:black"> </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:darkcyan">*</span><span style="font-size:9.5pt;font-family:Consolas;
+            color:black"> -5.0f; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:green">//slow down.</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:blue">else</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                style="font-size:9.5pt;font-family:
+            Consolas;color:darkcyan">Direction</span><span style="font-size:9.5pt;
+            font-family:Consolas;color:black"> leftDir = strongestInterest.getDirToLeft();</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                style="font-size:9.5pt;font-family:
+            Consolas;color:darkcyan">Direction</span><span style="font-size:9.5pt;
+            font-family:Consolas;color:black"> rightDir =
+                strongestInterest.getDirToRight();</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                style="font-size:9.5pt;font-family:
+            Consolas;color:green">//Blend the strongest direction and the two directions
+                next to it.</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                style="font-size:9.5pt;font-family:
+            Consolas;color:darkcyan">Vector2</span><span style="font-size:9.5pt;font-family:
+            Consolas;color:black"> blendedDir = </span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span
+                style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                DIRECTIONS</span><span style="font-size:9.5pt;font-family:Consolas;color:darkcyan">[</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black">strongestInterest</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">]</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">+</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span
+                style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                DIRECTIONS</span><span style="font-size:9.5pt;font-family:Consolas;color:darkcyan">[</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black">leftDir</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">]</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">*</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black"> interestMap</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">[</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black">leftDir</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">]</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">+</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span
+                style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                DIRECTIONS</span><span style="font-size:9.5pt;font-family:Consolas;color:darkcyan">[</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black">rightDir</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">]</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">*</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black"> interestMap</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">[</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black">rightDir</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">]</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black">;</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                blendedDir.normalize();</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                style="font-size:9.5pt;font-family:
+            Consolas;color:green">//Accelerate in that direction, adjusting for our current
+                velocity.</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                data.</span><span style="font-size:9.5pt;font-family:
+            Consolas;color:darkred">acc</span><span style="font-size:9.5pt;font-family:
+            Consolas;color:black"> </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:darkcyan">=</span><span style="font-size:9.5pt;font-family:Consolas;
+            color:black"> </span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span
+                style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                (blendedDir </span><span style="font-size:
+            9.5pt;font-family:Consolas;color:darkcyan">+</span><span style="font-size:9.5pt;
+            font-family:Consolas;color:black"> (blendedDir </span><span style="font-size:
+            9.5pt;font-family:Consolas;color:darkcyan">-</span><span style="font-size:9.5pt;
+            font-family:Consolas;color:black"> data.</span><span style="font-size:9.5pt;
+            font-family:Consolas;color:darkred">vel</span><span style="font-size:9.5pt;
+            font-family:Consolas;color:black">.normalized())) </span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">*</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black"> data.</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:darkred">maxAcc</span><span
+                style="font-size:9.5pt;font-family:Consolas;color:black">;</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:darkred">mData</span><span style="font-size:9.5pt;font-family:Consolas;
+            color:black"> </span><span style="font-size:9.5pt;font-family:Consolas;
+            color:darkcyan">=</span><span style="font-size:9.5pt;font-family:Consolas;
+            color:black"> data;</span></p>
+
+        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
+            color:black">}</span></p>
+
+        <p class="MsoNormal">&nbsp;</p>
+
+    </div>
+    <!-- Snipped end -->
 
     <div class="elementTextWrapper">
-        <h4>{{ site.data.portfolio.details.btvflight.gesture.title }}</h4>
+        <p>{{site.data.portfolio.contextbhvr.details.p11}}</p>
     </div>
-    <div class="columns">
-        <div class="col-6 col-s-12">
-            <img style="width:100%; height:100%" src={{page.picture3}}></img>
-        </div>
-        <div class="col-6 col-s-12">
-            {% for p in site.data.portfolio.details.btvflight.gesture.paras %}
-            <div class="elementTextWrapper">
-                <p>{{p}}</p>
-            </div>
-            {% endfor %}
-        </div>
+    <div class="elementTextWrapper" style="text-align: center">
+        <iframe class="video-container"
+            src="https://player.vimeo.com/video/194261930?color=ff9933&amp;byline=0&amp;title=0&amp;portrait=0"
+            allowfullscreen="true" width="100%" frameborder="0"></iframe>
     </div>
-
-    <div class="columns">
-        <div class="col-5 col-s-0 mobile-hide">
-            <h4>&nbsp;</h4>
-            <img style="width:100%; height:100%" src={{page.picture6}}></img>
-        </div>
-        <div class="col-7 col-s-12">
-            <div class="elementTextWrapper">
-                <h4>{{ site.data.portfolio.details.btvflight.future.title }}</h4>
-            </div>
-            {% for p in site.data.portfolio.details.btvflight.future.paras %}
-            <div class="elementTextWrapper">
-                <p>{{p}}</p>
-            </div>
-            {% endfor %}
-            <img style="width:100%; height:100%" src={{page.picture7}}></img>
-        </div>
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.p12}}</p>
+    </div>
+    <div class="elementTextWrapper" style="text-align: center">
+        <iframe class="video-container"
+            src="https://player.vimeo.com/video/194261921?color=ff9933&amp;byline=0&amp;title=0&amp;portrait=0"
+            allowfullscreen="true" width="100%" frameborder="0"></iframe>
+    </div>
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.p13}}</p>
+    </div>
+    <div class="elementTextWrapper" style="text-align: center">
+        <iframe class="video-container"
+            src="https://player.vimeo.com/video/194258358?color=ff9933&amp;byline=0&amp;title=0&amp;portrait=0"
+            allowfullscreen="true" width="100%" frameborder="0"></iframe>
+    </div>
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.p14}}</p>
+    </div>
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.p15}}</p>
+    </div>
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.p16}}</p>
+    </div>
+    <div class="elementTextWrapper">
+        <h3><a href="/assets/bin/jameskeats_context_demo.zip">Download the Context Behavior demo now!</a></h3>
+    </div>
+    <div class="elementTextWrapper">
+        <p>{{site.data.portfolio.contextbhvr.details.p17}}</p>
+    </div>
+    <div class="elementTextWrapper" style="text-align: center">
+        <iframe class="video-container"
+            src="https://player.vimeo.com/video/194354231?color=ff9933&amp;byline=0&amp;title=0&amp;portrait=0"
+            allowfullscreen="true" width="100%" frameborder="0"></iframe>
     </div>
 </div>
