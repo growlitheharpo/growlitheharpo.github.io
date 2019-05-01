@@ -1,0 +1,16 @@
+---
+title: James Keats - Game Programmer
+layout: default
+---
+<div class="elementTextWrapper">
+    <h1>Blog</h1>
+</div>
+<ul>
+    {% for post in site.posts %}
+      <li>
+        <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        <p>{{ post.excerpt }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+  
