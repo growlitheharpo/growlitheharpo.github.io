@@ -1,0 +1,170 @@
+---
+title: James Keats - Game Programmer
+layout: default
+---
+<div class="contentBlock">
+    <h2 class="elementTextWrapper">Capstone - Week 5</h2>
+    <div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Weekly State of the Repo</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>During our last class, we successfully challenged Initial Concepts and are thus now in the Deep Dive
+                    stage! Of our three prototypes, we decided to move forward with the Arena game, with one important
+                    change: QA feedback was nearly unanimous that the splitscreen controller-based version was not
+                    cutting it for players. Thus, the first thing we did this sprint was one of the biggest challenges
+                    we've faced as a team yet: networking the game.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>We've also finally decided on a placeholder project/code name: <i>Modulate</i>.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Networking <i>Modulate</i></h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>To start off with, it’s important to note that this first pass of the networking for Modulate is
+                    meant to be placeholder and temporary, and was implemented primarily to prove the viability of the
+                    concept and to get QA feedback. Currently, far too much is decided on the client side, which is
+                    concerning for any game where players are against each other, both for cheat prevention and lag
+                    compensation. With that in mind, here’s how the networking has taken shape thus far:</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <div style="text-align:center;">
+                    <iframe class="video-container" allowfullscreen="true" width="100%" frameborder="0"
+                        src="https://player.vimeo.com/video/236769121?loop=1&amp;portrait=0"></iframe></div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>The first thing to do was to get players moving around in the same place. To that end, I set up the
+                    NetworkManager provided by Unity and added a NetworkTransform component, and changed our primary
+                    Player script to be a NetworkBehaviour instead of a MonoBehaviour and made the necessary tweaks
+                    (such as ensuring input is only collected on the local client). It’s important to note that at this
+                    point, the player object is entirely client-authoritative, and the only value synced over the
+                    network is the Transform component.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>The next step was to get weapons to shoot over the network. For this early prototype, each client
+                    simply sends the server a Ray (consisting of a Vector3 origin and Vector3 direction) for each shot
+                    fired when it occurs, and the server broadcasts this to all clients (without verification) who then
+                    recreate the shot on their end. Currently, each client is responsible for tracking its own health
+                    and calculating damage from the shots received from other players. The client then notifies the
+                    server when their health has reached 0 and they have died, which the server then broadcasts to all
+                    other clients.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div class="columns">
+                <div class="col-6 col-s-12">
+                    <div style="max-width: 100%; text-align:center;"> <img
+                            src="/assets/img/blog/capstone/week5-networkboard.JPG"
+                            style="max-width: 100%; width: 337px;">
+                        <div>The current method for networking part pickups</div>
+                    </div>
+                </div>
+                <div class="col-6 col-s-12">
+                    <div class="elementTextWrapper">
+                        <div>
+                            <p>After getting weapon firing and player deaths working, the next step was to sync weapon
+                                part pickup events across the server. Again, we are not yet using a server-authoritative
+                                system like we should be quite yet, for the prototyping and demoing stage. Instead, we
+                                follow a system much like is demonstrated in the whiteboard diagram I drew (pictured
+                                here) while trying to figure out how to get this working quickly. Essentially, the
+                                weapon parts that rain down from the sky are created on the server and networked to all
+                                clients. Then, when a client calls “pick-up” on one of them, the original item is
+                                destroyed and an RPC is called on all local copies of that client to equip whatever part
+                                was grabbed. In other words, the actual state of the weapon is not fully networked, and
+                                the server is not authoritative on the matter; if a client misses an equip event, they
+                                will have the wrong weapon part for one of the other players in the game.<br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="elementTextWrapper">
+                <div>
+                    <p>The final step in networking (discounting simple things like the score and match timer) was
+                        getting the “gravity gun” hand working. This proved to be the trickiest part and is something I
+                        am still not sure how to implement going forward. The trick with the gravity gun is that it must
+                        affect physics objects (the falling and fallen weapon parts) using physics forces, but then
+                        transition those objects to a non-physics-driven state when within a certain range, all with
+                        smooth motion on all clients. The behaviour of the “gravity gun” is also very heavily dependent
+                        on input state. The original, single-player version of the gun was a finite state machine with
+                        transitions decided almost exclusively by changes in input--something that does not work as well
+                        when networked.</p>
+                </div>
+            </div>
+            <div class="elementTextWrapper">
+                <div>
+                    <h4>New Debug Tools &amp; Weapon Stat System</h4>
+                </div>
+            </div>
+            <div class="elementTextWrapper">
+                <div>
+                    <p>Outside of networking, a lot of time this week was spent rewriting the code that determines a
+                        weapon’s spread and recoil. A lot of the programming and design change was influenced by <a
+                            alt="GDC Vault - Modernizing Splinter Cell's Gunplay"
+                            href="http://www.gdcvault.com/play/1020354/Modernizing-Splinter-Cell-s" rel="nofollow"
+                            target="_blank" title="GDC Vault - Modernizing Splinter Cell's Gunplay">this GDC about
+                            Splinter Cell</a> by James Everett from Ubisoft Toronto.</p>
+                </div>
+            </div>
+            <div class="elementTextWrapper">
+                <div>
+                    <div style="text-align:center;"> 
+                        <iframe class="video-container" allowfullscreen="true" width="100%" frameborder="0"
+                            src="https://player.vimeo.com/video/236762430?loop=1&amp;portrait=0"></iframe></div>
+                </div>
+            </div>
+            <div class="elementTextWrapper">
+                <div>
+                    <p>While there were changes made to adjust the system to fit first person rather than third person
+                        (as well as an action game rather than a stealth game), the approach to recoil and dispersion in
+                        particular were very interesting to us. Some important changes were:</p>
+                    <p></p>
+                    <ul>
+                        <li>Implementing a visual debugging tool for dispersion.<br></li>
+                        <li>Changing dispersion from a set value to a min and max with a ramp-up time.<br></li>
+                        <li>Changing dispersion so that the first shot is always totally accurate.<br></li>
+                        <li>Rewriting recoil to kick the weapon up quickly then return to zero after a delay.<br></li>
+                        <li>Rewriting recoil such that its effect takes place over time with the value decided by a
+                            curve.<br></li>
+                    </ul>
+                    <p></p>
+                </div>
+            </div>
+            <div class="elementTextWrapper">
+                <div>
+                    <h4>Technical Plan</h4>
+                </div>
+            </div>
+            <div class="elementTextWrapper">
+                <div>
+                    <p>The first draft of the technical plan for <i>Modulate</i> was also written this week. It’s
+                        currently 11 pages, and goes in depth about our engine choice, our development environment
+                        (JetBrains’ Rider OR Visual Studio 2017 with ReSharper), and our version control choice (git for
+                        our development repository, with a school-wide standardized SVN build server). Four pages are
+                        dedicated to discussing the mechanics of the game and the technical risk involved with each.</p>
+                </div>
+            </div>
+            <div class="elementTextWrapper">
+                <div>
+                    <p>Overall, this was another successful week of development, and as always, I’m excited for the next
+                        sprint to start.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

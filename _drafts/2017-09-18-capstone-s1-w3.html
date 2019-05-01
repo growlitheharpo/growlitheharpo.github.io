@@ -1,0 +1,153 @@
+---
+title: James Keats - Game Programmer
+layout: default
+---
+<div class="contentBlock">
+    <h2 class="elementTextWrapper">Capstone - Week 3</h2>
+    <div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Weekly State of the Repo - v0.02.02</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Last week's sprint was successful, and essentially all of the core mechanics shared between the
+                    different concepts have been implemented. We were finally able to complete some informal and formal
+                    QA testing and received good feedback about the direction we should be heading.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>None of the tasks last week were so challenging that they stand out in retrospect as being too
+                    difficult. One important thing that we tried was a pre-sprint planning session on Wednesdays.
+                    Because our class is 8:00am on Thursday and all of us have full schedules for the rest of the day,
+                    we struggled the previous weeks to ensure we had a properly planned sprint by the end of the day
+                    when our task list was due. This week, we learned that it is significantly easier if we meet on
+                    Wednesday afternoons and plan out our tasks for the coming sprint with some room for flexibility
+                    based on feedback in-class.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>A game starts to form...</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Rather than include a ton of text about this week, I'm going to present a more visual summary of the
+                    game state.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h5>Weapon Menus</h5>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>First is the pretty "weapon choice" menu mockup for players to choose their weapon parts for our
+                    "build your custom gun from the start" prototype.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <div style="text-align: center">
+                    <iframe class="video-container" allowfullscreen="true" width="100%" frameborder="0"
+                    src="https://player.vimeo.com/video/234427295?loop=1&amp;byline=0&amp;portrait=0"></iframe></div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Though a lot of the visuals of this menu could change depending on the art direction we go (and how
+                    our artist feels about the UI later), the important proof-of-concept aspect is present. This menu is
+                    mostly hand-crafted to ensure the best user experience and would require updates in the scene
+                    when/if we add more weapon parts. This stands in start contrast to our debug menu:</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <div style="text-align: center">
+                    <iframe class="video-container" allowfullscreen="true" width="100%" frameborder="0"
+                        src="https://player.vimeo.com/video/234427291?loop=1&amp;byline=0&amp;portrait=0"></iframe></div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>This version of the parts menu was also a task for me this week. The idea of it is to allow our
+                    designer to iterate as equally as possible in this little "sandbox" level. It uses
+                    Resources.LoadAll() with a type parameter to get the list of possible items. I also explored using
+                    Resources.FindObjectsOfTypeAll(), but decided that I would rather keep the weapon part prefabs in
+                    the Resources folder than allow the menu to only ever be used in-editor, as using the former
+                    function required access to the PrefabUtility to ensure only prefabs were listed in the menu.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h5>Artificial Opponents</h5>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>The other biggest task for this week was the AI that we need for all of our concepts. Below is a
+                    video of the AI in action.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <div style="text-align: center"> 
+                    <iframe class="video-container" allowfullscreen="true" width="100%" frameborder="0"
+                        src="https://player.vimeo.com/video/234427285?loop=1&amp;byline=0&amp;portrait=0"></iframe></div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>By far the biggest challenge this week was the navigation of the AI. Though my previous AI class at
+                    Champlain had us do things like implement flocking and A* for creating AI movement, we never
+                    discussed how to decide where the AI should move. My final solution was heavily inspired by a blog
+                    post entitled "<a
+                        href="http://www.rikodu.com/implementing-robust-ai-for-secondhand-enemy-positioning/"
+                        rel="nofollow" target="_self"
+                        title="Implementing robust AI for SecondHand: Enemy Positioning">Implementing robust AI for
+                        SecondHand: Enemy Positioning</a>" by Radu Cristea at Rikodu.&nbsp;</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Essentially, the AI evaluates a series of positions around the player. It first discards any that are
+                    invalid (off the navmesh or cannot see the player). Then, it runs a series of evaluators on the
+                    positions to "score" them; one evaluator gives a high score for positions closer to the player's
+                    field of view (using the dot product with the player's forward vector), while another prefers
+                    positions a certain distance away from the player and another prefers positions close to where the
+                    AI currently is to avoid moving around too much. All of these weights and values (as well as another
+                    11 parameters about the AI) are tweakable by the design team.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>In order to reduce computational overhead, the AI only runs this position evaluation when it needs to
+                    find a new position to seek to. It determines this based on the current state the AI is in, how much
+                    the player has moved since the last time this was run, and simply how long it has been (in seconds)
+                    since the last time it checked. All of these values are tweakable as well, and when we have a more
+                    solid design they will most certainly be changed. With enough optimization, it's possible that these
+                    calculations can be run nearly every frame. Another improvement is that the AI currently does not
+                    take into consideration the position of the other AI units when moving; this is something that will
+                    have to be changed for realistic behavior or "squad" behavior.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h5>What Remains</h5>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>The remaining time for this week will be spent working on weapon part durability and degradation for
+                    one of the prototypes, as well as ensuring that enemies are able to drop weapon parts that the
+                    player can pick up. Overall, I am confident that we will have another successful sprint and we are
+                    lining ourselves up to challenge the initial stage soon, with three very strong divergent prototypes
+                    ready within the next week or so.</p>
+            </div>
+        </div>
+    </div>
+</div>

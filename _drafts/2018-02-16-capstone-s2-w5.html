@@ -1,0 +1,453 @@
+---
+title: James Keats - Game Programmer
+layout: default
+---
+<div class="contentBlock">
+    <h2 class="elementTextWrapper">Capstone - Semester 2 Week 5</h2>
+    <div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Could it really be blog post time again already?</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>HUD Overhaul</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>First, let's take a look at the new HUD:</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <div style="text-align:center;"><iframe class="video-container" allowfullscreen="true" width="100%"
+                        frameborder="0"
+                        src="https://player.vimeo.com/video/256116681?color=ff9933&amp;loop=1&amp;byline=0&amp;portrait=0"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>For the most part this included few code-related changes. We're still using the "BoundProperty"
+                    system which uses C# events to auto-push updates to UI elements without the "user code" having to
+                    know how that data is being used and displayed. The durability indicators, which used to exist in
+                    the ammo panel, have been removed and will be replaced in favor of a durability display directly on
+                    the model, coming next sprint. Luckily, the same system that used to display the durability has been
+                    repurposed to show the "ammo type" whenever the mechanism changes. A similar system was used to
+                    change the center reticle whenever the barrel changes.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>The other change included writing a new BoundPropertyListener for the draining bars. This binding
+                    element takes a "current value" property, a "max value" property or an inspector-set max value, then
+                    calculates a fill percentage based on this whenever either item changes. Note: in the video above,
+                    these bars drain vertically, but we decided after it was recorded to have them drain outwards
+                    horizontally instead for clearer visual distinction.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>First-Person Viewmodel</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>In the above video, you might've noticed a new robot hand holding the weapon. One of my tasks this
+                    sprint also involved helping our lead artist, Tyler, implement the first pass of the hand into the
+                    game. For the most part, that was simply a matter of changing around some parenting in the hierarchy
+                    and ensuring the correct items get enabled/disabled depending on if a player is the local player or
+                    a remote/networked player.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>There was one catch for implementing this hand, though. Going forward, we are planning on having team
+                    play with team colors. One option was to have separate texture sets for each team, but the preferred
+                    way was to do it in a more programmatic fashion so that we could easily change things later on.
+                    Tyler came up with a clever solution for this; in addition to the standard PBR maps, he also
+                    provided me with a one-channel "color mask" map. Wherever this mask was white, our Material-defined
+                    team/player color would be multiplied onto the diffuse. Wherever it was black, the color would be
+                    ignored. This obviously required a custom shader. I'm not a graphics person, but thankfully Unity
+                    made this easy, as it was just a surface shader.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <div style="text-align:center;"><iframe class="video-container" allowfullscreen="true" width="100%"
+                        frameborder="0"
+                        src="https://player.vimeo.com/video/256116669?color=ff9933&amp;loop=1&amp;byline=0&amp;portrait=0"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>My first attempt at this was the following surface shader:</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper" name="snippet">
+            <div style="text-align:left">
+                <!--snippet starts-->
+                <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+                <meta name="Generator" content="Microsoft Word 15 (filtered)">
+                <style>
+                    /* Font Definitions */
+                    @font-face {
+                        font-family: "Cambria Math";
+                        panose-1: 2 4 5 3 5 4 6 3 2 4;
+                    }
+
+                    @font-face {
+                        font-family: Calibri;
+                        panose-1: 2 15 5 2 2 2 4 3 2 4;
+                    }
+
+                    @font-face {
+                        font-family: Consolas;
+                        panose-1: 2 11 6 9 2 2 4 3 2 4;
+                    }
+
+                    /* Style Definitions */
+                    p.MsoNormal,
+                    li.MsoNormal,
+                    div.MsoNormal {
+                        margin-top: 0in;
+                        margin-right: 0in;
+                        margin-bottom: 8.0pt;
+                        margin-left: 0in;
+                        line-height: 107%;
+                        font-size: 11.0pt;
+                        font-family: "Calibri", sans-serif;
+                    }
+
+                    .MsoChpDefault {
+                        font-family: "Calibri", sans-serif;
+                    }
+
+                    .MsoPapDefault {
+                        margin-bottom: 8.0pt;
+                        line-height: 107%;
+                    }
+
+                    @page WordSection1 {
+                        size: 8.5in 11.0in;
+                        margin: 1.0in 1.0in 1.0in 1.0in;
+                    }
+
+                    div.WordSection1 {
+                        page: WordSection1;
+                    }
+                </style>
+                <div class="WordSection1">
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">CGPROGRAM</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">#include </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#A31515">"UnityPBSLighting.cginc"</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">#pragma</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> surface surf Standard</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">sampler2D</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> _MainTex;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">sampler2D</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> _ColorMask;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">fixed3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> _ColorMaskColor;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:green">// Input struct and other input
+                            textures go here</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">void</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">surf</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">(Input IN, </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">inout</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> SurfaceOutputStandard o)</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">{</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:blue">fixed4</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> albedo = </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">tex2D</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">(_MainTex, IN.uv_MainTex);</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:blue">fixed3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> mask = </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">tex2D</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">(_ColorMask,
+                            IN.uv_MainTex).rgb;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green">// Grab the other PBR
+                            textures here...</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            if (</span><span style="font-size:9.5pt;font-family:Consolas;color:blue">length</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">(mask) &gt; 0.5)</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            albedo.rgb *= _ColorMaskColor;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            o.Albedo = albedo.rgb;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green">// Fill the rest of the
+                            PBR output struct here</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">}</span></p>
+                    <p class="MsoNormal"><span
+                            style="font-size:9.5pt;line-height:107%;font-family:Consolas;color:#2B91AF">ENDCG</span></p>
+                </div>
+                <!--snippet ends-->
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>It essentially determines the value of the color mask and then conditionally multiplies based on
+                    that. However, if I've learned anything in my graphics class, it's that conditional branching in
+                    shaders is a death knell for the GPU. So, after a bit of thought and discussion with some other
+                    programmers, we were able to get it down to the following:</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper" name="snippet">
+            <div style="text-align:left">
+                <!--snippet starts-->
+                <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+                <meta name="Generator" content="Microsoft Word 15 (filtered)">
+                <style>
+                    /* Font Definitions */
+                    @font-face {
+                        font-family: "Cambria Math";
+                        panose-1: 2 4 5 3 5 4 6 3 2 4;
+                    }
+
+                    @font-face {
+                        font-family: Calibri;
+                        panose-1: 2 15 5 2 2 2 4 3 2 4;
+                    }
+
+                    @font-face {
+                        font-family: Consolas;
+                        panose-1: 2 11 6 9 2 2 4 3 2 4;
+                    }
+
+                    /* Style Definitions */
+                    p.MsoNormal,
+                    li.MsoNormal,
+                    div.MsoNormal {
+                        margin-top: 0in;
+                        margin-right: 0in;
+                        margin-bottom: 8.0pt;
+                        margin-left: 0in;
+                        line-height: 107%;
+                        font-size: 11.0pt;
+                        font-family: "Calibri", sans-serif;
+                    }
+
+                    .MsoChpDefault {
+                        font-family: "Calibri", sans-serif;
+                    }
+
+                    .MsoPapDefault {
+                        margin-bottom: 8.0pt;
+                        line-height: 107%;
+                    }
+
+                    @page WordSection1 {
+                        size: 8.5in 11.0in;
+                        margin: 1.0in 1.0in 1.0in 1.0in;
+                    }
+
+                    div.WordSection1 {
+                        page: WordSection1;
+                    }
+                </style>
+                <div class="WordSection1">
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">CGPROGRAM</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">#include </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#A31515">"UnityPBSLighting.cginc"</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">#pragma</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> surface surf Standard</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">sampler2D</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> _MainTex;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">sampler2D</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> _ColorMask;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">fixed3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> _ColorMaskColor;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:green">// Input struct and other input
+                            textures go here</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">void</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">surf</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">(Input IN, </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">inout</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> SurfaceOutputStandard o)</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">{</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:blue">fixed4</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> albedo = </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">tex2D</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">(_MainTex, IN.uv_MainTex);</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:blue">fixed3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> mask = </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">tex2D</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">(_ColorMask,
+                            IN.uv_MainTex).rgb;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green">// Grab the other PBR
+                            textures here...</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green">// Invert the mask and add
+                            the color, then clamp.</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green">// Result is what used to
+                            be black is now white,</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green">// and what used to be
+                            white is now the overlay color.</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            mask = </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">fixed3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">(1, 1, 1) - mask +
+                            _ColorMaskColor;</span> </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            mask = </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">clamp</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">(mask, </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">fixed3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">(0, 0, 0), </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">fixed3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">(1, 1, 1));</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green">// ... which means we can
+                            just multiply!</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            albedo.rgb = albedo.rgb * mask;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            o.Albedo = albedo.rgb;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green">// Fill the rest of the
+                            PBR output struct here</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">}</span></p>
+                    <p class="MsoNormal"><span
+                            style="font-size:9.5pt;line-height:107%;font-family:Consolas;color:#2B91AF">ENDCG</span></p>
+                </div>
+                <!--snippet ends-->
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>It's a small change and a minor improvement, but profiling through Unity revealed that it saves a
+                    conditional branch (obviously) and about 10 operations on the GPU total. I consider that a great
+                    optimization considering how easy it was to do! All-in-all, this was a successful sprint (including
+                    the weapon view refactoring from my last blog post) and I'm looking forward to sharing what I'm
+                    working on this sprint next Friday!</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,112 @@
+---
+title: James Keats - Game Programmer
+layout: default
+---
+<div class="contentBlock">
+    <h2 class="elementTextWrapper">Capstone - Semester 2 Week 2</h2>
+    <div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>This week saw some new progression in re[Mod], but it also saw me come down with the flu, so my
+                    contributions this past week haven't been quite as large as I would have hoped.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Redoing the Sniper Scope</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>There were some important improvements made, the first of which being that the sniper scope
+                    "aim-down-sights" effect was rewritten to use a screen overlay instead of the mediocre "move the gun
+                    to the center of the screen" that we were doing before. Initially, my plan was to essentially use a
+                    switch inside the WeaponPartScope script which would cover the different effect types, but I quickly
+                    found that that was not flexible enough, as different effect types would require different types of
+                    data and exposed variables.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>The solution was to use a ScriptableObject type, and a plug-and-play type system where each scope had
+                    a reference to a different "type" of effect that it would call into when aim-down-sights was
+                    activated and deactivated. The benefits of this included:</p>
+                <p></p>
+                <ul>
+                    <li>Separation of concerns. The "Scope" script just handles its own data and stats, the "Effect"
+                        script/object handles the effects.</li>
+                    <li>Exposing more variables per effect without clutter. Moving the effect variables into separate
+                        objects allows each effect to expose its own variables without needing to display the variables
+                        for all the rest.</li>
+                    <li>Ease of use. The base effect that the rest inherit from simply requires ActivateEffect() and
+                        DeactivateEffect() functions. Thus, it's very easy to add new effects and customize them as
+                        future scopes need.</li>
+                </ul>
+                <p></p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>I was also able to take advantage of new Post-Processing stack's flexibility. The newest (beta)
+                    version of Unity's stack allows for the creation and modification of effects at runtime, which I
+                    took advantage of by using a rounded Vignette effect for the screen overlay of the scope.&nbsp; I
+                    also wrote a new, simple effect called Quickfade which, provided a color and a time, fades the
+                    screen to that color through a shader and then back again when the appropriate call is made. This
+                    feels significantly cleaner than using a full-screen UI.Image would be and, though I haven't
+                    profiled it, my hunch is that it's more efficient as well even with the overhead of the
+                    Post-Processing stack.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Refactoring Bullets</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>The other major item that I spent time on this week was refactoring the hitscan bullets in re[Mod].
+                    Previously, they were a real drain on our network resources, due to some "get it working as quickly
+                    as possible" decisions. Previously, this was the flow for a bullet:</p>
+                <p></p>
+                <ul>
+                    <li>A local client makes a [Command] call to the server to fire their weapon.</li>
+                    <li>The server instantiates a projectile GameObject, which then immediately checks to see if it hits
+                        anything and applies damage if so.</li>
+                    <li>This GameObject then calls an RPC to play the correct audio snippet on each client depending on
+                        what happened.</li>
+                    <li>The server "spawns" the bullet on the network, and the local copies play the visual tracer
+                        effect.</li>
+                    <li>After 0.25 seconds, the server destroys the bullet on the network.</li>
+                </ul>
+                <p></p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>This has now been significantly refactored into the following:</p>
+                <p></p>
+                <ul>
+                    <li>A local client makes a [Command] call to the server to fire their weapon.</li>
+                    <li>The server checks if this "type" of projectile needs to be network spawned or not. In the case
+                        of hitscan weapons, it does not. Accordingly:</li>
+                    <li>The server makes a static call to check if the projectile has hit anything and applies damage if
+                        so.</li>
+                    <li>This static call packs all of its relevant data (start position, end position, hit object) into
+                        a struct. These structs are collected into an array which are accumulated and then sent to all
+                        clients through a Message.</li>
+                    <li>On receiving the message, each client Instantiates a local GameObject which plays the
+                        appropriate visual and audio effect.</li>
+                </ul>
+                <p></p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>This is a massive improvement in network traffic which I am happy with. The only improvement from
+                    here is to change the Instantiate and Destroy calls into calls into the pre-existing GameObjectPool
+                    class that I have, which is something we'll spend some time on a little further down the line.
+                    Still, when a project starts to get to this size, every little bit counts!</p>
+            </div>
+        </div>
+    </div>
+</div>

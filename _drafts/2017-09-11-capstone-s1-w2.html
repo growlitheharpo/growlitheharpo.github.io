@@ -1,0 +1,125 @@
+---
+title: James Keats - Game Programmer
+layout: default
+---
+<div class="contentBlock">
+    <h2 class="elementTextWrapper">Capstone - Week 2</h2>
+    <div>
+        <div class="elementTextWrapper">
+            <div>
+                <h3>Weekly State of the Repo – v0.01.03</h3>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>The past week was spent implementing a couple different prototypes in Unity, each of which focused on
+                    a single mechanic with the plans to later build them out to full gameplay. </p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>The first, Prototype 1, was the “Western Gunslinger” idea from last week. The prototype simply
+                    entailed a capsule “character” that could move with the left joystick of a controller and looked
+                    with the right, with controls like games such as “Overcooked”. Mechanics-wise, the player had to
+                    keep a ball in the center of a UI element that tried to pull it left and right, almost like the
+                    grinding mechanic in most Tony Hawk games. The longer the ball was in the middle, the faster the
+                    character’s gun would spin and the more damage it would do.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Prototype 2 is one that I didn’t talk about last week (though it involves some of the same
+                    mechanics), but was another one of the team’s top ideas. It is a first-person shooter where the
+                    player can alter the stats and way their weapon works on the fly by picking up modifications for it;
+                    the most similar game I am familiar with is Fallout 4. We haven’t fully decided on the gameplay for
+                    this idea yet (ideas include a typical “corridor-runner” FPS or an arena-style battle) but the core
+                    mechanic of the part switching is fleshed out enough for a deeper prototype, although the one in
+                    V0.01.03 is just a static camera with a debug menu for changing the scope and barrel of the gun, and
+                    a target to see how the stats change dynamically.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h3>“Turning ‘Oh Shit’ into ‘Oh Yeah!’”</h3>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>During our class midway through the week, we presented our top ideas to our professor and class. The
+                    consensus on the team was that, because of several factors, we underperformed for this presentation
+                    and that we can, and will, do better. The result of this presentation and feedback session was a
+                    total shift of our focus. We met the next day and threw out a bunch of our concepts and all of our
+                    narrative ideas, and decided to start from scratch with the core mechanic that everyone agreed was
+                    the most interesting: the dynamic weapon building.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p></p>
+                <p> </p>
+                <p>For the next stage of Capstone, it is necessary to build 3 working gameplay prototypes (among myriad
+                    other requirements). Our original plan was to have two of them done this sprint by building off the
+                    existing prototypes, then spend a week on the third, and one week refining and building our
+                    documentation and deciding which to go forward with before challenging. After the feedback session,
+                    we dropped this plan and instead decided that we would build 3 different prototypes based on the
+                    gun-building mechanic, with secondary mechanics and gameplay goals as disparate as possible. Thus,
+                    the plan for this week became to focus on building as complete of a framework as possible for these
+                    three prototypes, without having a “deliverable” prototype at the end, so-to-speak.</p>
+                <p></p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Thus, this week has been focused on the following key items:<br></p>
+                <ol>
+                    <li>All first-pass weapon parts are implemented and working.</li>
+                    <ol>
+                        <li>Weapon parts can update and replace stats dynamically.</li>
+                        <li>Weapon parts can be easily tweaked by the design team.</li>
+                        <li>The “firing mechanism” can even alter the projectile fired by the weapon (hitscan, grenades,
+                            rockets, etc.)</li>
+                        <ol>
+                            <li>Projectiles like grenades and rockets should support splash damage.</li>
+                        </ol>
+                        <li>Weapons have a clip size, current amount in clip, and support reloading with a placeholder
+                            reloading animation.</li>
+                        <li>Weapon parts in the environment can be “picked up” and are immediately equipped.</li>
+                        <li>All 5 weapon variables specified by the design team are implemented and work as expected.
+                        </li>
+                        <li>All 4 weapon part slots specified by the design team are implemented.</li>
+                    </ol>
+                    <li>The IWeapon interface is usable by player code and AI code without any changes. </li>
+                    <li>The player has a full first-person controller.</li>
+                    <ol>
+                        <li>Aiming, walking, jumping, and crouching all work as expected by any FPS player. </li>
+                        <li>Speeds/amounts for all the above can be easily tweaked by the design team.</li>
+                        <li>Interact (on the “E” key) works as expected by any FPS player.</li>
+                        <li>The player should have a HUD that displays ammo information and health information.</li>
+                        <li><b>The player’s weapon has recoil and kicks up while firing.</b></li>
+                        <li><b>The player dies and can restart when their health reaches 0.</b></li>
+                        <li><b>The controls work for mouse/keyboard, and a PS4 controller.</b></li>
+                    </ol>
+                    <li>The placeholder target displays all damage info and is “killable” (i.e., breaks). </li>
+                    <ol>
+                        <li>An “aggressive target” holds a gun and shoots at the player. Player takes damage.</li>
+                    </ol>
+                    <li>Everything that needs some sort of animation or VFX should have a placeholder item that can be
+                        swapped out later.</li>
+                    <ol>
+                        <li>Includes UI, reload animation, gunshot effects, player damage effects, etc. </li>
+                    </ol>
+                    <li><b>An event/notification system exists for tracking player kills and deaths.</b> </li>
+                </ol>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Items in bold have not yet been completed at the time of posting, but the sprint doesn’t end for
+                    another three days. This list of deliverables has been the bulk of my work this week, and it’s felt
+                    like a much better stride has been hit than the week before. I am confident that, although we got
+                    off to a rocky start, the next few sprints will go much more smoothly and the product we deliver in
+                    the end will be of an even higher quality for it.</p>
+            </div>
+        </div>
+    </div>
+</div>

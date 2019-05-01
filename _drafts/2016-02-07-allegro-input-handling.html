@@ -1,0 +1,636 @@
+---
+title: James Keats - Game Programmer
+layout: default
+---
+<div class="contentBlock">
+    <h2 class="elementTextWrapper">Allegro Input Handling</h2>
+    <div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>For our most recent assignment in Game Architecture, we had to build some wrapper/abstraction classes
+                    for an Allegro framework. The important key was that this not be a leaky abstraction--that the
+                    outside user not require any knowledge of Allegro or its functions in order to use our code.
+                    Technically this assignment only required us to have very basic input, allowing the outside code to
+                    determine if the user was pressing "F", "S", and the location of the mouse cursor. I decided
+                    instead, having finished the rest of the assignment quite quickly, to write a full input handler.
+                </p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h5>Determining Our Needs<br></h5>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Our needs here are fairly simple:</p>
+                <ul>
+                    <li>We want to know whether a key is currently pressed, if it was pressed this frame, or if it was
+                        released this frame.</li>
+                    <li>We want to know the same 3 pieces of information, but about the mouse buttons.</li>
+                    <li>We want to know the location of the mouse.</li>
+                    <li>We do not want to expose any Allegro to the caller.<br></li>
+                </ul>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h5>First Thoughts<br></h5>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>The first thing I did was simple; I created an InputManager class, and inside of that I made an enum
+                    class for KeyCode, and one for MouseCode. The values for this were identical to the Allegro values
+                    for the equivalent keys, but enum classes are type safe which is always a nice bonus, and it seals
+                    the Allegro to InputManager.</p>
+                <p><br></p>
+                <p>For getting the different states of the keys, I set up an Allegro event queue and registered the
+                    keyboard as an event source (and set up a separate one for the mouse--for pretty much everything I'm
+                    saying from this point forward,&nbsp; I'm going to talk about the keyboard but you can safely assume
+                    I did the same thing for the mouse). I then set up an update function called from the main game loop
+                    that would go through the queue and set the values for the keys.</p>
+                <p><br></p>
+                <p>I stored the values in three boolean arrays--one for "Just Pressed", one for "Currently Pressed", and
+                    one for "Just Released". The logic went as follows:</p>
+                <ul>
+                    <li>Set the entire "Just Pressed" array and the entire "Just Released" array to false. These are
+                        what I call single-frame flags, and so the first thing an update should do is clear the values
+                        from the last frame.</li>
+                    <li>Loop through the entire event queue:</li>
+                    <ul>
+                        <li>When we find a key down event, set "just pressed" and "currently pressed" to true for that
+                            key.</li>
+                        <li>When we find a key up event, set "currently pressed" to false and "just released" to true.
+                        </li>
+                    </ul>
+                </ul>
+                <p>This setup works perfectly fine, and I didn't have any problems with it, except that I had a sneaking
+                    suspicion that having three arrays of booleans was a little bit wasteful. After all, I had three
+                    valuesand they could only be true or false. Every single one of those bytes that I was allocating
+                    had 8 bits, 7 of which were sitting there totally unused. That starts to add up.<br></p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h5>Bitwise Operations<br></h5>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Full disclosure: I have never worked with bitwise operators before. I took Discrete Mathematics at
+                    Champlain, but prior to taking on this task as a side-project, I had never used them in programming.
+                    However, I knew I wanted to pack these three states into a single byte for every key, saving two
+                    bytes for each key and reducing my unused bits from 21 to 5. Is this a <i><b>huge </b></i>gain?
+                    Admittedly, not really. But it was a good learning experience, if nothing else.</p>
+                <p><br></p>
+                <p>So, I deleted my three boolean arrays, and replaced them with a single byte_t array (byte_t is in
+                    this case a typedef for an unsigned char). Then I looked up some truth tables.</p>
+                <p><br></p>
+            </div>
+        </div>
+        <div class="columns">
+            <div>
+                <div class="col-6 col-s-6">
+                    <div>
+                        <div class="elementTextWrapper">
+                            <div>
+                                <div>
+                                    <div>
+                                        <table style="float: left;width: 100.0%;">
+                                            <tbody>
+                                                <tr>
+                                                    <th width="25%"> Byte 1<br></th>
+                                                    <th width="25%"> Byte 2<br></th>
+                                                    <th width="25%"> Op</th>
+                                                    <th width="25%"> Result</th>
+                                                </tr>
+                                                <tr>
+                                                    <td width="25%"> 1111</td>
+                                                    <td width="25%"> 0010</td>
+                                                    <td width="25%"> &amp;</td>
+                                                    <td width="25%"> 0010</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="25%"> 0011</td>
+                                                    <td width="25%"> 1101</td>
+                                                    <td width="25%"> &amp;</td>
+                                                    <td width="25%"> 0001</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="25%"> 1100</td>
+                                                    <td width="25%"> 0001</td>
+                                                    <td width="25%"> |</td>
+                                                    <td width="25%"> 1101</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-s-6">
+                    <div>
+                        <div class="elementTextWrapper">
+                            <div>
+                                <p>The first thing I noticed was that bitwise AND (&amp;) was useful for "subtraction".
+                                    In other words, for either reducing a complex byte to a simple one to see if a
+                                    certain flag is set within the complex one (Row 1). NOT combined with AND would be
+                                    useful for "subtracting" a certain bit or flag from a complex byte (Row 2).
+                                    Meanwhile, bitwise OR ( | ) would be useful for "addition", or adding a flag into a
+                                    byte without affecting the rest of it.<br></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="columns">
+            <div>
+                <div class="col-7 col-s-7">
+                    <div>
+                        <div class="elementTextWrapper">
+                            <div>
+                                <p>To this end, I declared three main flags, listed to the right. These, plus a byte for
+                                    each key, were all that was actually necessary for maintaining the state of each
+                                    key. If the first bit was set, the key was just pressed; the second bit would be if
+                                    it was currently pressed, and the third for if it was just released. The rest of the
+                                    bits are unfortunately unused--maybe the next step will be to figure out a way to
+                                    place two keys on a byte?<br></p>
+                                <p><br></p>
+                                <p>The logic of the update loop used here is essentially the same as before, but instead
+                                    of setting boolean values, I'm setting and clearing flags for each key:<br></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5 col-s-5">
+                    <div>
+                        <div class="elementTextWrapper">
+                            <div>
+                                <div>
+                                    <div>
+                                        <table style="float: left;width: 100.0%;">
+                                            <tbody>
+                                                <tr>
+                                                    <th width="33%"> Identifier</th>
+                                                    <th width="33%"> Hex</th>
+                                                    <th width="33%"> Binary</th>
+                                                </tr>
+                                                <tr>
+                                                    <td width="33%">JUST_PRESSED </td>
+                                                    <td width="33%"> 0x1</td>
+                                                    <td width="33%"> 0001</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="33%">CURRENTLY_PRESSED</td>
+                                                    <td width="33%"> 0x2</td>
+                                                    <td width="33%"> 0010</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="33%"> JUST_RELEASED</td>
+                                                    <td width="33%"> 0x4</td>
+                                                    <td width="33%"> 0100</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div name="snippet">
+            <div class="zpAlignPos" style="text-align:left">
+                <!--snippet starts-->
+                <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+                <meta name="Generator" content="Microsoft Word 15 (filtered)">
+                <style>
+                    /* Font Definitions */
+                    @font-face {
+                        font-family: "Cambria Math";
+                        panose-1: 2 4 5 3 5 4 6 3 2 4;
+                    }
+
+                    @font-face {
+                        font-family: Calibri;
+                        panose-1: 2 15 5 2 2 2 4 3 2 4;
+                    }
+
+                    @font-face {
+                        font-family: Consolas;
+                        panose-1: 2 11 6 9 2 2 4 3 2 4;
+                    }
+
+                    /* Style Definitions */
+                    p.MsoNormal,
+                    li.MsoNormal,
+                    div.MsoNormal {
+                        margin-top: 0in;
+                        margin-right: 0in;
+                        margin-bottom: 8.0pt;
+                        margin-left: 0in;
+                        line-height: 107%;
+                        font-size: 11.0pt;
+                        font-family: "Calibri", sans-serif;
+                    }
+
+                    .MsoChpDefault {
+                        font-family: "Calibri", sans-serif;
+                    }
+
+                    .MsoPapDefault {
+                        margin-bottom: 8.0pt;
+                        line-height: 107%;
+                    }
+
+                    @page WordSection1 {
+                        size: 8.5in 11.0in;
+                        margin: 1.0in 1.0in 1.0in 1.0in;
+                    }
+
+                    div.WordSection1 {
+                        page: WordSection1;
+                    }
+                </style>
+                <div class="WordSection1">
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas; color:blue;background:white">void</span> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> </span> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF;background:white">InputManager</span>
+                        <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">::updateKeyboard()</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">{</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green;background:white">//Clear
+                            single-frame flags</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue;background:white">for</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> (</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue;background:white">int</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> i = 0; i &lt;
+                        </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue;background:white">static_cast</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&lt;</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue;background:white">int</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&gt;(</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF;background:white">KeyCode</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">::</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:darkslategray;background:white">MY_MAX_KEY</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">); i++)</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green;background:white">//bitwise
+                            "and" the bitwise not == "subtract" that bit</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            mBitwiseKeyStates[i] &amp;= (~</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF;background:white">StateBitValues</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">::JUST_PRESSED
+                            &amp; </span></p>
+                    <p class="MsoNormal"
+                        style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:2.5in;margin-bottom:.0001pt;line-height:normal;text-autospace:none">
+                        <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;
+                            ~</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF;background:white">StateBitValues</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">::JUST_RELEASED);</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            }</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green;background:white">//Loop
+                            over all recorded key events this frame</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue;background:white">while</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> (!</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#6F008A;background:white">al_event_queue_is_empty</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">(mpKeyboardEventQueue))</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            al_get_next_event(mpKeyboardEventQueue, &amp;mEvent);</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue;background:white">int</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> key =
+                            mEvent.keyboard.keycode;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue;background:white">if</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> (mEvent.type ==
+                        </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:darkslategray;background:white">ALLEGRO_EVENT_KEY_DOWN</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">)</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {</span> </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green;background:white">//If it
+                            was just pressed, set the two pressed flags for that key</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            mBitwiseKeyStates[key] |= </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF;background:white">StateBitValues</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">::JUST_PRESSED;</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            mBitwiseKeyStates[key] |= </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF;background:white">StateBitValues</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">::CURRENTLY_PRESSED;</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            }</span> </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue;background:white">else</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue;background:white">if</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> (mEvent.type ==
+                        </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:darkslategray;background:white">ALLEGRO_EVENT_KEY_UP</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">)</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {</span> </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green;background:white">//If it
+                            was just released, clear the pressed flag</span></p>
+                    <p class="MsoNormal"
+                        style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:1.0in;margin-bottom:.0001pt;text-indent:.5in;line-height:normal;text-autospace:none">
+                        <span style="font-size:9.5pt;font-family:Consolas;color:green;background:white">//and set the
+                            just released flag</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            mBitwiseKeyStates[key] &amp;= ~</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF;background:white">StateBitValues</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">::CURRENTLY_PRESSED;</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            mBitwiseKeyStates[key] |= </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF;background:white">StateBitValues</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">::JUST_RELEASED;</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            }</span> </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            }</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">}</span></p>
+                </div>
+                <!--snippet ends-->
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Truth tables are very useful here.<br></p>
+                <p>The first for loop combines NOT JUST_PRESSED with NOT JUST_RELEASED (which equals 1010) and then
+                    performs an &amp;= (AND EQUALS) operation on each key. In other words, it will maintain the value of
+                    the first and third bit for every key (unused, and currently pressed), but will set the other two
+                    bits to 0. </p>
+                <p>Then, the while loop goes through the event queue.</p>
+                <ul>
+                    <li>For a key down event, |= (OR EQUALS) will set the bit for that flag. (0000 | 0001 = 0001 then
+                        0001 | 0010 = 0011).</li>
+                    <li>For a key up event, ~&amp;= (NOT AND EQUALS) clears the currently pressed flag, then |= (OR
+                        EQUALS) sets the just released flag. (0010 &amp; ~0010 = 0000, then 0000 | 0100 = 0100).</li>
+                </ul>
+                <p><br></p>
+                <p>There's one other issue here that's missed--the getters. In order to meet our needs, the following
+                    are needed:</p>
+                <ul>
+                    <li>bool getDown(KeyCode key)</li>
+                    <li>bool getPressed(KeyCode key)</li>
+                    <li>bool getReleased(KeyCode key)</li>
+                </ul>
+                <p><br></p>
+                <p>In the original version, all that's needed for these to work was to return the value in their
+                    respective boolean arrays at the index referenced by the KeyCode. Moving to bitwise requires a tiny
+                    bit more work, but luckily we already discussed the principals necessary. I'll give you a hint; it's
+                    in the first row of the first table up there.<br></p>
+            </div>
+        </div>
+        <div name="snippet">
+            <div class="zpAlignPos" style="text-align:left">
+                <!--snippet starts-->
+                <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+                <meta name="Generator" content="Microsoft Word 15 (filtered)">
+                <style>
+                    /* Font Definitions */
+                    @font-face {
+                        font-family: "Cambria Math";
+                        panose-1: 2 4 5 3 5 4 6 3 2 4;
+                    }
+
+                    @font-face {
+                        font-family: Calibri;
+                        panose-1: 2 15 5 2 2 2 4 3 2 4;
+                    }
+
+                    @font-face {
+                        font-family: Consolas;
+                        panose-1: 2 11 6 9 2 2 4 3 2 4;
+                    }
+
+                    /* Style Definitions */
+                    p.MsoNormal,
+                    li.MsoNormal,
+                    div.MsoNormal {
+                        margin-top: 0in;
+                        margin-right: 0in;
+                        margin-bottom: 8.0pt;
+                        margin-left: 0in;
+                        line-height: 107%;
+                        font-size: 11.0pt;
+                        font-family: "Calibri", sans-serif;
+                    }
+
+                    .MsoChpDefault {
+                        font-family: "Calibri", sans-serif;
+                    }
+
+                    .MsoPapDefault {
+                        margin-bottom: 8.0pt;
+                        line-height: 107%;
+                    }
+
+                    @page WordSection1 {
+                        size: 8.5in 11.0in;
+                        margin: 1.0in 1.0in 1.0in 1.0in;
+                    }
+
+                    div.WordSection1 {
+                        page: WordSection1;
+                    }
+                </style>
+                <div class="WordSection1">
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue;background:white">bool</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF;background:white">InputManager</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">::getHasByte(</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue;background:white">const</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF;background:white">byte_t</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray;background:white">value</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">, </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue;background:white">const</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF;background:white">byte_t</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray;background:white">comparison</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">) </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue;background:white">const</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">{</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue;background:white">return</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> (</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray;background:white">value</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white"> &amp;
+                        </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray;background:white">comparison</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black;background:white">);</span></p>
+                    <p class="MsoNormal"><span
+                            style="font-size:9.5pt;line-height:107%;font-family:Consolas;color:black;background:white">}</span>
+                    </p>
+                </div>
+                <!--snippet ends-->
+            </div>
+        </div>
+        <div class="columns">
+            <div>
+                <div class="col-6 col-s-6">
+                    <div>
+                        <div class="elementTextWrapper">
+                            <div>
+                                <p>Any given byte AND the flag will equal the flag if that bit is set. If the bit for
+                                    that flag is not set, the result will be 0, or false.</p>
+                                <p><br></p>
+                                <p>The above function is passed a byte from the array (value), and the flag to compare
+                                    it against (comparison). All that's necessary is to bitwise AND the value against
+                                    the flag, and the result will be true if the flag is set, and false if it isn't.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-s-6">
+                    <div>
+                        <div class="elementTextWrapper">
+                            <div>
+                                <div>
+                                    <div>
+                                        <table style="float: left;width: 100.0%;">
+                                            <tbody>
+                                                <tr>
+                                                    <th width="25%"> Byte 1<br></th>
+                                                    <th width="25%"> Byte 2<br></th>
+                                                    <th width="25%"> Op</th>
+                                                    <th width="25%"> Result</th>
+                                                </tr>
+                                                <tr>
+                                                    <td width="25%"> ??0?</td>
+                                                    <td width="25%"> 0010</td>
+                                                    <td width="25%"> &amp;</td>
+                                                    <td width="25%"> 0000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="25%"> ??1?</td>
+                                                    <td width="25%"> 0010</td>
+                                                    <td width="25%"> &amp;</td>
+                                                    <td width="25%"> 0010</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>So there you have it. All of this work saved my assignment a total of 454 bytes while running (2
+                    bytes per key * 277 keys, which is ALLEGRO_KEY_MAX). This isn't hugely significant, but it's not
+                    tiny either. The important part is that I now know how to cram multiple flags into a single byte
+                    if/when I need to, instead of having multiple boolean values. If there were more flags and even more
+                    keys, the memory saved would be even higher. All in all, I think this was a useful exercise.</p>
+                <p><br></p>
+            </div>
+        </div>
+    </div>
+</div>

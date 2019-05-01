@@ -1,0 +1,140 @@
+---
+title: James Keats - Game Programmer
+layout: default
+---
+<div class="contentBlock">
+    <h2 class="elementTextWrapper">Artificial Opponents - Minesweeper Planning</h2>
+    <div>
+        <div class="elementTextWrapper">
+            <div>
+                <h3>General Approach</h3>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>My plan for Minesweeper is to follow the general approach outlined by Bai Li (luckytoilet) in the
+                    blog post “<a alt="How to Write your own Minesweeper AI"
+                        href="https://luckytoilet.wordpress.com/2012/12/23/2125/" rel="nofollow" target="_blank"
+                        title="How to Write your own Minesweeper AI">How to Write your own Minesweeper AI</a>” which is
+                    also linked to in the references section.<br></p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p><span>The basic idea is to use a simple minesweeper algorithm that most players use in their head at
+                        first and, if that fails, to use a more complicated algorithm that enumerates all the possible
+                        states and finds common cells between all of them to make a decision. When this also fails, it
+                        must fall back on guessing, just like real minesweeper.</span></p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p><span>The data will be stored in the AI’s own game view class. This class will represent only the
+                        knowledge that the AI or a player would know about the game from looking at the board, plus the
+                        knowledge provided by the game (such as the mine count).</span></p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h3>Major Classes</h3>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p><span></span></p>
+                <p><b>AIGameView</b></p>
+                <ul>
+                    <li><span>Will keep track of the known board state in a BoardState.</span><br></li>
+                    <li><span>Will hold a queue of cells that are known to be clickable.</span><br></li>
+                    <li><span>Will create mutable copies of the board as necessary and only modify the main copy when a
+                            click has occurred or a mine can be flagged.</span><br> </li>
+                </ul>
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p><span><b>BoardState</b><br></span></p>
+                <ul>
+                    <li>Will hold an array of bytes with indexes that match those of the main game.<br></li>
+                    <ul>
+                        <li>A value of -2 means the cell has been flagged as a mine.</li>
+                        <li>A value of -1 means the cell is unknown.</li>
+                        <li>A value &gt;= 0 represents the adjacent mine count of the cell.</li>
+                    </ul>
+                    <li>Will hold the total number of mines and the current number of flagged mines, and provide a
+                        function for checking how many mines remain unflagged.<br></li>
+                </ul>
+                <p></p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h3>Major Algorithms</h3>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Essentially, we will follow the approach outlined in Bai Li's blog:</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p></p>
+                <ul>
+                    <li>First, we do the “simple approach”:<br></li>
+                    <ul>
+                        <li>For every cell with a number, subtract 1 from its count for each known mine around it.</li>
+                        <li>For every cell with a count of 1 and exactly one unknown cell adjacent to it, flag that
+                            unknown cell as a mine.</li>
+                        <li>For every cell with a count of 0 (after subtracting for known mines), we can click on every
+                            adjacent unknown cell.</li>
+                    </ul>
+                    <li>If we reach a situation where the simple approach cannot get us any further, we use what Bai Li
+                        calls the “Tank Algorithm”:<br></li>
+                    <ul>
+                        <li>Enumerate all possible positions that are valid based on the known board state.</li>
+                        <li>Check what is common between them.</li>
+                        <ul>
+                            <li>Any cells that are always empty in all possible configurations can immediately be
+                                clicked.</li>
+                            <li>Any cells that are always mines <span>in all possible configurations </span>can
+                                immediately be flagged.</li>
+                        </ul>
+                        <li>If no changes occurred from the previous step, we can use things that are common between all
+                            the possible positions to determine probabilities.</li>
+                        <ul>
+                            <li>The cell that has mines in the fewest number of combinations can be clicked. If there is
+                                a situation where multiple cells have the same lowest probability of being a mine, the
+                                one with the lowest index will be chosen.</li>
+                        </ul>
+                    </ul>
+                </ul>
+                <p></p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p><span></span></p>
+                <p>At any given time, if the algorithm determines there are multiple cells that can be clicked, they
+                    will be added to a queue of cell indexes. The algorithm will only run when the queue is empty.</p>
+                <p></p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h3>References</h3>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p><span></span></p>
+                <p>Li, Bai. <i>“How to Write your own Minesweeper AI”</i>. Dec 23, 2012. <a
+                        href="https://luckytoilet.wordpress.com/2012/12/23/2125/">https://luckytoilet.wordpress.com/2012/12/23/2125/</a>
+                </p>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>

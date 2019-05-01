@@ -1,0 +1,139 @@
+---
+title: James Keats - Game Programmer
+layout: default
+---
+<div class="contentBlock">
+    <h2 class="elementTextWrapper">Capstone - Week 7</h2>
+    <div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Weekly State of the Repo</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div class="columns">
+                <div class="col-4 col-s-12">
+                    <div class="elementTextWrapper">
+                        <div>
+                            <div class="zpAlignPos" style="text-align:center;"> <iframe allowfullscreen="true"
+                                    width="260px" height="150px" frameborder="0"
+                                    src="//www.youtube.com/embed/_asNhzXq72w?wmode=transparent"></iframe> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 col-s-12">
+                    <div class="elementTextWrapper">
+                        <div>
+                            <p>For the first time this past week, we failed a challenge in Capstone.</p>
+                        </div>
+                    </div>
+                    <div class="elementTextWrapper">
+                        <div>
+                            <p>We challenged to get out of Deep Dive and into Proof of Concept last week, and our
+                                professor gave us the thumbs down. All is well though, as he gave us a list of very
+                                specific feedback and criteria to meet to succeed and make it through to the next stage,
+                                and we have addressed all of it and plan to challenge again this week.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Again, the visible changes to the prototype for this week are fewer in number than some of the
+                    previous weeks, because a total of 20+ hours on my part this week were spent refactoring and
+                    overhauling all of our networked code. Almost everything from the ground up, from the player
+                    movement and controls to all of the weapon code, was re-written with networking in mind from the
+                    start this time--as opposed to before, when the code was written for a first person game but I had
+                    stuck the bare minimum on top of that to get it networked.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <div style="text-align:center;"> <iframe class="video-container" allowfullscreen="true" width="100%"
+                        frameborder="0" src="https://player.vimeo.com/video/238822550?loop=1&amp;portrait=0"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>In the overhauled framework,we finally actually do hit detection on the server instead of on the
+                    client that gets hit. Projectiles actually exist on the server, and their position and collision
+                    detection is consistent across all clients. Things like scores and the game time are now properly
+                    networked as well. I experimented with making the server authoritative for when the player is able
+                    to do things like fire their weapon, but found that the way I had it set up originally was too
+                    laggy, making the game nearly unplayable across different networks and still suffering from a
+                    noticeable couple frames of lag on LAN. As a result, the client is currently allowed to decide when
+                    it can shoot and the performance of its weapon. This is acceptable in a QA environment where we know
+                    players will not be cheating, but may be an issue later on. There are solutions to this using
+                    prediction, but that would be overkill at this stage.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>I also reworked the magnet arm for this sprint, and its performance is now much more similar to how
+                    it was in the single player versions. The client applies a local force on the physics object (the
+                    gun part) and requests that it be reflected on the server. The client then uses interpolation
+                    provided by Unity's built-in NetworkTransform component to resolve any conflicts between the two.
+                    When the part reaches a certain distance from the player, it snaps to their hand, and is locked in
+                    that position until they choose to equip, drop, or throw it. Players are no longer able to steal
+                    parts from each other with the magnet arm, but can still walk up to the other and equip it directly.
+                    The result looks much better than the previous and is significantly more consistent. After a talk
+                    with Charlie, our designer, we decided this minor loss in gameplay functionality is worth the gains.
+                </p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Updated In-Game UI</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <div style="text-align:center;"> <iframe class="video-container" allowfullscreen="true" width="100%"
+                        frameborder="0" src="https://player.vimeo.com/video/238822538?loop=1&amp;portrait=0"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>This new in-game UI is based off of a mockup that Charlie did in Photoshop and then implemented by
+                    me. The main goal was to help players understand what different parts are when the models are
+                    partially obscured or when the placeholder art is not able to convey the full meaning of a part.
+                    Many QA players specifically requested a visual of what the stats of a weapon are and how they will
+                    change from a particular part. This panel was the first response we have to that. This coming
+                    sprint, we are going to iterate on the screen location of the UI and how it reacts to the player and
+                    environment.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Updated Animations</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <div style="text-align:center;"> <iframe class="video-container" allowfullscreen="true" width="100%"
+                        frameborder="0" src="https://player.vimeo.com/video/238822546?loop=1&amp;portrait=0"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>We also did a second pass of our animations! I worked together with our artist, Tyler, to make sure
+                    that all the poses worked and blended together as we wanted. Together, we were able set up the
+                    animator controller above that is properly called from the gameplay code, although there are still
+                    some kinks to work out with networking. For now, the above solution is a significant improvement
+                    over the animations we had at the end of the last sprint.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Overall, this was another very successful sprint despite the setback of failing our challenge. Our
+                    plan is to challenge again this week and get into Proof of Concept, where we will continue to
+                    iterate and move along. There are only about four and a half weeks left until the midyear show--a
+                    fact which is both exhilarating and terrifying. Here's to another successful sprint!</p>
+            </div>
+        </div>
+    </div>
+</div>

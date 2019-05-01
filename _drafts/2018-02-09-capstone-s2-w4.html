@@ -1,0 +1,353 @@
+---
+title: James Keats - Game Programmer
+layout: default
+---
+<div class="contentBlock">
+    <h2 class="elementTextWrapper">Capstone - Semester 2 Week 4</h2>
+    <div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Another week, another re[Mod] technical update!</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>WeaponView Refactor</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>One of the issues we were running into as re[Mod] has expanded more and more is that the BaseWeapon
+                    class had grown a little out of control. BaseWeapon handled combining all of the stats from its
+                    component WeaponParts, handling the logic for things like shooting, reloading, aiming down sights,
+                    serializing all of the necessary data across the network, and presenting the player with a visual
+                    response to their actions (such as switching the model pieces when changing weapon parts, activating
+                    particle effects while shooting, etc). The result was a file that was over 1,000 lines long. It was
+                    split up into #regions, but I still always dreaded it a bit when going into that file.&nbsp;</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>The first step in the solution to this problem was extracting out all of the "view" code out of this
+                    script. This included all of the code that handled VFX and animation, model switching, and any other
+                    visual code. In effect, it became similar to an MVC architecture, where the Model and Controller
+                    were combined in the BaseWeapon script and all of the view logic became the WeaponView script.
+                    Through this, we managed to significantly reduce the amount of code in the BaseWeapon script down to
+                    a mostly-manageable level, and the separation of concerns allows both scripts to be reasoned about
+                    more easily. Going forward, a potential next step would be to further implement the MVC
+                    architecture, pulling the Controller and Model for the Weapon out into two different classes.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Weapon Inertia</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Another major improvement I made this week for "game feel" was the addition and tweaking of inertia
+                    in the movement of the weapon. This was something that we had been planning for a while, and the
+                    refactor of the WeaponView made it significantly easier. The subtle but important effect is
+                    demonstrated in the video below made by our designer Charlie Carucci, who is showing off some new
+                    weapon parts he made (with placeholder art):</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <div style="text-align:center;"><iframe 
+                        src="//www.youtube.com/embed/ciuoNhfwvLc?wmode=transparent" allowfullscreen="true" width="560"
+                        height="315" frameborder="0"></iframe></div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>This system works by accumulating the player's "look" rotation over several frames, sampling them
+                    with a bias towards the recent ones to establish a rotational velocity, and then setting its own
+                    rotation to the current look rotation with the velocity added and a slight smoothing factor. Working
+                    on this gave me a renewed appreciation for Quaternions, because doing this with Euler angles
+                    would've been a nightmare. Here's a look at the code that achieves this effect:</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper" name="snippet">
+            <div style="text-align:left">
+                <!--snippet starts-->
+                <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+                <meta name="Generator" content="Microsoft Word 15 (filtered)">
+                <style>
+                    /* Font Definitions */
+                    @font-face {
+                        font-family: "Cambria Math";
+                        panose-1: 2 4 5 3 5 4 6 3 2 4;
+                    }
+
+                    @font-face {
+                        font-family: Calibri;
+                        panose-1: 2 15 5 2 2 2 4 3 2 4;
+                    }
+
+                    @font-face {
+                        font-family: Consolas;
+                        panose-1: 2 11 6 9 2 2 4 3 2 4;
+                    }
+
+                    /* Style Definitions */
+                    p.MsoNormal,
+                    li.MsoNormal,
+                    div.MsoNormal {
+                        margin-top: 0in;
+                        margin-right: 0in;
+                        margin-bottom: 8.0pt;
+                        margin-left: 0in;
+                        line-height: 107%;
+                        font-size: 11.0pt;
+                        font-family: "Calibri", sans-serif;
+                    }
+
+                    .MsoChpDefault {
+                        font-family: "Calibri", sans-serif;
+                    }
+
+                    .MsoPapDefault {
+                        margin-bottom: 8.0pt;
+                        line-height: 107%;
+                    }
+
+                    @page WordSection1 {
+                        size: 8.5in 11.0in;
+                        margin: 1.0in 1.0in 1.0in 1.0in;
+                    }
+
+                    div.WordSection1 {
+                        page: WordSection1;
+                    }
+                </style>
+                <div class="WordSection1">
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">///</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:green"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">&lt;summary&gt;</span> </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">///</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:green"> Rotate the weapon to follow the
+                            player's looking direction </span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">///</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:green"> and the desired weapon inertia
+                            using the player's rotationalvelocity.</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">///</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:green"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">&lt;/summary&gt;</span> </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">///</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:green"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">&lt;param name="</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">bearer</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">"&gt;</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:green">The bearer of this
+                            weapon.</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">&lt;/param&gt;</span> </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">private</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">void</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> HandleWeaponInertia(</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#00B0F0">IWeaponBearer </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">bearer)</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">{</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:#00B0F0">Quaternion </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">bearerRotVelocity =
+                            CalculateAverageRotationalVelocity();</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:#00B0F0">Quaternion </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">targetRot =
+                            bearer.eye.rotation;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            targetRot = targetRot * bearerRotVelocity;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            transform.rotation = </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#00B0F0">Quaternion</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">.Slerp(</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            transform.rotation,</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            targetRot,</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            mCurrentMovementData.cameraRotationFollowFactor * </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#00B0F0">Time</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">.deltaTime);</span> </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">}</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">///</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:green"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">&lt;summary&gt;</span> </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">///</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:green"> Calculate a weighted average of
+                            the change in the player's localrotations.</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">///</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:green"> Essentially gives a weighted
+                            angular velocity in the form of a Quaternion.</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">///</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:green"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:gray">&lt;/summary&gt;</span> </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">private</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#00B0F0">Quaternion </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">CalculateAverageRotationalVelocity()</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">{</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:blue">float</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> sampleWeightSum
+                            = CalculateTotalWeightCurveSum(mRecentRotations.Length);</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:#00B0F0">Quaternion </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">accumulation =
+                            Quaternion.identity;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:blue">for</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> (</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">int</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> i = 0; i &lt;
+                            mRecentRotations.Length - 1; ++i)</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:#00B0F0">Quaternion </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">a = mRecentRotations[i], b
+                            =mRecentRotations[i + 1];</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:#00B0F0">Quaternion </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">diff = b *
+                            Quaternion.Inverse(a);</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:blue">float</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> weight =
+                            CalculateRotationWeight(</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i,</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            mRecentRotations.Length,</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            sampleWeightSum);</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#00B0F0">Quaternion </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">weightedDiff = </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#00B0F0">Quaternion</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">.Slerp(</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#00B0F0">Quaternion</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">.identity, diff,weight);</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            accumulation = accumulation * weightedDiff;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            }</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"> <span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:blue">return</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> accumulation;</span></p>
+                    <p class="MsoNormal"><span
+                            style="font-size:9.5pt;line-height:107%;font-family:Consolas;color:black">}</span> </p>
+                    <p class="MsoNormal">&nbsp;</p>
+                </div>
+                <!--snippet ends-->
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Looking Forward</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>That's it for this week so far, but there's a lot coming up! Weapon/head bob while walking, a UI
+                    overhaul, and a first-person hand viewmodel are all on the docket for this sprint, so look forward
+                    to the next blog post!</p>
+            </div>
+        </div>
+    </div>
+</div>

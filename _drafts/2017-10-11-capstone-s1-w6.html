@@ -1,0 +1,333 @@
+---
+title: James Keats - Game Programmer
+layout: default
+---
+<div class="contentBlock">
+    <h2 class="elementTextWrapper">Capstone - Week 6</h2>
+    <div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Weekly State of the Repo</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>It's hard to believe, but we're currently about halfway between the start of the semester and
+                    Thanksgiving, which means the mid-year show is coming up quick. <i>Modulate</i> is still on route to
+                    be a strong candidate to go forward next semester. Visible progress this past week was slower than
+                    usual due to a couple factors. Firstly, next sprint I need to refactor all of our code that touches
+                    networking--something that made the entire team weary of adding new features this sprint; secondly,
+                    this past weekend was Fall break, giving us a four-day weekend that the team has definitely earned.
+                </p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Still, all of us have been working hard. I won't go in-depth about these items here, but Tyler, our
+                    artist, has been working hard on character animations which you'll see in the videos below, while
+                    our designer, Charlie, has been working on SFX and a new level for the game. You can out Tyler's
+                    blog <a alt="Tyler Bolster - Senior Capstone Blog"
+                        href="http://tylerbolsterseniorcapstone.blogspot.com" rel="nofollow" target="_blank"
+                        title="Tyler Bolster - Senior Capstone Blog">here </a>and Charlie's blog <a alt="here"
+                        href="https://charliecarucci.wordpress.com/capstone-blog/" rel="nofollow" target="_blank"
+                        title="here">here</a>. Here's what I was primarily working on:</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Damage Indication</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>One of the most significant and repeated pieces of feedback we've gotten from QA so far has been that
+                    players have a difficult time telling when they're taking damage, and when they're damaging enemies.
+                    Part of this will come a little further down the line with improved sound design, but the easiest
+                    thing we could do in the moment was to create a classic FPS screen-space damage indicator, as well
+                    as a particle system on enemies when they're hit.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <div style="text-align:center;"> <iframe class="video-container" allowfullscreen="true" width="100%"
+                        frameborder="0" src="https://player.vimeo.com/video/237752031?loop=1&amp;portrait=0"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>The most difficult part of this was determining how to rotate the 2D image of the damage indicator
+                    arc depending on where the damage source was located. The final solution for this can be found
+                    below:</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper" name="snippet">
+            <div class="zpAlignPos" style="text-align:left">
+                <!--snippet starts-->
+                <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+                <style>
+                    /* Font Definitions */
+                    @font-face {
+                        font-family: "Cambria Math";
+                        panose-1: 2 4 5 3 5 4 6 3 2 4;
+                    }
+
+                    @font-face {
+                        font-family: Calibri;
+                        panose-1: 2 15 5 2 2 2 4 3 2 4;
+                    }
+
+                    @font-face {
+                        font-family: Consolas;
+                        panose-1: 2 11 6 9 2 2 4 3 2 4;
+                    }
+
+                    /* Style Definitions */
+                    p.MsoNormal,
+                    li.MsoNormal,
+                    div.MsoNormal {
+                        margin-top: 0in;
+                        margin-right: 0in;
+                        margin-bottom: 8.0pt;
+                        margin-left: 0in;
+                        line-height: 107%;
+                        font-size: 11.0pt;
+                        font-family: "Calibri", sans-serif;
+                    }
+
+                    .MsoChpDefault {
+                        font-family: "Calibri", sans-serif;
+                    }
+
+                    .MsoPapDefault {
+                        margin-bottom: 8.0pt;
+                        line-height: 107%;
+                    }
+
+                    @page WordSection1 {
+                        size: 8.5in 11.0in;
+                        margin: 1.0in 1.0in 1.0in 1.0in;
+                    }
+
+                    div.WordSection1 {
+                        page: WordSection1;
+                    }
+                </style>
+                <div class="WordSection1">
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">private</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">void</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> SpawnHitIndicator(</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">ICharacter</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> damageReceiver, </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">ICharacter</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> damageSource, </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">float</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> amount)</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">{</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green">// Get all of the
+                            directions we need</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">Vector3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> cam =
+                            damageReceiver.gameObject.transform.forward;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">Vector3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> a =
+                            damageReceiver.gameObject.transform.position;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">Vector3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> b =
+                            damageSource.gameObject.transform.position;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">Vector3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> dir = b - a;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green">// flatten the vectors,
+                            since we only care about where the sourceis around us.</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            cam = </span><span style="font-size:9.5pt;font-family:Consolas;color:blue">new</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">Vector3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">(cam.x, 0.0f, cam.z);</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            dir = </span><span style="font-size:9.5pt;font-family:Consolas;color:blue">new</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">Vector3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">(dir.x, 0.0f, dir.z);</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:blue">float</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> angle = </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">Vector3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">.SignedAngle(cam.normalized,
+                            dir.normalized, </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">Vector3</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">.down);</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green">// release a new UI image
+                            object from our pool</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">GameObject</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> newObj =
+                            mIndicatorPool.ReleaseNewItem();</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">RectTransform</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black"> t =
+                            newObj.GetComponent&lt;</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">RectTransform</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&gt;().ResetEverything(size:INDICATOR_SIZE);</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span><span style="font-size:9.5pt;font-family:Consolas;color:green">// the angle between the
+                            two vectors is how we want the 2D imagerotated on the screen</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            t.rotation = </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">Quaternion</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">.Euler(0.0f, 0.0f, angle);</span>
+                    </p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;</span></p>
+                    <p class="MsoNormal"
+                        style="margin-bottom:0in;margin-bottom:.0001pt;line-height:normal;text-autospace:none"><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            StartCoroutine(FadeOutColor(newObj.GetComponent&lt;</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:#2B91AF">UIImage</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">&gt;(),mVisibleRadialColor,
+                            mHiddenRadialColor, FADE_OUT_TIME, </span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:blue">true</span><span
+                            style="font-size:9.5pt;font-family:Consolas;color:black">));</span></p>
+                    <p class="MsoNormal"><span
+                            style="font-size:9.5pt;line-height:107%;font-family:Consolas;color:black">}</span></p>
+                </div>
+                <!--snippet ends-->
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>In addition to the above radial indicator, we also flash a full-screen red vignette to tell the
+                    player that they've been damaged. Feedback so far indicates that this is an improvement, but we
+                    still need to do more. We may explore options like screen shake next, but ultimately our goal is to
+                    convey most of this information through the sound design.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Damage Falloff</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <div style="text-align:center;"> <iframe class="video-container" allowfullscreen="true" width="100%"
+                        frameborder="0" src="https://player.vimeo.com/video/237756098?loop=1&amp;portrait=0"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div class="columns">
+                <div class="col-4 col-s-12">
+                    <div class="elementTextWrapper">
+                        <div style="max-width: 100%;text-align:center;"> <img
+                                src="/assets/img/blog/capstone/week6-damagecurve.png"
+                                style="max-width: 100%; width: 340px;"> </div>
+                    </div>
+                </div>
+                <div class="col-8 col-s-12">
+                    <div class="elementTextWrapper">
+                        <div>
+                            <p>One of Charlie's next requests for <i>Modulate&nbsp;</i>was the ability to design damage
+                                falloff over distance for the different weapon combinations. This value can make
+                                gameplay more interesting as it requires players to get close to each other to do enough
+                                damage to get a kill. The system is designed such that each projectile (bullet, grenade,
+                                and rocket currently) has a falloff curve, and then the weapon parts are able to modify
+                                the distance that that curve applies over.</p>
+                        </div>
+                    </div>
+                    <div class="elementTextWrapper">
+                        <div>
+                            <p>We discussed the possibility of allowing different parts (such as the barrel) to modify
+                                the curve directly, but decided that the math for that would become too complicated to
+                                properly visualize the result of different combinations, the gameplay benefit would be
+                                minimal, and it would be more complicated to explain to players what was happening.</p>
+                        </div>
+                    </div>
+                    <div class="elementTextWrapper">
+                        <div>
+                            <h4>Other Tidbits</h4>
+                        </div>
+                    </div>
+                    <div class="elementTextWrapper">
+                        <div>
+                            <p>A few other, smaller items went in this week, one of which we've been eyeing for some
+                                time: different fire modes for the weapons. In the past, the player could just hold down
+                                the fire button to shoot regardless of what type of gun they had. Now, Charlie is able
+                                to define a maximum "shots per click" for each barrel, resulting in more varied
+                                gameplay; for example, pistols must be clicked anew for every shot, the minigun can
+                                still be held down as before, and we have a new "burst fire" rifle barrel that gets
+                                three shots per click.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>We also brought part durability back into the mix, networked now. This will have to be reworked
+                    during the refactor of all the network code, but it was at least testable (and got positive
+                    feedback). We also did a first pass on post-processing (as visible in the damage indication video
+                    above) and I helped support Tyler with the animation implementing and Charlie with the new audio
+                    implementing.&nbsp;</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Overall, while this week was a little slower due to our well-deserved break, we've still made some
+                    great progress and I in particular am looking forward to the major refactor and rewrite of our
+                    network code to bring it up to where it should be next week.</p>
+            </div>
+        </div>
+    </div>
+</div>

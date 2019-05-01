@@ -75,6 +75,24 @@ p {
   color: $body-color;
 }
 
+table {
+  font-family: $font-head-lite;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: #FCFCFC;
+}
+
+th, td {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #f0f0f0;
+  padding: 10px,
+}
+
+th {
+  background: #F8F8F8;
+}
+
 .headerSitename {
   font-family: $font-head;
   color: #000000;

@@ -1,0 +1,154 @@
+---
+title: James Keats - Game Programmer
+layout: default
+---
+<div class="contentBlock">
+    <h2 class="elementTextWrapper">Capstone - Semester 2 Week 3</h2>
+    <div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>This week on re[Mod], we saw a lot of improved player feedback, some new features, and more
+                    refactoring of the network code!</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Improved Feedback</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>This was something primarily handled by our other programmer, <a
+                        alt="Justin Mulkin - Game Programmer" href="http://www.justinmulkin.com" rel="nofollow"
+                        target="_self" title="Justin Mulkin - Game Programmer">Justin</a>. We've included screenshake
+                    when the player is injured, improved reticle response when dealing damage, and an improved hitmarker
+                    when being hit. I also worked with Charlie, our Lead Designer, on implementing better audio feedback
+                    for all of these events as well. This tied well into the "bullet refactor" performed last week.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>New Features - Weapon Pads &amp; Healthkits</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div class="columns">
+                <div class="col-6 col-s-12">
+                    <div>
+                        <div class="elementTextWrapper">
+                            <div style="max-width: 100%;text-align:center;"> <img
+                                    src="/assets/img/blog/capstone/s2w3-padoff.jpg"
+                                    style="max-width:100%;text-align:center;"></img> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-s-12">
+                    <div>
+                        <div class="elementTextWrapper">
+                            <div style="max-width: 100%;text-align:center;"> <img
+                                    src="/assets/img/blog/capstone/s2w3-padon.jpg"
+                                    style="max-width:100%;text-align:center;"></img> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div style="max-width: 100%;text-align:center;"> <img src="/assets/img/blog/capstone/s2w3-healthkit.jpg"
+                    style="max-width:100%;text-align:center;"></img> </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>This week, we replaced all of the "weapon crates" previously in the game with weapon pads. While the
+                    backend code is similar, players approach weapon pads in a fundamentally different way. With crates,
+                    players controlled when a crate was destroyed and thus controlled when they would receive a part of
+                    a particular category. With pads, everything is timing-based and players have no control over when
+                    pads appear or how long they are active for. This gives players a more significant resource to fight
+                    over and defend.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>The other important addition was healthkits, with placeholder art modeled by me (and inspired by one
+                    of my <a alt="Health - Official TF2 Wiki" href="https://wiki.teamfortress.com/wiki/Health#Gallery"
+                        rel="nofollow" target="_blank" title="Health - Official TF2 Wiki">favorite FPS games of all
+                        time</a>). I'm taking one extra class this semester, Intro to 3D Modeling &amp; Texturing,
+                    partially for fun and partially to be able to communicate more effectively with artists; I'm glad I
+                    was able to get a couple art assets into the game too!</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <h4>Networking/Connection Flow Update</h4>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div>
+                <p>Previously, when starting a new game, players were presented with two options: "Host Game" and "Join
+                    Local Game". These buttons would then utilize Unity's <a
+                        alt="NetworkDiscovery - Unity Scripting API"
+                        href="https://docs.unity3d.com/ScriptReference/Networking.NetworkDiscovery.html" rel="nofollow"
+                        target="_blank" title="NetworkDiscovery - Unity Scripting API">NetworkDiscovery</a> class to
+                    locate a game on the player's LAN. This was acceptable, because our plans for the game only involve
+                    it being played on a LAN and not over the internet; however, the serious limitation was that it only
+                    allowed us to run a single game at a time.</p>
+            </div>
+        </div>
+        <div class="elementTextWrapper">
+            <div class="columns">
+                <div class="col-6 col-s-12">
+                    <div>
+                        <div class="elementTextWrapper">
+                            <div>
+                                <p>The obvious solution to this was to use Unity's Matchmaking service instead, which I
+                                    implemented at the end of the last sprint. The big downside to this solution was
+                                    that, even though all of our players were playing on LAN, we were forced to pass all
+                                    traffic through Unity's Matchmaking Relay server to use the matchmaking service.
+                                    This would be an acceptable downside, were it not for the fact that our current net
+                                    usage blows through the provided bandwidth in the Development environment, resulting
+                                    in everyone being disconnected from the match after the two-minute grace period.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-s-12">
+                    <div>
+                        <div class="elementTextWrapper">
+                            <div style="max-width: 100%;text-align:center;"> <img
+                                    src="/assets/img/blog/capstone/s2w3-matchlist.jpg"
+                                    style="max-width:100%;text-align:center;"></img> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="elementTextWrapper">
+        <div>
+            <p>Our long-term plan is to diagnose this and significantly reduce our network usage even further, because
+                there is frankly no reason we should be hitting these sorts of limits. In the meantime though, I found a
+                work-around. Essentially, we publish the host's IP address when creating the match on Unity's
+                matchmaking service. Then, when a client connects, instead of "joining" the match through Unity's Relay
+                server, we connect them directly to the IP address that was published with the match data. This works
+                without any port-forwarding or NAT punch-through because all of our games are taking place on LANs.</p>
+        </div>
+    </div>
+    <div class="elementTextWrapper">
+        <div>
+            <p><span>The result is that we can run multiple simultaneous matches on a single LAN without interference or
+                    connection issues between the two. The only downside is that a single computer is not able to host
+                    multiple matches simultaneously, but since you can only play one game at a time, this was a
+                    compromise we were willing to make. Because of this process, I learned even more about diagnosing
+                    network usage and reading Unity's UNET profiler. I'm looking forward to digging into it more to
+                    further reduce our bandwidth until we are able to use Unity's matchmaking service properly.</span>
+            </p>
+        </div>
+    </div>
+    <div class="elementTextWrapper">
+        <div>
+            <p>Overall, we're on a great track to hit our "greenlight" requirements soon. Our new team is making sure
+                that re[Mod] is going to be an excellent game by the end of the semester!</p>
+        </div>
+    </div>
+</div>
+</div>
