@@ -1,0 +1,28 @@
+
+// matches elementTextWrapper
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  word-wrap: break-word;
+  margin-bottom: 1.5em;
+  overflow: hidden;
+}
+
+li ul li {
+    padding: 0;
+}
+
+// Stolen from https://thornelabs.blog/posts/centering-images-with-jekyll-and-markdown.html
+.center-image {
+  margin: 0 auto;
+  display: block;
+  max-width: 100%;
+}
+
+.text-align-center {
+    text-align: center;
+}
