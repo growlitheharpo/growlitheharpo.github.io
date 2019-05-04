@@ -7,6 +7,8 @@ My portfolio post about re[Mod] is [available to look over now](/portfolio/remod
 
 The fall semester is coming to a close, and we're all completing our closing kits, tying up loose ends, and prepping to move forward into next semester. The good news is that re[Mod] was one of the projects selected by the faculty to move forward into full production in the spring semester. That was an incredible bit of validation for the entire team, and we're all excited to get started with our new team members. First, though, we all need to reflect on the successes and failures of the project, and the things we learned.
 
+<!--more-->
+
 #### What Went Well?
 
 We made a good game. Consistently, our peers at QA validated our belief in our core mechanic and came back again and again to play the game. Players within our target audience of individuals who play first person shooters would come back even after QA was over to play more rounds of the game. One of our professors, Dan Buckstein, told us that out of all the projects, our game gave him the biggest adrenaline rush while playing against other faculty members.

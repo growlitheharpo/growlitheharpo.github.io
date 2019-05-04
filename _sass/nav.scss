@@ -38,3 +38,24 @@ $header-padding: 1.25em;
       color: $splash-dark;
     }
   }
+
+#blogpage {
+  p {
+    word-wrap: break-word;
+    margin-bottom: 1.5em;
+    overflow: hidden;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 0;
+  }
+
+  .blog-excerpt {
+    padding: 0 0 0 1.75em;
+  }
+}

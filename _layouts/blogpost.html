@@ -13,8 +13,12 @@
 
         <div class="mainContentWidth">
             <div class="mainContentArea floatLeft" style="width:100%">
-                <h2 class="elementTextWrapper">{{ page.title }}</h2>
-                {{ content }}
+                <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+                <p>By: James Keats | {{ page.date | date_to_long_string }}</p>
+                <div>
+                    {{ content }}
+                </div>
+                <a href="/blog.html">Back to blog</a>
             </div>
             <div class="clearDiv"></div>
         </div>

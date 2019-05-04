@@ -60,306 +60,54 @@ picture1: "/assets/img/portfolio/contextbhvr/cover.png"
         <p>{{site.data.portfolio.contextbhvr.details.p10}}</p>
     </div>
 
-    <!-- Copied from Microsoft Word-->
-    <div class="WordSection1">
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:blue">void</span><span style="font-size:9.5pt;font-family:Consolas;
-            color:black"> </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:darkcyan">ContextDecisionMaker</span><span style="font-size:9.5pt;
-            font-family:Consolas;color:black">::update()</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">{</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:green">//Get the data we need.</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:darkcyan">Unit</span><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">* owner = gpGame-&gt;getUnitManager()-&gt;getUnit(</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkred">mOwnerID</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black">);</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:darkcyan">PhysicsData</span><span style="font-size:9.5pt;font-family:
-            Consolas;color:black"> data = owner-&gt;getPhysicsComponent()-&gt;getData();</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:darkcyan">Vector2</span><span style="font-size:9.5pt;font-family:Consolas;
-            color:black"> ownerPos = owner-&gt;getCurrentPosition();</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:green">//Create maps and initialize completely to zero.</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:darkcyan">context_map_t</span><span style="font-size:9.5pt;font-family:
-            Consolas;color:black"> dangerMap</span><span style="font-size:9.5pt;font-family:
-            Consolas;color:darkcyan">(</span><span style="font-size:9.5pt;font-family:Consolas;
-            color:darkred">NUMBER_OF_DIRECTIONS</span><span style="font-size:9.5pt;
-            font-family:Consolas;color:black">, 0.0f</span><span style="font-size:9.5pt;
-            font-family:Consolas;color:darkcyan">)</span><span style="font-size:9.5pt;
-            font-family:Consolas;color:black">;</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:darkcyan">context_map_t</span><span style="font-size:9.5pt;font-family:
-            Consolas;color:black"> interestMap</span><span style="font-size:9.5pt;
-            font-family:Consolas;color:darkcyan">(</span><span style="font-size:9.5pt;
-            font-family:Consolas;color:darkred">NUMBER_OF_DIRECTIONS</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black">, 0.0f</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">)</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black">;</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:green">//Fill danger map.</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fillDangerMap(dangerMap, ownerPos);</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:green">//Use the danger map to fill only the unblocked slots in the
-                interest map.</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fillInterestMap(dangerMap, interestMap, ownerPos);</span>
-        </p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:green">//Get the best direction to go in.</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:darkcyan">Direction</span><span style="font-size:9.5pt;font-family:Consolas;
-            color:black"> strongestInterest = chooseBestDirection(interestMap);</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:blue">if</span><span style="font-size:9.5pt;font-family:Consolas;
-            color:black"> (strongestInterest == </span><span style="font-size:9.5pt;
-            font-family:Consolas;color:darkcyan">Direction</span><span style="font-size:
-            9.5pt;font-family:Consolas;color:black">::</span><span style="font-size:9.5pt;
-            font-family:Consolas;color:darkred">NONE</span><span style="font-size:9.5pt;
-            font-family:Consolas;color:black">)</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                data.</span><span style="font-size:9.5pt;font-family:
-            Consolas;color:darkred">acc</span><span style="font-size:9.5pt;font-family:
-            Consolas;color:black"> </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:darkcyan">=</span><span style="font-size:9.5pt;font-family:Consolas;
-            color:black"> data.</span><span style="font-size:9.5pt;font-family:Consolas;
-            color:darkred">vel</span><span style="font-size:9.5pt;font-family:Consolas;
-            color:black"> </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:darkcyan">*</span><span style="font-size:9.5pt;font-family:Consolas;
-            color:black"> -5.0f; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:green">//slow down.</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:blue">else</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-                style="font-size:9.5pt;font-family:
-            Consolas;color:darkcyan">Direction</span><span style="font-size:9.5pt;
-            font-family:Consolas;color:black"> leftDir = strongestInterest.getDirToLeft();</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-                style="font-size:9.5pt;font-family:
-            Consolas;color:darkcyan">Direction</span><span style="font-size:9.5pt;
-            font-family:Consolas;color:black"> rightDir =
-                strongestInterest.getDirToRight();</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-                style="font-size:9.5pt;font-family:
-            Consolas;color:green">//Blend the strongest direction and the two directions
-                next to it.</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-                style="font-size:9.5pt;font-family:
-            Consolas;color:darkcyan">Vector2</span><span style="font-size:9.5pt;font-family:
-            Consolas;color:black"> blendedDir = </span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span
-                style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                DIRECTIONS</span><span style="font-size:9.5pt;font-family:Consolas;color:darkcyan">[</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black">strongestInterest</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">]</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">+</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span
-                style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                DIRECTIONS</span><span style="font-size:9.5pt;font-family:Consolas;color:darkcyan">[</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black">leftDir</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">]</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">*</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black"> interestMap</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">[</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black">leftDir</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">]</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">+</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span
-                style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                DIRECTIONS</span><span style="font-size:9.5pt;font-family:Consolas;color:darkcyan">[</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black">rightDir</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">]</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black"> </span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">*</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black"> interestMap</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">[</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black">rightDir</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">]</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black">;</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                blendedDir.normalize();</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
-                style="font-size:9.5pt;font-family:
-            Consolas;color:green">//Accelerate in that direction, adjusting for our current
-                velocity.</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                data.</span><span style="font-size:9.5pt;font-family:
-            Consolas;color:darkred">acc</span><span style="font-size:9.5pt;font-family:
-            Consolas;color:black"> </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:darkcyan">=</span><span style="font-size:9.5pt;font-family:Consolas;
-            color:black"> </span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span
-                style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                (blendedDir </span><span style="font-size:
-            9.5pt;font-family:Consolas;color:darkcyan">+</span><span style="font-size:9.5pt;
-            font-family:Consolas;color:black"> (blendedDir </span><span style="font-size:
-            9.5pt;font-family:Consolas;color:darkcyan">-</span><span style="font-size:9.5pt;
-            font-family:Consolas;color:black"> data.</span><span style="font-size:9.5pt;
-            font-family:Consolas;color:darkred">vel</span><span style="font-size:9.5pt;
-            font-family:Consolas;color:black">.normalized())) </span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkcyan">*</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black"> data.</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:darkred">maxAcc</span><span
-                style="font-size:9.5pt;font-family:Consolas;color:black">;</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:darkred">mData</span><span style="font-size:9.5pt;font-family:Consolas;
-            color:black"> </span><span style="font-size:9.5pt;font-family:Consolas;
-            color:darkcyan">=</span><span style="font-size:9.5pt;font-family:Consolas;
-            color:black"> data;</span></p>
-
-        <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
-            normal;text-autospace:none"><span style="font-size:9.5pt;font-family:Consolas;
-            color:black">}</span></p>
-
-        <p class="MsoNormal">&nbsp;</p>
-
+    <div class="elementTextWrapper">
+{% highlight cpp %}
+void ContextDecisionMaker::update()
+{
+        //Get the data we need.
+        Unit* owner = gpGame->getUnitManager()->getUnit(mOwnerID);
+        PhysicsData data = owner->getPhysicsComponent()->getData();
+        Vector2 ownerPos = owner->getCurrentPosition();
+    
+        //Create maps and initialize completely to zero.
+        context_map_t dangerMap(NUMBER_OF_DIRECTIONS, 0.0f);
+        context_map_t interestMap(NUMBER_OF_DIRECTIONS, 0.0f);
+        
+        //Fill danger map.
+        fillDangerMap(dangerMap, ownerPos);
+    
+        //Use the danger map to fill only the unblocked slots in the interest map.
+        fillInterestMap(dangerMap, interestMap, ownerPos);
+    
+        //Get the best direction to go in.
+        Direction strongestInterest = chooseBestDirection(interestMap);
+    
+        if (strongestInterest == Direction::NONE)
+        {
+                data.acc = data.vel * -5.0f; //slow down.
+        }
+        else
+        {
+                Direction leftDir = strongestInterest.getDirToLeft();
+                Direction rightDir = strongestInterest.getDirToRight();
+    
+                //Blend the strongest direction and the two directions next to it.
+                Vector2 blendedDir =
+                            DIRECTIONS[strongestInterest] +
+                            DIRECTIONS[leftDir] * interestMap[leftDir] +
+                            DIRECTIONS[rightDir] * interestMap[rightDir];
+    
+                blendedDir.normalize();
+    
+                //Accelerate in that direction, adjusting for our current velocity.
+                data.acc =
+                        (blendedDir + (blendedDir - data.vel.normalized())) * data.maxAcc;
+        }
+    
+        mData = data;
+}
+{% endhighlight %}
     </div>
-    <!-- Snipped end -->
 
     <div class="elementTextWrapper">
         <p>{{site.data.portfolio.contextbhvr.details.p11}}</p>

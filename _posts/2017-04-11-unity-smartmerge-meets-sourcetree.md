@@ -7,6 +7,8 @@ Before I begin, I want to give credit to whoever wrote the blog post that used t
 
 The only reason I'm writing this post is that it looks like their website is down and isn't available in the Wayback Machine. So thank you, mysterious vanishing developer(s)! Major credit also goes to Tim Pettersen ([@kannonboy](https://twitter.com/kannonboy)) for his GDC 2017 talk on incorporating Unity with git which is what got me started down this path.
 
+<!--more-->
+
 This guide is aimed at developers on Windows. The setup process for OSX will be similar but some of the specifics about things like file paths will be different.
 
 The basic point of this post is as follows: git is an incredible piece of version control. I think it blows the rest out of the water. If you haven't, you should check out Tim Pettersen's full [guide to setting up git with Unity](http://www.gamasutra.com/blogs/TimPettersen/20161206/286981/The_complete_guide_to_Unity__Git.php). SourceTree is also a great piece of software that makes git more accessible to a lot more people. Unfortunately, getting all of the great version control tools with Unity and git to work well with SourceTree isn't totally clear-cut. The following is a guide on setting up SmartMerge with SourceTree, and assumes you've already followed the guide that Tim provided (although you can skip the steps about handling large Unity assets if you're not working with a server that supports it; for all my Champlain friends, unfortunately Pineapple does not have git lfs support yet).
@@ -23,7 +25,6 @@ Unity has a guide for setting up their YAML Merge tool with SourceTree available
 #### Setting Up UnityYAMLMerge
 
 SmartMerge needs a merge tool to fall back on. You should probably use a visual merge tool such as P4Merge from Perforce. You can <a href="https://www.perforce.com/downloads/visual-merge-tool" rel="nofollow" target="_blank">download that here</a>. Note that you don't actually need to register to download, and that when installing you can deselect everything except P4Merge.
-
 
 1. Find the following file: *[Unity Install Directory]/Editor/Data/Tools/mergespecfile.txt*
 2. Within this file, locate the two lines starting with "unity use" and "prefab use".
