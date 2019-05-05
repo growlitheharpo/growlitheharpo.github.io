@@ -10,8 +10,16 @@ p {
   overflow: hidden;
 }
 
+img {
+  max-width: 100%;
+}
+
 li ul li {
     padding: 0;
+}
+
+table {
+  width: 100%;
 }
 
 // Stolen from https://thornelabs.blog/posts/centering-images-with-jekyll-and-markdown.html
