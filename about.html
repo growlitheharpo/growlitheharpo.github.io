@@ -8,7 +8,9 @@ picture: "/assets/img/about/me.jpg"
 </div>
 <div class="contentBlock">
     <div class="columns">
-        {% include image-left-mobile-bottom.html image=page.picture part="top" %}
+        <div style="text-align: center">
+            {% include image-left-mobile-bottom.html image=page.picture part="top" style="width:100%;max-width:400px;" %}
+        </div>
 
         <div class="col-6 col-s-12">
             {% for block in site.data.about.about %}
