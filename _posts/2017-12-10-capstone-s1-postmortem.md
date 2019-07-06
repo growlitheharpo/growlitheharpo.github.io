@@ -35,6 +35,5 @@ Next semester is going to be a whirlwind of development for re[Mod]. Our plans i
 It's going to be an exciting extra three or four months of development, and I'm very thankful that re[Mod] was able to pass through pre-production. Next semester we'll be expanding our team and really giving it our all. I can't wait!
 
 <p>
-    <iframe class="video-container" allowfullscreen="true" width="100%" frameborder="0" 
-        src="https://player.vimeo.com/video/243548187?color=ff9933&amp;loop=1&amp;byline=0&amp;portrait=0"> </iframe>
+{% include vimeoplayer.html url=243548187 %}
 </p>

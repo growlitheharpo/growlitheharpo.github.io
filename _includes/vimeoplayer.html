@@ -1,0 +1,13 @@
+{% if include.loop == 1 %}
+<div>
+    <div style="text-align: center">
+        <iframe class="video-container" allowfullscreen="true" width="100%" frameborder="0"
+            src="https://player.vimeo.com/video/{{include.url}}?loop=1&amp;color=ff9933&amp;byline=1&amp;portrait=0"></iframe></div>
+</div>
+{% else %}
+<div>
+    <div style="text-align: center">
+        <iframe class="video-container" allowfullscreen="true" width="100%" frameborder="0"
+            src="https://player.vimeo.com/video/{{include.url}}?loop=0&amp;color=ff9933&amp;byline=1&amp;portrait=0"></iframe></div>
+</div>
+{% endif %}

@@ -86,22 +86,19 @@ void ContextDecisionMaker::update()
 Essentially, it fills the danger map first, then fills the interest map by ignoring directions in which there is danger above its "MAX_DANGER" value (which is data-driven through an XML file). It then loops through the Interest Map, picks the direction with the highest value, and accelerates roughly in that direction. One of the main points of Context Behavior is that this simple act of ignoring directions that have danger in them allows you to create complex and consistent behavior with very simple code. Here's an example:
 
 <p>
-    <iframe class="video-container" allowfullscreen="true" width="100%" frameborder="0" 
-        src="https://player.vimeo.com/video/194261930?color=ff9933&amp;loop=1&amp;byline=0&amp;portrait=0"> </iframe>
+{% include vimeoplayer.html url=194261930 loop=1 %}
 </p>
 
 One of the important aspects of this is that the chosen direction is not directly where the unit goes. Instead, it takes its most desired direction and then blends that with the directions to either side, weighted by its interest in those directions. The result of that (plus using the dot product weighted by distance to determine interest) is that even if the agent is only considering a small number of directions, it can utilize diagonals and create more interesting behavior. In the next video, you can see a series of agents using a context resolution of only 4 head directly towards an interest through this blending:
 
 <p>
-    <iframe class="video-container" allowfullscreen="true" width="100%" frameborder="0" 
-        src="https://player.vimeo.com/video/194261921?color=ff9933&amp;loop=1&amp;byline=0&amp;portrait=0"> </iframe>
+{% include vimeoplayer.html url=194261921 loop=1 %}
 </p>
 
 This blending is an important aspect of Context Behavior. It means that, if your resolution is dynamic, you can change the complexity of your AI calculation on the fly based on the needs of the situation and the game, and still get good-looking behavior. A higher resolution generally gets smoother and more accurate movement, but at the cost of having to do more calculations. The complexity increases linearly as the number of directions considered increases. The following video demonstrates the effects different resolutions will have on the behavior, and the benefit of making it dynamic:
 
 <p>
-    <iframe class="video-container" allowfullscreen="true" width="100%" frameborder="0" 
-        src="https://player.vimeo.com/video/194258358?color=ff9933&amp;loop=1&amp;byline=0&amp;portrait=0"> </iframe>
+{% include vimeoplayer.html url=194258358 loop=1 %}
 </p>
 
 For this system, I built a dynamic constant loading system. It uses an XML file to manage the values, and sets up a watcher thread with Windows to look for file write notifications. When a write occurs, this thread sends a notification to the main game thread that it needs to update the values. Thus, all the player needs to do to try out new values is type them in and hit save, and they can watch their changes take effect in real time.
@@ -115,7 +112,6 @@ Overall, I massively prefer Context Behavior to Steering. The code is significan
 This was one of those projects that I spent a lot of time playing with and trying out fun things while procrastinating on other work (like writing this blog post). As a bonus, here's one of my favorite accidents I discovered while experimenting with how the agents would react to different situations:
 
 <p>
-    <iframe class="video-container" allowfullscreen="true" width="100%" frameborder="0" 
-        src="https://player.vimeo.com/video/194354231?color=ff9933&amp;loop=1&amp;byline=0&amp;portrait=0"> </iframe>
+{% include vimeoplayer.html url=194354231 loop=1 %}
 </p>
 
