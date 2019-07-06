@@ -10,7 +10,11 @@
                 <div id="navigation">
                     <ul id="nav-top" data-navorientation=horizontal>
                         {% for item in site.data.navigation %}
-                        <li {%if page.url == item.link %} class="selected" {% endif %}>
+                        {% if page.url == item.link or page.selectedurl == item.name %}
+                        <li class="selected">
+                        {% else %}
+                        <li>
+                        {% endif %}
                             <a href="{{ item.link }}"><span>{{ item.name }}</span></a>
                         </li>
                         {% endfor %}

@@ -2,6 +2,7 @@
 title: Artificial Opponents - Gin Rummy - Code Report
 layout: blogpost
 author: James Keats
+selectedurl: Blog
 ---
 #### General Approach
 

@@ -1,6 +1,7 @@
 ---
 title: Artificial Opponents - Gin Rummy - Code Report
 layout: blogportfolio
+selectedurl: Portfolio
 ---
 # AI Context Behaviors
 ### AI For Games - Fall 2016
