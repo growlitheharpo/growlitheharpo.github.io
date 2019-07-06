@@ -1,44 +1,37 @@
 <div>
-    <div class="columns" style="padding-bottom: 1.25em;">
-        <div class="col-6 col-s-12">
+    <div class="flex flex-wrap">
+        <div class="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 p-4">
 
             <!-- Portfolio image -->
-            <div class="columnContent">
-                <a href={{ include.data.link }}>
-                    <img src={{ include.data.img }} width="100%">
-                </a>
-            </div>
+            <a href={{ include.data.link }}>
+                <img src={{ include.data.img }} width="100%">
+            </a>
 
         </div>
-        <div class="col-6 col-s-12">
-            <div class="columnContent">
-
-                <!-- Title + year -->
-                <div class="elementTextWrapper">
-                    <h2>
-                        <a href={{ include.data.link }}>{{ include.data.title }}</a>
-                    </h2>
-                    <h5>{{ include.data.year }}</h5>
-                </div>
-
-                <!-- Blurb -->
-                <div class="elementTextWrapper">
-                    <p class="justifyBlock">{{include.data.blurb}}</p>
-                </div>
-
-                <!-- Focuses list -->
-                {% if include.data.focuses.size > 0 %}
-                <div class="elementTextWrapper">
-                    <p class="justifyBlock">My focuses included:</p>
-                    <ul>
-                        {% for bullet in include.data.focuses %}
-                        <li>{{ bullet }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                {% endif %}
-
+        <div class="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 p-4">
+            <!-- Title + year -->
+            <div class="pb-4">
+                <h2><a href={{ include.data.link }}>{{ include.data.title }}</a></h2>
+                <h5 class="text-md md:text-lg font-headlite">{{ include.data.year }}</h5>
             </div>
+
+            <!-- Blurb -->
+            <div class="pb-4">
+                <p class="text-justify">{{include.data.blurb}}</p>
+            </div>
+
+            <!-- Focuses list -->
+            {% if include.data.focuses.size > 0 %}
+            <div class="pb-4">
+                <p class="text-justify">My focuses included:</p>
+                <ul class="list-disc list-outside pl-6">
+                    {% for bullet in include.data.focuses %}
+                    <li>{{ bullet }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
         </div>
     </div>
 </div>

@@ -1,0 +1,50 @@
+@tailwind base;
+
+body, p, li {
+    @apply font-body text-sm text-gray-700
+}
+h1 {
+    @apply font-head text-3xl text-gray-700
+}
+h2 {
+    @apply font-head text-2xl text-orange-600
+}
+h3 {
+    @apply font-head text-xl text-orange-600
+}
+h4 {
+    @apply font-head text-xl text-gray-700
+}
+h5 {
+    @apply font-head text-lg text-gray-700
+}
+h6 {
+    @apply font-headlite text-base text-gray-700
+}
+
+/* Add the blog-specific stuff */
+#blogpost a {
+    @apply text-orange-600
+}
+#blogpost a:hover {
+    @apply text-orange-500
+}
+#blogpost pre, #blogpost code {
+    @apply text-xs
+}
+#blogpost ul #blogpost ol #blogpost li {
+    @apply p-0
+}
+#blogpost .center-image {
+    @apply mx-auto block
+}
+#blogpost body, #blogpost h1, #blogpost h2, #blogpost h3, #blogpost h4, #blogpost h5, #blogpost h6, #blogpost p, #blogpost ol, #blogpost ul, #blogpost li {
+    @apply m-0 p-0 font-normal
+}
+#blogpost h3, #blogpost h4, #blogpost h5, #blogpost h6, #blogpost p {
+    @apply mb-5
+}
+
+@tailwind components;
+
+@tailwind utilities;
