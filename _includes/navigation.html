@@ -1,24 +1,32 @@
-<div class="headerContainer">
-    <div class="mainContentWidth">
-        <div class="col-4 col-s-12">
-            <span class="headerSitename"><a href="/">James Keats</a></span>
-            <div class="clearDiv"></div>
-            <span class="headerSiteCaption">Game Programmer</span>
-        </div>
-        <div class="col-8 col-s-12">
-            <div class="float-right-lg">
-                <div id="navigation">
-                    <ul id="nav-top" data-navorientation=horizontal>
-                        {% for item in site.data.navigation %}
-                        {% if page.url == item.link or page.selectedurl == item.name %}
-                        <li class="selected">
-                        {% else %}
-                        <li>
-                        {% endif %}
-                            <a href="{{ item.link }}"><span>{{ item.name }}</span></a>
-                        </li>
-                        {% endfor %}
-                    </ul>
+<div class="border-b">
+    <div class="container mx-auto p-8 sm:p-4">
+        <div class="flex items-center">
+            <div class="w-3/5">
+                <span class="text-3xl font-head text-orange-600"><a href="/">James Keats</a></span>
+                <div class="clear"></div>
+                <span class="text-sm font-head font-light text-gray-700">Game Programmer</span>
+            </div>
+            <div class="w-2/5">
+                <div class="float-right">
+                    <div class="container">
+                        <div>
+                            <ul class="">
+                                {% for item in site.data.navigation %}
+                                {% if page.url == item.link or page.selectedurl == item.name %}
+                                <li class="list-disc mx-2 py-1 text-orange-600
+                                    clear md:inline-block
+                                    border-0 md:border-b-2 border-orange-400 ">
+                                {% else %}
+                                <li class="clear mx-2 py-1 text-gray-700
+                                    md:inline-block">
+                                {% endif %}
+                                    <a class="text-sm font-headlite hover:text-orange-500"
+                                        href="{{ item.link }}"><span>{{ item.name }}</span></a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,20 @@
+
+{% if include.skipouterul != true %}
+<ul class="list-disc ml-6">
+    <li>
+{% endif %}
+        <p class="mb-2">{{ include.head }}</p>
+        
+        {% if include.skipouterul != true %}
+        <ul class="list-circle pl-8">
+        {% else %}
+        <ul class="list-disc pl-8">
+        {% endif %}
+            {% for r in include.list %}
+            <li class="mb-2"><span>{{ r }}</span></li>
+            {% endfor %}
+        </ul>
+{% if include.skipouterul != true %}
+    </li>
+</ul>
+{% endif %}

@@ -42,15 +42,15 @@ The AI keeps track of cards discarded, discarded cards drawn, and how many cards
 
 #### Algorithms Used
 <p>
-    <div class="columns">
-        <div class="col-6 col-s-12">
-            <p class="text-align-center">
-                <img src="/assets/img/blog/artificial-opponents/gin-rummy-1.jpg" style="width: 340px;">
+    <div class="flex flex-wrap">
+        <div class="w-full md:w-1/2">
+            <p>
+                <img class="mx-auto" src="/assets/img/blog/artificial-opponents/gin-rummy-1.jpg" style="width: 340px;">
             </p>
         </div>
-        <div class="col-6 col-s-12">
-            <p class="text-align-center">
-                <img src="/assets/img/blog/artificial-opponents/gin-rummy-2.jpg" style="width: 340px;">
+        <div class="w-full md:w-1/2">
+            <p>
+                <img class="mx-auto" src="/assets/img/blog/artificial-opponents/gin-rummy-2.jpg" style="width: 340px;">
             </p>
         </div>
     </div>

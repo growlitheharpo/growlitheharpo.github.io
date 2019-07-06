@@ -1,2 +1,3 @@
 highlighter: rouge
 excerpt_separator: <!--more-->
+exclude: [ 'tailwind', 'buildcss.bat', 'buildcss' ]
