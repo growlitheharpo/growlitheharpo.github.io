@@ -23,6 +23,9 @@ h6 {
 }
 
 /* Add the blog-specific stuff */
+#blogpost body, #blogpost h1, #blogpost h2, #blogpost h3, #blogpost h4, #blogpost h5, #blogpost h6, #blogpost p, #blogpost ol, #blogpost ul, #blogpost li {
+    @apply m-0 p-0 font-normal
+}
 #blogpost a {
     @apply text-orange-600
 }
@@ -32,19 +35,40 @@ h6 {
 #blogpost pre, #blogpost code {
     @apply text-xs
 }
-#blogpost ul #blogpost ol #blogpost li {
-    @apply p-0
+#blogpost ul {
+    @apply ml-6;
+    list-style-type: disc;
+}
+#blogpost ol {
+    @apply ml-6;
+    list-style-type: decimal;
+}
+#blogpost li {
+    @apply pb-4;
 }
 #blogpost .center-image {
     @apply mx-auto block
-}
-#blogpost body, #blogpost h1, #blogpost h2, #blogpost h3, #blogpost h4, #blogpost h5, #blogpost h6, #blogpost p, #blogpost ol, #blogpost ul, #blogpost li {
-    @apply m-0 p-0 font-normal
 }
 #blogpost h3, #blogpost h4, #blogpost h5, #blogpost h6, #blogpost p {
     @apply mb-5
 }
 
+/* This magic class courtesy of: https://www.ostraining.com/blog/coding/responsive-videos/ */
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
 @tailwind components;
 
 @tailwind utilities;
+

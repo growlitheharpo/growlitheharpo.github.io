@@ -6,70 +6,69 @@ picture2: "/assets/img/portfolio/eos/3.jpg"
 picture3: "/assets/img/portfolio/eos/4.jpg"
 selectedurl: Portfolio
 ---
-<div class="elementTextWrapper">
-    <h1>{{site.data.portfolio.eos.details.title}}</h1>
+{% assign project=site.data.portfolio.eos %}
+<div class="mb-4">
+    <h1>{{project.details.title}}</h1>
 </div>
-<div class="elementTextWrapper">
-    <h2>{{site.data.portfolio.eos.details.byline}}</h2>
-    <h4>Eos is <a href="https://goodvivesdev.itch.io/eos" title="Eos by GoodVivesDev">available on
-            itch.io</a>!</h4>
+<div class="mb-4">
+    <h2>{{project.details.byline}}</h2>
+    <h4>Eos is <a class="text-orange-500 hover:text-orange-400" href="https://goodvivesdev.itch.io/eos" title="Eos by GoodVivesDev">available on itch.io</a>!</h4>
 </div>
-<div class="contentBlock">
-    <div class="columns">
-        <div class="col-6 col-s-12">
-            <div class="elementTextWrapper">
+<div>
+    <div class="flex flex-wrap">
+        {% assign bp='lg' %}
+        <div class="w-full {{bp}}:w-1/2 p-4 {{bp}}:p-0">
+            <div class="mb-4">
                 <p><b>Team (Jan 2017 - May 2017)</b></p>
-                {% for member in site.data.portfolio.eos.details.team %}
+                {% for member in project.details.team %}
                 <p>{{ member }}</p>
                 {% endfor %}
             </div>
-            <div class="elementTextWrapper">
-                <p>{{ site.data.portfolio.eos.details.introp }}</p>
+            <div class="mb-4">
+                <p>{{ project.details.introp }}</p>
             </div>
-            <div class="elementTextWrapper">
-                <p>{{ site.data.portfolio.eos.details.intrapara }}</p>
+            <div class="mb-4">
+                <p>{{ project.details.intrapara }}</p>
             </div>
         </div>
-        <div class="col-6 col-s-12">
+        <div class="w-full {{bp}}:w-1/2 pl-4">
             <div class="video-responsive">
-                <iframe id="" src="//www.youtube.com/embed/up5-FajU7IQ?wmode=transparent" allowfullscreen="true"
-                    width="100%" frameborder="0"></iframe>
+                <iframe id="" src="//www.youtube.com/embed/up5-FajU7IQ?wmode=transparent" allowfullscreen="true" width="100%" frameborder="0"></iframe>
             </div>
         </div>
-    </div>
-    <div class="columns" style="padding-bottom: 1.25em">
-        {% include image-left-mobile-bottom.html image=page.picture2 part="top" %}
-        <div class="col-6 col-s-12">
-            <div class="elementTextWrapper">
-                <p>{{ site.data.portfolio.eos.details.responsibilities.title }}</p>
-                <ul>
-                    {% for r in site.data.portfolio.eos.details.responsibilities.items %}
-                    <li>{{r}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-        {% include image-left-mobile-bottom.html image=page.picture2 part="bottom" %}
     </div>
 
-    <div class="video-responsive">
-        <iframe width="100%" src="https://www.youtube.com/embed/D4xM_vD4Rd4" frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <div class="columns" style="padding-top: 1.25em">
-        <div class="col-6 col-s-12">
-            <div class="elementTextWrapper">
-                <p>{{site.data.portfolio.eos.details.closing}}</p>
-            </div>
-            <div class="elementTextWrapper">
-                <p>If you're interested, you can see a visual history of the development of Eos at the
-                    <a href="https://goodvivesteam.wordpress.com/" title="Good Vives Developer Blog">production blog
-                        that Max set up</a>.</p>
-            </div>
-            <img style="width:100%" src={{ page.picture1 }}></img>
+    <div class="flex flex-wrap mb-4">
+        {% assign bp='lg' %}
+        <div class="w-full {{bp}}:w-1/2 p-4 order-last {{bp}}:order-first">
+            <img class="w-full" src="{{page.picture2}}">
         </div>
-        <div class="col-6 col-s-12">
-            <img style="width:100%" src={{ page.picture3 }}></img>
+        <div class="w-full {{bp}}:w-1/2 p-4">
+            {% assign h = project.details.responsibilities.title %}
+            {% assign l = project.details.responsibilities.items %}
+            {% include util/nestlist.html head=h list=l skipouterul=true %}
+        </div>
+    </div>
+
+    <div class="video-responsive mb-4">
+        <iframe width="100%" src="https://www.youtube.com/embed/D4xM_vD4Rd4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <div class="flex flex-wrap mb-4">
+        {% assign bp='md' %}
+        <div class="w-full {{bp}}:w-1/2 p-4">
+            <div class="mb-4">
+                <p>{{project.details.closing}}</p>
+            </div>
+            <div class="mb-4">
+                <p>If you're interested, you can see a visual history of the development of Eos at the
+                    <a class="text-orange-500 hover:text-orange-400" href="https://goodvivesteam.wordpress.com/" title="Good Vives Developer Blog">production blog that Max set up</a>.
+                </p>
+            </div>
+            <img class="w-full" src={{ page.picture1 }}></img>
+        </div>
+        <div class="w-full {{bp}}:w-1/2 p-4">
+            <img class="w-full hidden {{bp}}:block" src={{ page.picture3 }}></img>
         </div>
     </div>
 </div>

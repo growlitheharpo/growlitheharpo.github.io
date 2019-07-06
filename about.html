@@ -3,25 +3,22 @@ title: James Keats - Game Programmer
 layout: default
 picture: "/assets/img/about/me.jpg"
 ---
-<div class="elementTextWrapper">
+<div class="mb-4">
     <h1>About Me</h1>
 </div>
-<div class="contentBlock">
-    <div class="columns">
-        <div style="text-align: center">
-            {% include image-left-mobile-bottom.html image=page.picture part="top" style="width:100%;max-width:400px;" %}
+<div class="max-w-5xl mx-auto">
+    <div class="flex flex-wrap">
+        {% assign bp='lg' %}
+        <div class="w-full {{bp}}:w-1/2 order-last {{bp}}:order-first">
+            <img class="max-w-sm mx-auto" src="{{page.picture}}">
         </div>
 
-        <div class="col-6 col-s-12">
+        <div class="w-full {{bp}}:w-1/2" id="blogpost"> <!-- HACK: Using "blogpost" to get free <a> highlights -->
             {% for block in site.data.about.about %}
-            <div class="elementTextWrapper">
-                <p>{{ block }}</p>
+            <div class="mb-4">
+                <span>{{ block }}</span>
             </div>
             {% endfor %}
-        </div>
-
-        <div style="text-align:center">
-            {% include image-left-mobile-bottom.html image=page.picture part="bottom" style="width:100%;max-width:350px;" %}
         </div>
     </div>
 </div>

@@ -1,11 +1,12 @@
 
 {% if include.part == "top" %}
-<div class="col-0 col-s-12 elementTextWrapper">
+<div class="w-full md:w-0 pb-4">
     <img style={{ include.style | default:"width:100%;"}} src={{ include.image }}></img>
 </div>
 {% endif %}
 
-{% if include.part == "bottom" %}
+{% if include.part == "bottom" %}</div>
+<div class="w-0 md:w-1/2">
 <div class="col-6 col-s-0 mobile-hide">
     <img style={{ include.style | default:"width:100%;"}} src={{ include.image }}></img>
 </div>

@@ -6,108 +6,80 @@ picture2: "/assets/img/portfolio/remod/s2_cover2.jpg"
 picture3: "/assets/img/portfolio/remod/s2_cover3.jpg"
 selectedurl: Portfolio
 ---
-<div class="elementTextWrapper">
-    <h1>{{site.data.portfolio.remod.details.title}}</h1>
+{% assign project=site.data.portfolio.remod %}
+<div class="mb-4">
+    <h1>{{project.details.title}}</h1>
 </div>
-<div class="elementTextWrapper">
-    <h2>{{site.data.portfolio.remod.details.byline}}</h2>
-    <h4>re[Mod] is <a href="https://thefiringsquad.itch.io/remod" title="re[Mod] by The Firing Squad">available on
-            itch.io</a>!</h4>
+<div class="mb-4">
+    <h2>{{project.details.byline}}</h2>
+    <h4>re[Mod] is <a href="https://thefiringsquad.itch.io/remod" title="re[Mod] by The Firing Squad">available on itch.io</a>!</h4>
 </div>
-<div class="contentBlock">
-    <div class="columns">
-        {% include image-right-mobile-top.html image=page.picture1 part="top" %}
-        <div class="col-6 col-s-12">
-            <div class="columns">
-                <div class="col-12 col-s-6 elementTextWrapper">
+<div>
+    <div class="flex flex-wrap">
+        <div class="w-full lg:w-1/2 mb-4 order-first lg:order-last">
+            <img class="mx-auto lg:max-h-xl" src="{{page.picture1}}">
+        </div>
+        <div class="w-full lg:w-1/2">
+            <div class="flex flex-wrap">
+                <div class="mb-4 mr-4 w-full md:w-1/2 lg:w-full">
                     <p><b>Core Team (Aug 2017 - May 2018)</b></p>
-                    {% for member in site.data.portfolio.remod.details.team %}
+                    {% for member in project.details.team %}
                     <p>{{ member }}</p>
                     {% endfor %}
                 </div>
-                <div class="col-12 col-s-6 elementTextWrapper">
+                <div class="mb-4 mr-4">
                     <p><b>Recruits (Jan - May 2018)</b></p>
-                    {% for member in site.data.portfolio.remod.details.auxteam %}
+                    {% for member in project.details.auxteam %}
                     <p>{{ member }}</p>
                     {% endfor %}
                 </div>
             </div>
         </div>
-        {% include image-right-mobile-top.html image=page.picture1 part="bottom" %}
     </div>
-    <div class="columns" style="padding-bottom: 1.25em">
-        {% include image-right-mobile-top.html image=page.picture2 part="top" %}
-        <div class="col-6 col-s-12">
-            {% for para in site.data.portfolio.remod.details.introp %}
-            <div class="elementTextWrapper">
+    <div class="flex flex-wrap">
+        <div class="w-full lg:w-1/2 mb-4 order-first lg:order-last">
+            <img class="mx-auto lg:max-h-xl" src="{{page.picture2}}">
+        </div>
+        <div class="w-full lg:w-1/2">
+            {% for para in project.details.introp %}
+            <div class="mb-4 mr-4">
                 <p>{{ para }}</p>
             </div>
             {% endfor %}
         </div>
-        {% include image-right-mobile-top.html image=page.picture2 part="bottom" %}
     </div>
-    <div style="padding-bottom: 1.25em">
-        <div style="text-align: center">
-            {% include vimeoplayer.html url=269262863 %}
-        </div>
+    <div class="mb-4 text-center">
+        {% include vimeoplayer.html url=269262863 %}
     </div>
-    <div class="columns" style="padding-bottom: 1.25em">
-        <div class="col-12 col-s-12 elementTextWrapper">
-            <p>{{ site.data.portfolio.remod.details.intrapara }}</p>
-        </div>
-        <div class="col-6 col-s-6 elementTextWrapper">
-            <div class="col-12 col-s-0 mobile-hide">
-                <img style="width:100%;" src={{ page.picture3 }}></img>
-            </div>
-            <ul>
-                <li>
-                    <p>{{ site.data.portfolio.remod.details.responsibilities[0].title }}</p>
-                    <ul>
-                        {% for r in site.data.portfolio.remod.details.responsibilities[0].items %}
-                        <li><span>{{ r }}</span></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            </ul>
-            <div class="col-0 col-s-12">
-                <img style="width:100%;" src={{ page.picture3 }}></img>
+    <div class="w-full mb-4">
+        <p>{{ project.details.intrapara }}</p>
+    </div>
+    <div class="flex flex-wrap mb-4 ">
+        <div class="w-full lg:w-1/2">
+            <div class="flex flex-wrap">
+                <img class="w-full mb-4 order-last lg:order-first" src={{ page.picture3 }}></img>
+                {% assign h = project.details.responsibilities[0].title %}
+                {% assign l = project.details.responsibilities[0].items %}
+                {% include util/nestlist.html head=h list=l %}
             </div>
         </div>
-        <div class="col-6 col-s-6 elementTextWrapper">
-            <ul>
-                <li>
-                    <p>{{ site.data.portfolio.remod.details.responsibilities[1].title }}</p>
-                    <ul>
-                        {% for r in site.data.portfolio.remod.details.responsibilities[1].items %}
-                        <li><span>{{ r }}</span></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                <li>
-                    <p>{{ site.data.portfolio.remod.details.responsibilities[2].title }}</p>
-                    <ul>
-                        {% for r in site.data.portfolio.remod.details.responsibilities[2].items %}
-                        <li><span>{{ r }}</span></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                <li>
-                    <p>{{ site.data.portfolio.remod.details.responsibilities[3].title }}</p>
-                    <ul>
-                        {% for r in site.data.portfolio.remod.details.responsibilities[3].items %}
-                        <li><span>{{ r }}</span></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            </ul>
+        <div class="w-full lg:w-1/2 mb-4">
+            {% for r in project.details.responsibilities %}
+            {% if forloop.index0 == 0 %} {% continue %} {% endif %} <!-- 0 is done manually above -->
+
+            {% assign h = r.title %}
+            {% assign l = r.items %}
+            {% include util/nestlist.html head=h list=l %}
+
+            {% endfor %}
         </div>
     </div>
 
-    <div class="elementTextWrapper">
+    <div class="mb-4">
         <h4>Original Pre-Production Trailer (November 2017)</h4>
     </div>
-    <div style="padding-bottom: 1.25em">
-        <div style="text-align: center">
+    <div class="mb-4">
+        <div class="mx-auto">
             {% include vimeoplayer.html url=243548187 %}
         </div>
     </div>

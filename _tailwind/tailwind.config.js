@@ -269,7 +269,19 @@ module.exports = {
       ...theme('spacing'),
       full: '100%',
       screen: '100vh',
+      sm: '10rem',
+      md: '12rem',
+      lg: '14rem',
+      xl: '16rem',
+      '2xl': '20rem',
+      '3xl': '24rem',
+      '4xl': '28rem',
+      '5xl': '32rem',
+      '6xl': '40rem',
+      '7xl': '60rem',
+      '8xl': '72rem',
     }),
+    
     inset: {
       '0': '0',
       auto: 'auto',
@@ -293,6 +305,7 @@ module.exports = {
     listStyleType: {
       none: 'none',
       disc: 'disc',
+      circle: 'circle',
       decimal: 'decimal',
     },
     margin: (theme, { negative }) => ({
@@ -300,10 +313,11 @@ module.exports = {
       ...theme('spacing'),
       ...negative(theme('spacing')),
     }),
-    maxHeight: {
+    maxHeight: theme => ({
       full: '100%',
       screen: '100vh',
-    },
+      ...theme('height'),
+    }),
     maxWidth: {
       xs: '20rem',
       sm: '24rem',
