@@ -1,5 +1,5 @@
 <div class="border-b">
-    <div class="container mx-auto p-8 sm:p-4 md:p-4 lg:p-4 xl:p-4">
+    <div class="container mx-auto p-8 sm:p-4">
         <div class="flex items-center">
             <div class="w-3/5">
                 <span class="text-3xl font-head text-orange-600"><a href="/">James Keats</a></span>
@@ -14,11 +14,11 @@
                                 {% for item in site.data.navigation %}
                                 {% if page.url == item.link or page.selectedurl == item.name %}
                                 <li class="list-disc mx-2 py-1 text-orange-600
-                                    clear md:inline-block lg:inline-block xl:inline-block  
-                                    border-0 md:border-b-2 lg:md:border-b-2 xl:md:border-b-2 border-orange-400 ">
+                                    clear md:inline-block
+                                    border-0 md:border-b-2 border-orange-400 ">
                                 {% else %}
                                 <li class="clear mx-2 py-1 text-gray-700
-                                    md:inline-block lg:inline-block xl:inline-block">
+                                    md:inline-block">
                                 {% endif %}
                                     <a class="text-sm font-headlite hover:text-orange-500"
                                         href="{{ item.link }}"><span>{{ item.name }}</span></a>
