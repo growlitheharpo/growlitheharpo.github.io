@@ -23,9 +23,6 @@ h6 {
 }
 
 /* Add the blog-specific stuff */
-#blogpost body, #blogpost h1, #blogpost h2, #blogpost h3, #blogpost h4, #blogpost h5, #blogpost h6, #blogpost p, #blogpost ol, #blogpost ul, #blogpost li {
-    @apply m-0 p-0 font-normal
-}
 #blogpost a {
     @apply text-orange-600
 }
@@ -33,18 +30,16 @@ h6 {
     @apply text-orange-500
 }
 #blogpost pre, #blogpost code {
-    @apply text-xs overflow-scroll mb-5;
+    @apply text-xs overflow-auto mb-5;
 }
 #blogpost ul {
-    @apply ml-6;
-    list-style-type: disc;
+    @apply ml-6 list-disc;
 }
 #blogpost ol {
-    @apply ml-6;
-    list-style-type: decimal;
+    @apply ml-6 list-decimal;
 }
 #blogpost li {
-    @apply pb-4;
+    @apply mb-4;
 }
 #blogpost .center-image {
     @apply mx-auto block
@@ -72,6 +67,7 @@ h6 {
   position: relative;
   height: 0;
 }
+
 .video-responsive iframe {
   left: 0;
   top: 0;
