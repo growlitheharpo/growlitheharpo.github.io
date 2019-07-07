@@ -1,13 +1,9 @@
 <div class="mb-4">
-    <div class="flex items-center">
-        <div class="w-full sm:w-1/2 font-head">
-            <div class="text-xl text-orange-700">{{ include.expdata.title }}</div>
-            <div class="text-md text-orange-500">{{ include.expdata.timespan }}</div>
-        </div>
-        <div class="w-full sm:w-1/2 font-head text-right">
-            <div class="text-xl font-head text-orange-700">{{ include.expdata.workplace }}</div>
-            <div class="text-md font-head text-orange-500">{{ include.expdata.location }}</div>
-        </div>
+    <div class="flex flex-wrap items-center">
+            <div class="w-full sm:w-1/2 font-head text-xl text-orange-700">{{ include.expdata.title }}</div>
+            <div class="w-full sm:w-1/2 font-head text-left sm:text-right text-xl font-head text-orange-700">{{ include.expdata.workplace }}</div>
+            <div class="w-full sm:w-1/2 font-head text-md text-orange-500">{{ include.expdata.timespan }}</div>
+            <div class="w-full sm:w-1/2 font-head text-left sm:text-right text-md font-head text-orange-500">{{ include.expdata.location }}</div>
     </div>
     <div class="font-body text-gray-600 text-justify mb-4">
         {{ include.expdata.description }}

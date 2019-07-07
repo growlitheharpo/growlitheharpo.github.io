@@ -17,21 +17,21 @@ selectedurl: Portfolio
 <div>
     <div class="flex flex-wrap">
         {% assign bp='lg' %}
-        <div class="w-full {{bp}}:w-1/2 p-4 {{bp}}:p-0">
-            <div class="mb-4">
+        <div class="w-full {{bp}}:w-1/2 {{bp}}:p-0">
+            <div class="mb-4 pr-0 {{bp}}:pr-4">
                 <p><b>Team (Jan 2017 - May 2017)</b></p>
                 {% for member in project.details.team %}
                 <p>{{ member }}</p>
                 {% endfor %}
             </div>
-            <div class="mb-4">
+            <div class="mb-4 pr-0 {{bp}}:pr-4">
                 <p>{{ project.details.introp }}</p>
             </div>
-            <div class="mb-4">
+            <div class="mb-4 pr-0 {{bp}}:pr-4">
                 <p>{{ project.details.intrapara }}</p>
             </div>
         </div>
-        <div class="w-full {{bp}}:w-1/2 pl-4">
+        <div class="w-full {{bp}}:w-1/2 pl-0 {{bp}}:pl-4">
             <div class="video-responsive">
                 <iframe id="" src="//www.youtube.com/embed/up5-FajU7IQ?wmode=transparent" allowfullscreen="true" width="100%" frameborder="0"></iframe>
             </div>
@@ -40,10 +40,10 @@ selectedurl: Portfolio
 
     <div class="flex flex-wrap mb-4">
         {% assign bp='lg' %}
-        <div class="w-full {{bp}}:w-1/2 p-4 order-last {{bp}}:order-first">
+        <div class="w-full {{bp}}:w-1/2 order-last {{bp}}:order-first pr-0 {{bp}}:pr-4">
             <img class="w-full" src="{{page.picture2}}">
         </div>
-        <div class="w-full {{bp}}:w-1/2 p-4">
+        <div class="w-full {{bp}}:w-1/2 pl-0 {{bp}}:pl-4">
             {% assign h = project.details.responsibilities.title %}
             {% assign l = project.details.responsibilities.items %}
             {% include util/nestlist.html head=h list=l skipouterul=true %}
@@ -56,18 +56,18 @@ selectedurl: Portfolio
 
     <div class="flex flex-wrap mb-4">
         {% assign bp='md' %}
-        <div class="w-full {{bp}}:w-1/2 p-4">
-            <div class="mb-4">
+        <div class="w-full {{bp}}:w-1/2">
+            <div class="mb-4 pr-0 {{bp}}:pr-4">
                 <p>{{project.details.closing}}</p>
             </div>
-            <div class="mb-4">
+            <div class="mb-4 pr-0 {{bp}}:pr-4">
                 <p>If you're interested, you can see a visual history of the development of Eos at the
                     <a class="text-orange-500 hover:text-orange-400" href="https://goodvivesteam.wordpress.com/" title="Good Vives Developer Blog">production blog that Max set up</a>.
                 </p>
             </div>
-            <img class="w-full" src={{ page.picture1 }}></img>
+            <img class="w-full pr-0 {{bp}}:pr-4" src={{ page.picture1 }}></img>
         </div>
-        <div class="w-full {{bp}}:w-1/2 p-4">
+        <div class="w-full {{bp}}:w-1/2 pl-0 {{bp}}:pl-4">
             <img class="w-full hidden {{bp}}:block" src={{ page.picture3 }}></img>
         </div>
     </div>
