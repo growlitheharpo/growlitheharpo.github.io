@@ -1,0 +1,47 @@
+{
+    "workexp": [{
+            "title": "Associate Software Engineer",
+            "timespan": "Jun 2018 - Present",
+            "workplace": "Vicarious Visions",
+            "location": "Albany, NY USA",
+            "description": "Previously Junior Software Engineer Jun 2018 - Mar 2019. Working on the game client for an unannounced project. Assisting audio designers by expanding the capabilities of our audio solution. Investigating and improving anti-cheat systems. Collaborating with all engineers on the team on code reviews to help ensure everyone’s work is of the highest quality. Previously worked on a collaborative team to expand the Destiny franchise, focusing primarily on UI engineering."
+        },{
+            "title": "Lead Mobile Programmer",
+            "timespan": "Jan 2016 - Dec 2016; Sep 2018 - May 2018",
+            "workplace": "Emergent Media Center",
+            "location": "Burlington, VT USA",
+            "description": "Developed software for the Sandbox Team and the BREAKAWAY Team. Implemented games and interactive media using the Xbox Kinect 2, Oculus Rift, and HTC Vive. Solved tasks related to gameplay and artificial intelligence and mobile optimization. Completed a project for Burlington Airport which is now installed in their North Concourse."
+        },{
+            "title": "Network Programming Intern",
+            "timespan": "May 2017 - Aug 2017",
+            "workplace": "Behaviour Interactive",
+            "location": "Montreal, QC Canada",
+            "description": "Worked as a full-time intern on back-end server development. Created general systems for this server as well as game-specific extensions in a test-driven environment. Participated in code reviews for all team pull requests and actively responded to feedback and comments."
+        },{
+            "title": "Creative Developer Intern",
+            "timespan": "Jan 2017 - Apr 2017",
+            "workplace": "Moment Factory",
+            "location": "Montreal, QC Canada",
+            "description": "Developed gamified experiences for Moment Factory’s Interactif Team. Worked with advanced technology, including a Velodyne LiDAR Puck. Closely interacted with other interns and full-time members of the team to implement engaging and innovative Unity and TouchDesigner projects. Completed tasks involving gameplay and network programming."
+        }
+    ],
+    "edexp": {
+        "title": "Game Programming, BS",
+        "timespan": "Aug 2014 - May 2018",
+        "workplace": "Champlain College",
+        "location": "Burlington, VT USA",
+        "description": "Completed several solo and team projects, including PC, mobile, and virtual reality games. Studied abroad in Montreal Jan-May 2017. Experience as a gameplay, artificial intelligence, network, and tools programmer. Often worked as repo manager and build master on team projects.",
+        "coursework": "Matrices, Vectors, & 3D Math; Graphics Programming I&nbsp;&amp;&nbsp;II; Game Architecture; AI for Games; Networking for Games; Artificial Opponents."
+    },
+    "tech": [{
+            "head": "Languages",
+            "val": "C++; C#; C; JavaScript; x86 MASM; Python."
+        }, {
+            "head": "Software",
+            "val": "Visual Studio; Perforce; Git; Clang/LLVM; Jira; TFS; Jenkins."
+        }, {
+            "head": "Personal",
+            "val": "Moderate French proficiency; team leadership; strong public speaker; musician and gamer."
+        }
+    ]
+}

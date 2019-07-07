@@ -6,13 +6,54 @@ layout: default
 <div class="m-4">
     <div class="pb-4 font-body text-sm text-gray-700">
         <p>
-            Please reach out to me at <a href="mailto:contact@jameskeats.com?subject=Resume" rel="nofollow"
-                title="contact@jameskeats.com">contact@jameskeats.com</a> for any extra information! The PDF version of
-            this resume is available to <a href="/assets/resume/JamesKeats_Resume_GameProgrammer.pdf">download here</a>.
+            Please reach out to me at <a href="mailto:contact@jameskeats.com?subject=Resume" rel="nofollow" title="contact@jameskeats.com">contact@jameskeats.com</a> for any extra information! The PDF version of this resume is available to <a class="text-orange-600 hover:text-orange-400" href="/assets/resume/JamesKeats_Resume_GameProgrammer.pdf">download here</a>.
         </p>
     </div>
-    <iframe src="https://docs.google.com/gview?url=https://growlitheharpo.github.io/assets/resume/JamesKeats_Resume_GameProgrammer.pdf&embedded=true&view=fit" 
-        class="h-4xl sm:h-6xl md:h-7xl lg:h-8xl"
-        style="width:100%;" frameborder="0">
-    </iframe>
+</div>
+
+<div class="max-w-4xl mx-auto border border-gray-200 p-8">
+    <div class="flex items-center">
+        <div class="w-3/5">
+            <span class="text-4xl font-head text-gray-700"><a href="/">James Keats</a></span>
+            <div class="clear"></div>
+            <span class="text-lg font-head font-light text-gray-700">Game Programmer</span>
+        </div>
+        <div class="w-2/5 bg-orange-700 text-white font-head text-right">
+            <div class="m-3">(413) 626-6074</div>
+            <div class="m-3"><a href="mailto:contact@jameskeats.com">contact@jameskeats.com</a></div>
+            <div class="m-3"><a href="https://www.linkedin.com/in/jamesjkeats">www.linkedin.com/in/jamesjkeats</a></div>
+        </div>
+    </div>
+    <div>
+        <span class="text-3xl font-head text-gray-700">Experience</span>
+        {% for job in site.data.resume.experience.workexp %}
+            {% include resume/exp.html expdata=job %}
+        {% endfor %}
+    </div>
+    <div>
+        <div class="flex flex-wrap">
+            <div class="w-full md:w-3/5 lg:w-2/3 md:pr-6 md:border-r-2 md:border-orange-700">
+                <span class="text-3xl font-head text-gray-700">Education</span>
+                {% assign edexp=site.data.resume.experience.edexp %}
+                {% include resume/exp.html expdata=edexp %}
+            </div>
+            <div class="w-full md:w-2/5 lg:w-1/3 md:pl-6">
+                <span class="text-3xl font-head text-gray-700">Technology & Skills</span>
+                {% for t in site.data.resume.experience.tech %}
+                <div class="mb-4">
+                    <div class="font-head text-orange-700 text-xl">{{t.head}}</div>
+                    <div class="font-body text-gray-600">{{t.val}}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="mt-6">
+        <div class="flex justify-between bg-orange-700 px-8 py-4">
+            <div class="max-w-2 md:max-w-3"><img src="assets/img/resume/vstudio.png"></div>
+            <div class="max-w-2 md:max-w-3"><img src="assets/img/resume/cpp.png"></div>
+            <div class="max-w-2 md:max-w-3"><img src="assets/img/resume/csharp.png"></div>
+            <div class="max-w-2 md:max-w-3"><img src="assets/img/resume/git.png"></div>
+        </div>
+    </div>
 </div>
