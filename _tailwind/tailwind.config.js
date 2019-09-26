@@ -8,6 +8,7 @@ module.exports = {
       md: '768px',
       lg: '1024px',
       xl: '1280px',
+      print: {'raw':'print'},
     },
     extend: {
       colors: {
@@ -25,6 +26,9 @@ module.exports = {
       },
       listStyleType: {
         circle: 'circle',
+      },
+      fontSize: {
+        prlg: '1.4rem'
       },
     },
     fontFamily: {

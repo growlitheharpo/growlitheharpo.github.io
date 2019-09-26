@@ -1,65 +1,95 @@
 ---
 title: James Keats - Resume
-layout: default
 ---
-<div class="mb-4">
-    <h1>Resume</h1>
-</div>
+<html>
+<!-- Unfortunately, I basically have to re-implement the
+     default layout because of all the print:hiddens on
+     this page, but it works great in Chrome! -->
+<head>
+    {% include head.html %}
+    <title>{{ page.title }}</title>
+</head>
 
-{% assign bp='md' %}
-<div class="{{bp}}:m-8">
-    <div class="pb-4 font-body text-sm text-gray-700">
-        <p>
-            Please reach out to me at <a class="text-orange-600 hover:text-orange-400" href="mailto:contact@jameskeats.com?subject=Resume" rel="nofollow" title="contact@jameskeats.com">contact@jameskeats.com</a> for any extra information! The PDF version of this resume is available to <a class="text-orange-600 hover:text-orange-400" href="/assets/resume/JamesKeats_Resume_GameProgrammer.pdf">download here</a>.
-        </p>
+<body>
+    <div class="print:hidden">
+        {% include navigation.html %}
     </div>
-</div>
 
-<div class="max-w-4xl mx-auto p-0 {{bp}}:pt-4 border-0 {{bp}}:border {{bp}}:border-gray-300 shadow-none {{bp}}:shadow-lg">
-    <div class="flex flex-wrap items-center">
-        <div class="w-full {{bp}}:w-3/5 text-center {{bp}}:text-left p-0 {{bp}}:px-8">
-            <span class="text-4xl font-head text-gray-700"><a href="/">James Keats</a></span>
-            <div class="clear"></div>
-            <span class="text-lg font-head font-light text-gray-700">Game Programmer</span>
-        </div>
-        <div class="w-4/5 {{bp}}:w-2/5 text-center {{bp}}:text-right mx-auto my-4 {{bp}}:mx-0 bg-orange-700 text-white font-head">
-            <div class="p-0 {{bp}}:pr-8">
-                <div class="m-2 {{bp}}:m-3"><a href="tel:1-413-626-6074">(413) 626-6074</a></div>
-                <div class="m-2 {{bp}}:m-3"><a href="mailto:contact@jameskeats.com">contact@jameskeats.com</a></div>
-                <div class="m-2 {{bp}}:m-3"><a href="https://www.linkedin.com/in/jamesjkeats">www.linkedin.com/in/jamesjkeats</a></div>
+    <div class="container mx-auto px-4 print:mx-0 print:px-0 print:hidden">
+        <div class="my-4">
+            <div class="mb-4">
+                <h1>Resume</h1>
             </div>
-        </div>
-    </div>
-    <div class="p-0 {{bp}}:px-8">
-        <span class="text-3xl font-head text-gray-700">Experience</span>
-        {% for job in site.data.resume.experience.workexp %}
-            {% include resume/exp.html expdata=job %}
-        {% endfor %}
-    </div>
-    <div class="p-0 {{bp}}:px-8">
-        <div class="flex flex-wrap">
-            <div class="w-full {{bp}}:w-3/5 lg:w-2/3 {{bp}}:pr-6 {{bp}}:border-r-2 {{bp}}:border-orange-700">
-                <span class="text-3xl font-head text-gray-700">Education</span>
-                {% assign edexp=site.data.resume.experience.edexp %}
-                {% include resume/exp.html expdata=edexp %}
-            </div>
-            <div class="w-full {{bp}}:w-2/5 lg:w-1/3 {{bp}}:pl-6">
-                <span class="text-3xl font-head text-gray-700">Technology & Skills</span>
-                {% for t in site.data.resume.experience.tech %}
-                <div class="mb-4">
-                    <div class="font-head text-orange-700 text-xl">{{t.head}}</div>
-                    <div class="font-body text-gray-600">{{t.val}}</div>
+
+            <div class="md:m-8">
+                <div class="pb-4 font-body text-sm text-gray-700">
+                    <p>
+                        Please reach out to me at <a class="text-orange-600 hover:text-orange-400"
+                            href="mailto:contact@jameskeats.com?subject=Resume" rel="nofollow"
+                            title="contact@jameskeats.com">contact@jameskeats.com</a> for any extra information! The PDF
+                        version of this resume is available to <a class="text-orange-600 hover:text-orange-400"
+                            href="/assets/resume/JamesKeats_Resume_GameProgrammer.pdf">download here</a>.
+                    </p>
                 </div>
-                {% endfor %}
             </div>
         </div>
     </div>
-    <div class="mt-6">
-        <div class="flex justify-between bg-orange-700 px-3 sm:px-8 py-4">
-            <div class="max-w-2 {{bp}}:max-w-3"><img src="assets/img/resume/vstudio.png"></div>
-            <div class="max-w-2 {{bp}}:max-w-3"><img src="assets/img/resume/cpp.png"></div>
-            <div class="max-w-2 {{bp}}:max-w-3"><img src="assets/img/resume/csharp.png"></div>
-            <div class="max-w-2 {{bp}}:max-w-3"><img src="assets/img/resume/git.png"></div>
+
+    <div class="px-4 print:px-0 pb-4 print:pb-0">
+    <div class="max-w-4xl mx-auto p-0 md:pt-4 print:pt-2 border-0 md:border md:border-gray-300 print:border-0 shadow-none md:shadow-lg">
+        <div class="flex flex-wrap items-center">
+            <div class="w-full md:w-3/5 print:w-3/5 text-center md:text-left print:text-left p-0 md:px-8 print:px-8">
+                <span class="font-head text-gray-700 text-4xl"><a href="/">James Keats</a></span>
+                <div class="clear"></div>
+                <span class="text-md font-head font-light text-gray-700">Game Programmer</span>
+                <div class="clear"></div>
+                <span class="text-md font-head font-light text-orange-600 hover:text-orange-400"><a href="https://jameskeats.com>">www.jameskeats.com</a></span>
+            </div>
+            <div class="my-4 bg-orange-700 text-white font-head w-4/5 md:w-2/5 print:w-2/5 text-center md:text-right print:text-right mx-auto md:mx-0 print:mx-0">
+                <div class="p-0 md:pr-8 print:pr-8">
+                    <div class="m-2 md:m-3"><a href="tel:1-413-626-6074">(413) 626-6074</a></div>
+                    <div class="m-2 md:m-3"><a href="mailto:contact@jameskeats.com">contact@jameskeats.com</a></div>
+                    <div class="m-2 md:m-3"><a href="https://www.linkedin.com/in/jamesjkeats">www.linkedin.com/in/jamesjkeats</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="p-0 md:px-8 print:px-8">
+            <span class="font-head text-gray-700 text-3xl print:text-prlg">Experience</span>
+            {% for job in site.data.resume.experience.workexp %}
+            {% include resume/exp.html expdata=job %}
+            {% endfor %}
+        </div>
+        <div class="p-0 md:px-8 print:px-8">
+            <div class="flex flex-wrap">
+                <div class="w-full md:w-3/5 lg:w-2/3 print:w-3/5 md:pr-6 print:pr-6 md:border-r-2 md:border-orange-700 print:border-r-2 print:border-orange-700">
+                    <span class="font-head text-gray-700 text-3xl print:text-prlg">Education</span>
+                    {% assign edexp=site.data.resume.experience.edexp %}
+                    {% include resume/exp.html expdata=edexp %}
+                </div>
+                <div class="w-full md:w-2/5 lg:w-1/3 print:w-2/5 md:pl-6 print:pl-6">
+                    <span class="font-head text-gray-700 text-3xl print:text-prlg">Technology & Skills</span>
+                    {% for t in site.data.resume.experience.tech %}
+                    <div class="mb-4">
+                        <div class="font-head text-orange-700 text-xl">{{t.head}}</div>
+                        <div class="font-body text-gray-600 print:text-gray-700">{{t.val}}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="mt-6">
+            <div class="flex justify-between bg-orange-700 px-3 sm:px-8 py-4">
+                <div class="max-w-2 md:max-w-3"><img src="assets/img/resume/vstudio.png"></div>
+                <div class="max-w-2 md:max-w-3"><img src="assets/img/resume/cpp.png"></div>
+                <div class="max-w-2 md:max-w-3"><img src="assets/img/resume/csharp.png"></div>
+                <div class="max-w-2 md:max-w-3"><img src="assets/img/resume/git.png"></div>
+            </div>
         </div>
     </div>
-</div>
+    </div>
+
+    <div class="pb-4 print:hidden">
+        {% include footer.html %}
+    </div>
+</body>
+</html>
