@@ -1,4 +1,14 @@
 {
+    "contactinfo": [{
+        "link": "tel:1-413-626-6074",
+        "text": "(413) 626-6074"
+    }, {
+        "link": "mailto:contact@jameskeats.com",
+        "text": "contact@jameskeats.com"
+    }, {
+        "link": "https://www.linkedin.com/in/jamesjkeats",
+        "text": "www.linkedin.com/in/jamesjkeats"
+    }],
     "workexp": [{
             "title": "Associate Software Engineer",
             "timespan": "Jun 2018 - Present",
@@ -43,5 +53,11 @@
             "head": "Personal",
             "val": "Moderate French proficiency; team leadership; strong public speaker; musician and gamer."
         }
+    ],
+    "logoimages": [
+        "assets/img/resume/vstudio.png",
+        "assets/img/resume/cpp.png",
+        "assets/img/resume/csharp.png",
+        "assets/img/resume/git.png"
     ]
 }

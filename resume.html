@@ -39,17 +39,17 @@ title: James Keats - Resume
     <div class="max-w-4xl mx-auto p-0 md:pt-4 print:pt-2 border-0 md:border md:border-gray-300 print:border-0 shadow-none md:shadow-lg">
         <div class="flex flex-wrap items-center">
             <div class="w-full md:w-3/5 print:w-3/5 text-center md:text-left print:text-left p-0 md:px-8 print:px-8">
-                <span class="font-head text-gray-700 text-4xl"><a href="/">James Keats</a></span>
+                <span class="font-head text-gray-700 text-4xl"><a href="https://jameskeats.com">James Keats</a></span>
                 <div class="clear"></div>
                 <span class="text-md font-head font-light text-gray-700">Game Programmer</span>
                 <div class="clear"></div>
-                <span class="text-md font-head font-light text-orange-600 hover:text-orange-400"><a href="https://jameskeats.com>">www.jameskeats.com</a></span>
+                <span class="text-md font-head font-light text-orange-600 hover:text-orange-400"><a href="https://jameskeats.com">www.jameskeats.com</a></span>
             </div>
             <div class="my-4 bg-orange-700 text-white font-head w-4/5 md:w-2/5 print:w-2/5 text-center md:text-right print:text-right mx-auto md:mx-0 print:mx-0">
                 <div class="p-0 md:pr-8 print:pr-8">
-                    <div class="m-2 md:m-3"><a href="tel:1-413-626-6074">(413) 626-6074</a></div>
-                    <div class="m-2 md:m-3"><a href="mailto:contact@jameskeats.com">contact@jameskeats.com</a></div>
-                    <div class="m-2 md:m-3"><a href="https://www.linkedin.com/in/jamesjkeats">www.linkedin.com/in/jamesjkeats</a></div>
+                    {% for contactinfo in site.data.resume.experience.contactinfo %}
+                    <div class="m-2 md:m-3"><a href="{{ contactinfo.link }}">{{contactinfo.text}}</a></div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -79,10 +79,9 @@ title: James Keats - Resume
         </div>
         <div class="mt-6">
             <div class="flex justify-between bg-orange-700 px-3 sm:px-8 py-4">
-                <div class="max-w-2 md:max-w-3"><img src="assets/img/resume/vstudio.png"></div>
-                <div class="max-w-2 md:max-w-3"><img src="assets/img/resume/cpp.png"></div>
-                <div class="max-w-2 md:max-w-3"><img src="assets/img/resume/csharp.png"></div>
-                <div class="max-w-2 md:max-w-3"><img src="assets/img/resume/git.png"></div>
+                {% for logoimage in site.data.resume.experience.logoimages %}
+                <div class="max-w-2 md:max-w-3"><img src="{{logoimage}}"></div>
+                {% endfor %}
             </div>
         </div>
     </div>
