@@ -1,32 +1,34 @@
 <div>
-    <div class="flex flex-wrap items-center">
-        <div class="w-full md:w-1/2 py-4 md:p-4">
+    <div class="flex flex-wrap items-center my-4">
+        <div class="w-full xl:w-1/2 my-4">
 
             <!-- Portfolio image -->
             <a href={{ include.data.link }}>
-                <img src={{ include.data.img }} width="100%">
+                <img class="rounded-md" src={{ include.data.img }} width="100%">
             </a>
 
         </div>
-        <div class="w-full md:w-1/2 p-0 md:p-4">
+        <div class="w-full xl:w-1/2 pl-0 md:pl-4 lg:pl-0 xl:pl-4">
             <!-- Title + year -->
-            <div class="pb-4">
-                <h2><a href={{ include.data.link }}>{{ include.data.title }}</a></h2>
-                <h5 class="text-md md:text-lg font-headlite">{{ include.data.year }}</h5>
+            <div class="flex items-center mb-2">
+                <span class="font-head text-2xl text-orange-700 w-8/12">
+                    <a href={{ include.data.link }}>{{ include.data.title }}</a>
+                </span>
+                <div class="w-4/12 text-right font-head text-lg">{{ include.data.year }}</div>
             </div>
 
             <!-- Blurb -->
-            <div class="pb-4">
-                <p class="text-justify">{{include.data.blurb}}</p>
+            <div class="">
+                <p class="mb-2">{{include.data.blurb}}</p>
             </div>
 
             <!-- Focuses list -->
             {% if include.data.focuses.size > 0 %}
-            <div class="pb-4">
-                <p class="text-justify">My focuses included:</p>
-                <ul class="list-disc list-outside pl-6">
+            <div class="">
+                <p class="">My focuses included:</p>
+                <ul class="list-disc pl-8">
                     {% for bullet in include.data.focuses %}
-                    <li class="my-2">{{ bullet }}</li>
+                    <li class="pb-2">{{ bullet }}</li>
                     {% endfor %}
                 </ul>
             </div>
