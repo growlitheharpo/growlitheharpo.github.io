@@ -1,11 +1,11 @@
 {
     "title": "Destiny 2 - Vicarious Visions",
     "year": "2018",
-    "blurb": "Destiny 2 is an online shared-world first-person shooter. It was (and is) primary developed by Bungie. As a Junior Software Engineer at VV, I worked on a collaborative, high-caliber team helping Bungie to expand the Destiny franchise.",
+    "blurb": "Destiny 2 is an online shared-world first-person shooter. It is primary developed by Bungie. As a Junior Software Engineer at VV, I worked on a collaborative, high-caliber team helping Bungie to expand the Destiny franchise.",
     "focuses": [
         "UI engineering, helping to ensure content creators had all the tools they needed to make engaging, intuitive, and gorgeous UI",
         "Assisting making changes to the base game that were required to ship Destiny Guardians, a version of Destiny 2 for the South Korean market"
     ],
     "img": "/assets/img/portfolio/vv/d2_cover.jpg",
-    "link": "https://www.destinythegame.com/"
+    "link": "/portfolio/destiny2.html"
 }

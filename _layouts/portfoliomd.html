@@ -24,18 +24,18 @@
                         </div>
                         <div class="mb-4">
                             <h4>{{ page.meta.teamname }}</h4>
-                            <ul class="list-none md:list-disc">
+                            <ul>
                                 {% for m in page.meta.team %}
-                                <li class="ml-6 mb-1">{{ m }}</li>
+                                <li class="mb-1">{{ m }}</li>
                                 {% endfor %}
                             </ul>
                         </div>
                         {% if page.meta.auxteam %}
                         <div class="mb-4">
                             <h4 class="mt-4">{{ page.meta.auxteamname }}</h4>
-                            <ul class="list-none md:list-disc">
+                            <ul>
                                 {% for m in page.meta.auxteam %}
-                                <li class="ml-6 mb-1">{{ m }}</li>
+                                <li class="mb-1">{{ m }}</li>
                                 {% endfor %}
                             </ul>
                         </div>
