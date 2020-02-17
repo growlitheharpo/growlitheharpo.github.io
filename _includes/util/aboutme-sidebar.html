@@ -13,10 +13,10 @@
         <div class="clear-both"></div>
     </div>
     {% if site.data.mainlinks.links %}
-    <div class="mb-4">
+    <div class="mb-0">
         <div class="flex flex-wrap items-center content-center justify-center">
             {% for l in site.data.mainlinks.links %}
-            <div class="w-auto {{include.colbp}}:w-full mx-4 {{include.colbp}}:mx-0 mb-4">
+            <div class="w-auto {{include.colbp}}:w-full mx-2 md:mx-4 {{include.colbp}}:mx-0 mb-4">
                 <a href="{{l.target}}">
                     <div class="rounded-md text-white bg-gray-800 hover:bg-gray-600 p-2 font-head text-lg">
                         <i class="{{l.icon}} mx-2"></i>
