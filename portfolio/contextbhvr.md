@@ -1,16 +1,23 @@
 ---
-title: Artificial Opponents - Gin Rummy - Code Report
-layout: blogportfolio
+title: James Keats - Context Behaviors
+byline: "Final Project for AI For Games"
+layout: portfoliomd
 selectedurl: Portfolio
+
+meta:
+    title: "AI Context Behaviors"
+    language: "C++"
+    year: "Fall 2016"
+    platform: PC
+    img: /assets/img/portfolio/contextbhvr/cover.png
+
+    teamname: "Team:"
+    team:
+        - "Just me!"
 ---
-# AI Context Behaviors
-### AI For Games - Fall 2016
 
 Before anything else, credit where credit is due: the basis of this blog post comes from [this blog post](https://andrewfray.wordpress.com/2013/03/26/context-behaviours-know-how-to-share/) by Andrew Fray as well as the [GDC talk he gave](http://gdcvault.com/play/1018230/The-Next-Vector-Improvements-in), which was then expanded upon in [this post](http://www.gamedev.net/page/resources/_/technical/artificial-intelligence/smarter-steering-using-context-for-direction-r3149) by Mike Lewis.
 
-![AI Context Behavior](/assets/img/portfolio/contextbhvr/cover.png){: .center-image }
-
-<!--more-->
 
 Context Behaviors are an improvement to Steering Behaviors, an important staple of game AI that anyone who has dabbled in the subject is probably already aware of. This is explained in depth at the links above, but the basic idea of Context is that in real implementations, Steering either stops working properly or becomes an architecture mess, especially when things like collision avoidance are introduced. Each steering behavior then requires redundant code and calculations to make sure that it does not provide a recommended force that would crash straight into a wall. As Mike Lewis states in his post:
 
@@ -33,7 +40,6 @@ Now that the basics are covered (very briefly—I highly recommend reading the a
 This project is built on a framework developed over the course of the last semester in my AI for Games class, and the very base was given to us at the beginning of the semester by our professor Dean Lawson.
 
 The first class I wrote when building this was the ContextDecisionMaker. This is the class that uses all of the individual Contexts to choose a direction. The first function I wrote was the update function for the ContextDecisionMaker, as it directed my design choices. Hopefully, the code mostly speaks for itself:
-
 
 {% highlight cpp %}
 void ContextDecisionMaker::update()
