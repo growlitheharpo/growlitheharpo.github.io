@@ -16,6 +16,13 @@ meta:
         - "James Keats // Programmer"
         - "Tyler Bolster // Prop Artist"
         - "Cait Kenney // Environment & Prop Artist"
+    links:
+        -   title: "Unveiling Coverage"
+            target: https://www.wamc.org/post/champlain-college-and-burlington-international-airport-unveil-interactive-media-displays
+            icon: "fas fa-newspaper"
+        -   title: "Emergent Media Center"
+            target: https://emergentmedia.champlain.edu/
+            icon: "fas fa-graduation-cap"
 ---
 
 BTV Flight was a project created for Champlain's Emergent Media Center in partnership with the Champlain College Office of Advancement along with Burlington International Airport. This interactive experience is played with an Xbox Kinect 2.0, and is designed to be approachable and inviting to anyone passing through the airport. It is currently on display in the North concourse of BTV. There were several important and unique aspects that needed to be considered during the development of flight that arose because of its final destination. These included accessibility, and the need to avoid any potential for violence, cartoonish or otherwise.

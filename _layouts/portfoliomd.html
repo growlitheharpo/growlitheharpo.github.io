@@ -3,14 +3,15 @@
     <head>
         {% include head.html %}
         <title>{{ page.title }}</title>
+        <script src="https://kit.fontawesome.com/2ffb0e9231.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
         {% include navigation.html %}
 
         <div class="container mx-auto px-4">
-            <div class="my-4 clear-both">
-                <div class="w-full md:w-4/12 float-left static md:sticky top-0 clear-both py-4 pr-4">
+            <div class="my-4 clear-both ">
+                <div class="w-full md:w-4/12 float-left static md:sticky top-0 clear-both py-4 pr-4 text-center md:text-left ">
                     <h1 class="font-head text-4xl text-orange-600 mb-4">{{ page.meta.title }}</h1>
                     <div class="mb-4">
                         <div class="mb-4">
@@ -21,24 +22,43 @@
                             <h4>Language</h4>
                             <p>{{ page.meta.language }}</p>
                         </div>
-                        <h4>{{ page.meta.teamname }}</h4>
-                        <ul class="list-disc">
-                            {% for m in page.meta.team %}
-                            <li class="ml-6 mb-1">{{ m }}</li>
-                            {% endfor %}
-                        </ul>
+                        <div class="mb-4">
+                            <h4>{{ page.meta.teamname }}</h4>
+                            <ul class="list-none md:list-disc">
+                                {% for m in page.meta.team %}
+                                <li class="ml-6 mb-1">{{ m }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                         {% if page.meta.auxteam %}
-                        <h4 class="mt-4">{{ page.meta.auxteamname }}</h4>
-                        <ul class="list-disc">
-                            {% for m in page.meta.auxteam %}
-                            <li class="ml-6 mb-1">{{ m }}</li>
-                            {% endfor %}
-                        </ul>
+                        <div class="mb-4">
+                            <h4 class="mt-4">{{ page.meta.auxteamname }}</h4>
+                            <ul class="list-none md:list-disc">
+                                {% for m in page.meta.auxteam %}
+                                <li class="ml-6 mb-1">{{ m }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                         {% endif %}
-                    </div>
-                    <div class="mb-4">
-                        <h4>Platform</h4>
-                        <p>{{ page.meta.platform }}</p>
+                        <div class="mb-4">
+                            <h4>Platform</h4>
+                            <p>{{ page.meta.platform }}</p>
+                        </div>
+                        {% if page.meta.links %}
+                        <div class="mb-4">
+                            <h4>Links</h4>
+                            {% for l in page.meta.links %}
+                            <div class="mx-auto md:mx-0 mb-4 mt-2 w-2/3 text-left">
+                                <a href="{{l.target}}">
+                                    <div class="rounded-md text-white bg-gray-800 hover:bg-gray-600 p-2 font-head text-lg">
+                                        <i class="{{l.icon}} mx-2"></i>
+                                        {{ l.title }}
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="w-full md:w-8/12 float-right" id="blogpost">

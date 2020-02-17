@@ -14,6 +14,10 @@ meta:
     teamname: "Team:"
     team:
         - "Just me!"
+    links:
+        -   title: "Binary Demo"
+            target: /assets/bin/jameskeats_context_demo.zip
+            icon: "fas fa-cogs"
 ---
 
 Before anything else, credit where credit is due: the basis of this blog post comes from [this blog post](https://andrewfray.wordpress.com/2013/03/26/context-behaviours-know-how-to-share/) by Andrew Fray as well as the [GDC talk he gave](http://gdcvault.com/play/1018230/The-Next-Vector-Improvements-in), which was then expanded upon in [this post](http://www.gamedev.net/page/resources/_/technical/artificial-intelligence/smarter-steering-using-context-for-direction-r3149) by Mike Lewis.

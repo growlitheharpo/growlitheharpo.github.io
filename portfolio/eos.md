@@ -21,6 +21,10 @@ meta:
         - "Christie McCown // 3D Artist"
         - "Alana Slattery // 3D Artist"
         - "Max Sanel // Producer"
+    links:
+        -   title: "itch.io"
+            target: https://goodvivesdev.itch.io/eos
+            icon: "fab fa-itch-io"
 ---
 
 #### Eos is [available on itch.io](https://goodvivesdev.itch.io/eos)!

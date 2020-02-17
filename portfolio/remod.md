@@ -24,6 +24,13 @@ meta:
         - "Michael Manfredi // Environment Artist"
         - "Justin Mulkin // Gameplay & Analytics Programmer"
         - "Jake Buzzell & Max Johnson // Music Composer"
+    links:
+        -   title: "Source Code"
+            target: https://github.com/growlitheharpo/capstone-2017-18-t13/
+            icon: "fab fa-github"
+        -   title: "itch.io"
+            target: https://thefiringsquad.itch.io/remod
+            icon: "fab fa-itch-io"
 ---
 
 #### re[Mod] is [available on itch.io](https://thefiringsquad.itch.io/remod)!
