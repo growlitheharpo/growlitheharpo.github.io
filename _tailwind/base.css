@@ -44,6 +44,12 @@ h6 {
 #blogpost .center-image {
     @apply mx-auto block
 }
+#blogpost .half-image {
+    @apply mx-auto w-1/2 float-left px-1
+}
+#blogpost .half-image:after {
+    @apply clear-both
+}
 #blogpost h3, #blogpost h4, #blogpost h5, #blogpost h6, #blogpost p {
     @apply mb-5
 }
