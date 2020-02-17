@@ -1,51 +1,9 @@
 ---
 title: James Keats - Game Programmer
-layout: default
-links:
-    -   title: "Github"
-        target: https://github.com/growlitheharpo/
-        icon: "fab fa-github"
-    -   title: "LinkedIn"
-        target: https://www.linkedin.com/in/jamesjkeats/
-        icon: "fab fa-linkedin"
-    -   title: "Twitter"
-        target: https://www.twitter.com/growlitheharpo
-        icon: "fab fa-twitter"
-    -   title: "Email"
-        target: mailto:contact@jameskeats.com
-        icon: "fas fa-envelope"
+layout: primary
 ---
-<script src="https://kit.fontawesome.com/2ffb0e9231.js" crossorigin="anonymous"></script>
-<div class="my-4 clear-both ">
-    {% assign colbp='lg' %}
-    <div class="w-full {{colbp}}:w-3/12 float-left static {{colbp}}:sticky top-0 clear-both py-4 pr-4 text-center {{colbp}}:text-left ">
-        <div class="mb-4 text-justify">
-            <img class="mb-4 w-6/12 md:w-4/12 lg:w-6/12 mx-auto rounded-full border-orange-800 border-4 border-double" src="https://avatars2.githubusercontent.com/u/11837693">
-            <span class="mb-4">Associate Software Engineer at Vicarious Visions with </span>
-            <span id="timesince2016">{{ site.time | date: '%Y' | minus: 2016 }}</span>
-            <span> years of professional C++ experience. Game Programming alum of Champlain College. Lover of music. Frequenter of open mic nights. Occasional thespian. Theoretically able to speak French.</span>
-        </div>
-        {% if page.links %}
-        <div class="mb-4">
-            {% for l in page.links %}
-            {% include util/linkbutton.html bp=colbp target=l.target icon=l.icon title=l.title %}
-            {% endfor %}
-        </div>
-        {% endif %}
-    </div>
-    <div class="w-full {{colbp}}:w-9/12 float-right pl-0 {{colbp}}:pl-4">
-        {% include util/frontblurb.html data=site.data.portfolio.destiny2 %}
-        {% include util/frontblurb.html data=site.data.portfolio.remod %}
-        {% include util/frontblurb.html data=site.data.portfolio.eos %}
-        {% include util/frontblurb.html data=site.data.portfolio.contextbhvr %}
-        {% include util/frontblurb.html data=site.data.portfolio.btvflight %}
-    </div>
-    <div class="clear-both"></div>
-</div>
-<div class="clear-both"></div>
-
-<script type="text/javascript">
-    // I am lazy and I don't want to remember to update my website
-    var tgtSpan = document.getElementById("timesince2016");
-    tgtSpan.innerHTML = (new Date()).getFullYear() - 2016;
-</script>
+{% include util/frontblurb.html data=site.data.portfolio.destiny2 %}
+{% include util/frontblurb.html data=site.data.portfolio.remod %}
+{% include util/frontblurb.html data=site.data.portfolio.eos %}
+{% include util/frontblurb.html data=site.data.portfolio.contextbhvr %}
+{% include util/frontblurb.html data=site.data.portfolio.btvflight %}

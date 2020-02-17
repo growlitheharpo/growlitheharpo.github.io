@@ -4,12 +4,13 @@
         {% include head.html %}
         <title>James Keats - Game Programmer</title>
     </head>
-
+    <script src="https://kit.fontawesome.com/2ffb0e9231.js" crossorigin="anonymous"></script>
     <body>
         {% include navigation.html %}
 
-        <div class="container mx-auto p-8 sm:p-4 md:p-4 lg:p-4 xl:p-4" id="blogpost">
-            <div>
+        <div class="container mx-auto p-8 sm:p-4 md:p-4 lg:p-4 xl:p-4">
+            {% include util/aboutme-sidebar.html colbp='lg' %}
+            <div class="w-full lg:w-9/12 float-right pl-0 lg:pl-4" id="blogpost">
                 <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
                 <p>By: James Keats | {{ page.date | date_to_long_string }}</p>
                 <div>
@@ -17,7 +18,7 @@
                 </div>
                 <a href="javascript:history.back()">Back to blog</a>
             </div>
-            <div class="clear"></div>
+            <div class="clear-both"></div>
         </div>
 
         {% include footer.html %}
