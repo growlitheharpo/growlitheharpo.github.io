@@ -11,7 +11,7 @@ meta:
     platform: PC
     img: /assets/img/portfolio/contextbhvr/cover.png
 
-    teamname: "Team:"
+    teamname: "Team"
     team:
         - "Just me!"
     links:

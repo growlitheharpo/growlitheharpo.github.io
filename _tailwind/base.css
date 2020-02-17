@@ -1,7 +1,7 @@
 @tailwind base;
 
 body, p, li {
-    @apply font-body text-sm text-gray-700
+    @apply font-body text-base text-gray-700
 }
 h1 {
     @apply font-head text-3xl text-gray-700

@@ -1,21 +1,21 @@
 <div>
-    <div class="flex flex-wrap items-center my-4">
-        <div class="w-full xl:w-1/2 my-4">
+    <div class="flex flex-wrap items-center mb-4 xl:mb-8">
+        <!-- Title + year -->
+        <div class="flex items-center w-full">
+            <span class="font-head text-2xl text-orange-600 w-8/12">
+                <a href={{ include.data.link }}>{{ include.data.title }}</a>
+            </span>
+            <div class="w-4/12 text-right font-head text-lg">{{ include.data.year }}</div>
+        </div>
 
-            <!-- Portfolio image -->
+        <!-- Portfolio image -->
+        <div class="w-full xl:w-6/12 my-4">
             <a href={{ include.data.link }}>
                 <img class="rounded-md" src={{ include.data.img }} width="100%">
             </a>
-
         </div>
-        <div class="w-full xl:w-1/2 pl-0 md:pl-4 lg:pl-0 xl:pl-4">
-            <!-- Title + year -->
-            <div class="flex items-center mb-2">
-                <span class="font-head text-2xl text-orange-700 w-8/12">
-                    <a href={{ include.data.link }}>{{ include.data.title }}</a>
-                </span>
-                <div class="w-4/12 text-right font-head text-lg">{{ include.data.year }}</div>
-            </div>
+
+        <div class="w-full xl:w-6/12 pl-0 md:pl-4 lg:pl-0 xl:pl-4">
 
             <!-- Blurb -->
             <div class="">
