@@ -2,8 +2,6 @@
 title: James Keats - Game Programmer
 layout: primary
 ---
-{% include util/frontblurb.html data=site.data.portfolio.destiny2 %}
-{% include util/frontblurb.html data=site.data.portfolio.remod %}
-{% include util/frontblurb.html data=site.data.portfolio.eos %}
-{% include util/frontblurb.html data=site.data.portfolio.contextbhvr %}
-{% include util/frontblurb.html data=site.data.portfolio.btvflight %}
+{% for project in site.data.portfolio %}
+    {% include util/frontblurb.html data=project %}
+{% endfor %}

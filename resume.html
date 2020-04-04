@@ -24,11 +24,10 @@ title: James Keats - Resume
             <div class="md:m-8">
                 <div class="pb-4 font-body text-sm text-gray-700">
                     <p>
-                        Please reach out to me at <a class="text-orange-600 hover:text-orange-400"
-                            href="mailto:contact@jameskeats.com?subject=Resume" rel="nofollow"
-                            title="contact@jameskeats.com">contact@jameskeats.com</a> for any extra information! The PDF
-                        version of this resume is available to <a class="text-orange-600 hover:text-orange-400"
-                            href="/assets/resume/JamesKeats_Resume_GameProgrammer.pdf">download here</a>.
+                        Please reach out to me at 
+                        <a class="text-orange-600 hover:text-orange-400" href="mailto:contact@jameskeats.com?subject=Resume" rel="nofollow"title="contact@jameskeats.com">contact@jameskeats.com</a> 
+                        for any extra information! The PDF version of this resume is available to 
+                        <a class="text-orange-600 hover:text-orange-400" href="/assets/resume/JamesKeats_Resume_GameProgrammer.pdf">download here</a>.
                     </p>
                 </div>
             </div>
@@ -47,7 +46,7 @@ title: James Keats - Resume
             </div>
             <div class="my-4 bg-orange-700 text-white font-head w-4/5 md:w-2/5 print:w-2/5 text-center md:text-right print:text-right mx-auto md:mx-0 print:mx-0">
                 <div class="p-0 md:pr-8 print:pr-8">
-                    {% for contactinfo in site.data.resume.experience.contactinfo %}
+                    {% for contactinfo in site.data.resume.contactinfo %}
                     <div class="m-2 md:m-3"><a href="{{ contactinfo.link }}">{{contactinfo.text}}</a></div>
                     {% endfor %}
                 </div>
@@ -55,7 +54,7 @@ title: James Keats - Resume
         </div>
         <div class="p-0 md:px-8 print:px-8">
             <span class="font-head text-gray-700 text-3xl print:text-prlg">Experience</span>
-            {% for job in site.data.resume.experience.workexp %}
+            {% for job in site.data.resume.workexp %}
             {% include resume/exp.html expdata=job %}
             {% endfor %}
         </div>
@@ -63,12 +62,12 @@ title: James Keats - Resume
             <div class="flex flex-wrap">
                 <div class="w-full md:w-3/5 lg:w-2/3 print:w-3/5 md:pr-6 print:pr-6 md:border-r-2 md:border-orange-700 print:border-r-2 print:border-orange-700">
                     <span class="font-head text-gray-700 text-3xl print:text-prlg">Education</span>
-                    {% assign edexp=site.data.resume.experience.edexp %}
+                    {% assign edexp=site.data.resume.edexp %}
                     {% include resume/exp.html expdata=edexp %}
                 </div>
                 <div class="w-full md:w-2/5 lg:w-1/3 print:w-2/5 md:pl-6 print:pl-6">
                     <span class="font-head text-gray-700 text-3xl print:text-prlg">Technology & Skills</span>
-                    {% for t in site.data.resume.experience.tech %}
+                    {% for t in site.data.resume.tech %}
                     <div class="mb-4">
                         <div class="font-head text-orange-700 text-xl">{{t.head}}</div>
                         <div class="font-body text-gray-600 print:text-gray-700">{{t.val}}</div>
@@ -79,7 +78,7 @@ title: James Keats - Resume
         </div>
         <div class="mt-6">
             <div class="flex justify-between bg-orange-700 px-3 sm:px-8 py-4">
-                {% for logoimage in site.data.resume.experience.logoimages %}
+                {% for logoimage in site.data.resume.logoimages %}
                 <div class="max-w-2 md:max-w-3"><img src="{{logoimage}}"></div>
                 {% endfor %}
             </div>
