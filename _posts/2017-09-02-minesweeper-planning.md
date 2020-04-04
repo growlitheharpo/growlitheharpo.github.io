@@ -7,11 +7,11 @@ selectedurl: Blog
 
 My plan for Minesweeper is to follow the general approach outlined by Bai Li (luckytoilet) in the blog post “[How to Write your own Minesweeper AI](https://luckytoilet.wordpress.com/2012/12/23/2125/)” which is also linked to in the references section.
 
+<!--more-->
+
 The basic idea is to use a simple minesweeper algorithm that most players use in their head at first and, if that fails, to use a more complicated algorithm that enumerates all the possible states and finds common cells between all of them to make a decision. When this also fails, it must fall back on guessing, just like real minesweeper.
 
 The data will be stored in the AI’s own game view class. This class will represent only the knowledge that the AI or a player would know about the game from looking at the board, plus the knowledge provided by the game (such as the mine count).
-
-<!--more-->
 
 ### Major Classes
 

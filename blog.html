@@ -5,14 +5,15 @@ layout: primary
 <div id="blogpage">
   <ul>
     {% for post in site.posts %}
-    <li>
+    <li class="mb-4">
       <div id="blogpost">
-      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-      <span>By: James Keats | {{ post.date | date_to_long_string }}</span>
-      <div class="blog-excerpt">
-        <p>{{ post.excerpt }}<a href="{{ post.url }}">Read more...</a></p>
+        <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+        <span>By: {{ post.author }} | {{ post.date | date_to_long_string }}</span>
+          <div class="ml-6">
+            <div class="blog-excerpt"><p>{{ post.excerpt }}</p></div>
+            <a href="{{ post.url }}">Read more...</a>
+          </div>
       </div>
-    </div>
     </li>
     {% endfor %}
   </ul>
