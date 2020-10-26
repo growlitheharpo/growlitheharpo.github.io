@@ -5,12 +5,27 @@
             <div class="w-full sm:w-1/2 font-head text-md text-orange-500">{{ include.expdata.timespan }}</div>
             <div class="w-full sm:w-1/2 font-head text-left sm:text-right text-md font-head text-orange-500">{{ include.expdata.location }}</div>
     </div>
-    <div class="font-body text-gray-600 print:text-gray-700 text-justify mb-4">
-        {{ include.expdata.description }}
+    <div class="mb-4">
+        <div class="font-body text-gray-600 print:text-gray-700 text-justify">
+            {{ include.expdata.description }}
+        </div>
+
+        {% if include.expdata.coursework %}
+        <div class="font-body text-gray-600 print:text-gray-700 text-justify mt-4">
+            Relevant coursework: <i>{{ include.expdata.coursework }}</i>
+        </div>
+        {% endif %}
+
+        {% if include.expdata.previoustitles %}
+        <div class="font-body text-gray-600 print:text-gray-700 text-justify mt-2">
+            Previous titles:
+            <i>
+                {% for title in include.expdata.previoustitles %}
+                    {{title.title}} ({{title.start}} - {{title.end}}){% if forloop.last %}. {% else %}; {% endif %}
+                {% endfor %}
+            </i>
+        </div>
+        {% endif %}
+
     </div>
-    {% if include.expdata.coursework %}
-    <div class="font-body text-gray-600 print:text-gray-700 text-justify">
-        Relevant coursework: <i>{{ include.expdata.coursework }}</i>
-    </div>
-    {% endif %}
 </div>

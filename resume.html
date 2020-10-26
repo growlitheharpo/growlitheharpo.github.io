@@ -35,55 +35,55 @@ title: James Keats - Resume
     </div>
 
     <div class="px-4 print:px-0 pb-4 print:pb-0">
-    <div class="max-w-4xl mx-auto p-0 md:pt-4 print:pt-2 border-0 md:border md:border-gray-300 print:border-0 shadow-none md:shadow-lg">
-        <div class="flex flex-wrap items-center">
-            <div class="w-full md:w-3/5 print:w-3/5 text-center md:text-left print:text-left p-0 md:px-8 print:px-8">
-                <span class="font-head text-gray-700 text-4xl"><a href="https://jameskeats.com">James Keats</a></span>
-                <div class="clear"></div>
-                <span class="text-md font-head font-light text-gray-700">Game Programmer</span>
-                <div class="clear"></div>
-                <span class="text-md font-head font-light text-orange-600 hover:text-orange-400"><a href="https://jameskeats.com">www.jameskeats.com</a></span>
-            </div>
-            <div class="my-4 bg-orange-700 text-white font-head w-4/5 md:w-2/5 print:w-2/5 text-center md:text-right print:text-right mx-auto md:mx-0 print:mx-0">
-                <div class="p-0 md:pr-8 print:pr-8">
-                    {% for contactinfo in site.data.resume.contactinfo %}
-                    <div class="m-2 md:m-3"><a href="{{ contactinfo.link }}">{{contactinfo.text}}</a></div>
-                    {% endfor %}
+        <div class="max-w-4xl mx-auto p-0 md:pt-4 print:pt-2 border-0 md:border md:border-gray-300 print:border-0 shadow-none md:shadow-lg">
+            <div class="flex flex-wrap items-center">
+                <div class="w-full md:w-3/5 print:w-3/5 text-center md:text-left print:text-left p-0 md:px-8 print:px-8">
+                    <span class="font-head text-gray-700 text-4xl"><a href="https://jameskeats.com">James Keats</a></span>
+                    <div class="clear"></div>
+                    <span class="text-md font-head font-light text-gray-700">Game Programmer</span>
+                    <div class="clear"></div>
+                    <span class="text-md font-head font-light text-orange-600 hover:text-orange-400"><a href="https://jameskeats.com">www.jameskeats.com</a></span>
                 </div>
-            </div>
-        </div>
-        <div class="p-0 md:px-8 print:px-8">
-            <span class="font-head text-gray-700 text-3xl print:text-prlg">Experience</span>
-            {% for job in site.data.resume.workexp %}
-            {% include resume/exp.html expdata=job %}
-            {% endfor %}
-        </div>
-        <div class="p-0 md:px-8 print:px-8">
-            <div class="flex flex-wrap">
-                <div class="w-full md:w-3/5 lg:w-2/3 print:w-3/5 md:pr-6 print:pr-6 md:border-r-2 md:border-orange-700 print:border-r-2 print:border-orange-700">
-                    <span class="font-head text-gray-700 text-3xl print:text-prlg">Education</span>
-                    {% assign edexp=site.data.resume.edexp %}
-                    {% include resume/exp.html expdata=edexp %}
-                </div>
-                <div class="w-full md:w-2/5 lg:w-1/3 print:w-2/5 md:pl-6 print:pl-6">
-                    <span class="font-head text-gray-700 text-3xl print:text-prlg">Technology & Skills</span>
-                    {% for t in site.data.resume.tech %}
-                    <div class="mb-4">
-                        <div class="font-head text-orange-700 text-xl">{{t.head}}</div>
-                        <div class="font-body text-gray-600 print:text-gray-700">{{t.val}}</div>
+                <div class="my-4 bg-orange-700 text-white font-head w-4/5 md:w-2/5 print:w-2/5 text-center md:text-right print:text-right mx-auto md:mx-0 print:mx-0">
+                    <div class="p-0 md:pr-8 print:pr-8">
+                        {% for contactinfo in site.data.resume.contactinfo %}
+                        <div class="m-2 md:m-3"><a href="{{ contactinfo.link }}">{{contactinfo.text}}</a></div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
             </div>
-        </div>
-        <div class="mt-6">
-            <div class="flex justify-between bg-orange-700 px-3 sm:px-8 py-4">
-                {% for logoimage in site.data.resume.logoimages %}
-                <div class="max-w-2 md:max-w-3"><img src="{{logoimage}}"></div>
+            <div class="p-0 md:px-8 print:px-8">
+                <div class="font-head text-gray-700 text-3xl print:text-prlg text-center md:text-left print:text-left">Experience</div>
+                {% for job in site.data.resume.workexp %}
+                {% include resume/exp.html expdata=job %}
                 {% endfor %}
             </div>
+            <div class="p-0 md:px-8 print:px-8">
+                <div class="flex flex-wrap">
+                    <div class="w-full md:w-3/5 lg:w-2/3 print:w-3/5 md:pr-6 print:pr-6 md:border-r-2 md:border-orange-700 print:border-r-2 print:border-orange-700">
+                        <div class="font-head text-gray-700 text-3xl print:text-prlg text-center md:text-left">Education</div>
+                        {% assign edexp=site.data.resume.edexp %}
+                        {% include resume/exp.html expdata=edexp %}
+                    </div>
+                    <div class="w-full md:w-2/5 lg:w-1/3 print:w-2/5 md:pl-6 print:pl-6">
+                        <div class="font-head text-gray-700 text-3xl print:text-prlg text-center md:text-left">Technology & Skills</div>
+                        {% for t in site.data.resume.tech %}
+                        <div class="mb-4">
+                            <div class="font-head text-orange-700 text-xl">{{t.head}}</div>
+                            <div class="font-body text-gray-600 print:text-gray-700">{{t.val}}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6">
+                <div class="flex justify-between bg-orange-700 px-3 sm:px-8 py-4">
+                    {% for logoimage in site.data.resume.logoimages %}
+                    <div class="max-w-2 md:max-w-3"><img src="{{logoimage}}"></div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-    </div>
     </div>
 
     <div class="pb-4 print:hidden">
