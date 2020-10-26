@@ -5,8 +5,8 @@
                 <img class="mb-4 w-6/12 md:w-4/12 lg:w-6/12 mx-auto rounded-full border-orange-600 border-4 border-double" src="https://avatars1.githubusercontent.com/u/11837693">
             </div>
             <div class="w-1/2 {{include.colbp}}:w-full">
-                <span class="mb-4">Associate Software Engineer at Vicarious Visions with </span>
-                <span id="timesince2017">{{ site.time | date: '%Y' | minus: 2017 }}</span>
+                <span class="mb-4">{{site.data.resume.workexp[0].title}} at {{site.data.resume.workexp[0].workplace}} with </span>
+                <span id="timesince2018">{{ site.time | date: '%Y' | minus: 2018 }}</span>
                 <span> years of professional C++ experience. </span>
                 <span class="hidden sm:inline">Game Programming alum of Champlain College. Lover of music. Frequenter of open mic nights. Occasional thespian. Theoretically able to speak French.</span>
             </div>
@@ -33,6 +33,6 @@
 
 <script type="text/javascript">
     // I am lazy and I don't want to remember to update my website
-    var tgtSpan = document.getElementById("timesince2017");
-    tgtSpan.innerHTML = (new Date()).getFullYear() - 2017;
+    var tgtSpan = document.getElementById("timesince2018");
+    tgtSpan.innerHTML = (new Date()).getFullYear() - 2018;
 </script>
