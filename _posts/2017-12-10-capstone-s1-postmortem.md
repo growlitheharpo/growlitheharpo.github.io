@@ -3,7 +3,7 @@ title: Capstone - Semester 1 Postmortem
 layout: blogpost
 author: James Keats
 selectedurl: Blog
-tags: programming college capstone
+tags: programming college postmortem capstone
 ---
 My portfolio post about re[Mod] is [available to look over now](/portfolio/remod.html), and discusses my primary roles for the project. Thanks again to [Max Sanel](https://certifiedscrumming.wordpress.com), [Charlie Carucci](https://charliecarucci.com), and [Tyler Bolster](https://www.artstation.com/tybolster)--the other members of the team--for making all of this possible.
 
