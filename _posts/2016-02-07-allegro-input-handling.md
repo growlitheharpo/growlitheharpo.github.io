@@ -4,6 +4,7 @@ layout: blogpost
 author: James Keats
 selectedurl: Blog
 published: false
+tags: programming college game-architecture
 ---
 
 For our most recent assignment in Game Architecture, we had to build some wrapper/abstraction classes for an Allegro framework. The important key was that this not be a leaky abstraction--that the outside user not require any knowledge of Allegro or its functions in order to use our code. Technically this assignment only required us to have very basic input, allowing the outside code to determine if the user was pressing "F", "S", and the location of the mouse cursor. I decided instead, having finished the rest of the assignment quite quickly, to write a full input handler.

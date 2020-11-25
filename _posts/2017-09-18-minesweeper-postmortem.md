@@ -3,6 +3,7 @@ title: Artificial Opponents - Minesweeper Post-Mortem
 layout: blogpost
 author: James Keats
 selectedurl: Blog
+tags: programming college ai
 ---
 Our competition for the Minesweeper AIs has concluded, and the results are in!
 

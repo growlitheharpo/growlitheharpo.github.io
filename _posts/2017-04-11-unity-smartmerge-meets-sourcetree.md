@@ -3,6 +3,7 @@ title: Unity's SmartMerge Meets SourceTree
 layout: blogpost
 author: James Keats
 selectedurl: Blog
+tags: programming college unity
 ---
 Before I begin, I want to give credit to whoever wrote the blog post that used to be located at the following link: [http://www.nikumangames.com/dev-blog/unity-and-sourcetree-and-unityyamlmerge-exe-oh-my/](http://www.nikumangames.com/dev-blog/unity-and-sourcetree-and-unityyamlmerge-exe-oh-my/)
 

@@ -3,6 +3,7 @@ title: Graphics Fighting Game and UI Systems
 layout: blogpost
 author: James Keats
 selectedurl: Blog
+tags: programming college ui
 ---
 
 The semester is wrapping up, and so I've been writing postmortems for pretty much every project I've been working on. I'm getting ready to update my portfolio with some of the projects I've worked on this past year; I'm a little tired of my website making it look like all I've worked in is Flash. One of my favorite pieces I worked on during the last piece of this semester was my UI system for my Game Architecture final, which is written in C++ using SFML.

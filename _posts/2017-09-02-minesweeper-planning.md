@@ -3,6 +3,7 @@ title: Artificial Opponents - Minesweeper Planning
 layout: blogpost
 author: James Keats
 selectedurl: Blog
+tags: programming college ai
 ---
 
 My plan for Minesweeper is to follow the general approach outlined by Bai Li (luckytoilet) in the blog post “[How to Write your own Minesweeper AI](https://luckytoilet.wordpress.com/2012/12/23/2125/)” which is also linked to in the references section.

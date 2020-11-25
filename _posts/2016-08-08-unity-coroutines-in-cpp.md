@@ -3,6 +3,7 @@ title: Unity-esque Coroutines in C++
 layout: blogpost
 author: James Keats
 selectedurl: Blog
+tags: programming college game-architecture
 ---
 This is a blog post I've been meaning to write for quite some time. My summer engine project is winding down and, due to a lack of time, never quite reached the level I wanted it to. Still, one of the best aspects of what I was able to complete was the Coroutine system. This doesn't use proper concurrency to run (although I will talk a bit more about that in a future post), but somewhat emulates the way a lot of really common coroutines work.
 

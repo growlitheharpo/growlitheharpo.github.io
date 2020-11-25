@@ -4,6 +4,7 @@ layout: blogpost
 author: James Keats
 selectedurl: Blog
 published: false
+tags: programming college game-architecture
 ---
 Since writing my post about Allegro input handling, I've learned a lot more about bitwise operations, setting and masking bits, and how this can be useful. Most importantly, I've learned a bit more terminology than I knew when I started (thanks, Professor Brian Hall).
 

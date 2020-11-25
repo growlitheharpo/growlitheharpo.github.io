@@ -3,6 +3,7 @@ title: Artificial Opponents - Gin Rummy - Code Report
 layout: blogpost
 author: James Keats
 selectedurl: Blog
+tags: programming college ai
 ---
 #### General Approach
 

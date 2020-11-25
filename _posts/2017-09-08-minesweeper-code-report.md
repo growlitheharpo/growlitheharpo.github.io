@@ -4,6 +4,7 @@ layout: blogpost
 author: James Keats
 selectedurl: Blog
 published: false
+tags: programming college ai
 ---
 As was planned in the planning post, I approached Minesweeper in a similar way o what was outlined by Bai Li (luckytoilet) in the blog post "How to Write your own Minesweeper AI".
 
