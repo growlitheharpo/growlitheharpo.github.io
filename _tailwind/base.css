@@ -64,6 +64,11 @@ h6 {
 #blogpost th {
     background: #F8F8F8;
 }
+#blogpost blockquote {
+    @apply pl-8 border-l-4;
+    @apply font-body text-base text-gray-600 text-justify;
+    border-color: #f0f0f0;
+}
 
 
 /* This magic class courtesy of: https://www.ostraining.com/blog/coding/responsive-videos/ */

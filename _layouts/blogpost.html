@@ -12,7 +12,11 @@
             {% include util/aboutme-sidebar.html colbp='lg' %}
             <div class="w-full lg:w-9/12 float-right pl-0 lg:pl-4" id="blogpost">
                 <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
-                <p>By: James Keats | {{ page.date | date_to_long_string }}</p>
+                <p>
+                <span>By: James Keats | {{ page.date | date_to_long_string }}</span>
+                <br>
+                <span>Tags: {% for tag in page.tags %}<a href="/tags/{{tag}}">{{tag}}</a>{% if forloop.last %}{%else%},{%endif%} {% endfor %}</span>
+                </p>
                 <div>
                     {{ content }}
                 </div>
