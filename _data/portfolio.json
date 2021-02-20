@@ -1,6 +1,18 @@
 [
     {
-        "title": "Destiny 2 ",
+        "title": "Diablo II: Resurrected",
+        "year": "C++, 2019 - 2021",
+        "blurb": "A Timeless Classic. Diablo II: Resurrected is a remastered version of the quintessential action RPG Diablo II. Pursue the mysterious Dark Wanderer and fight the denizens of hell as you uncover the fate of the Prime Evils Diablo, Mephisto, and Baal.",
+        "focuses": [
+            "Authoring core components of the Resurrected engine, including the C++17 job system and Render Graph technology",
+            "Ownership of the Translation Layer, the system that translates events and info from the underlying 2D game into the 3D world",
+            "Audio engineering, replacing a 20-year-old DirectSound implementation with FMOD and enabling multi-platform support"
+        ],
+        "img": "/assets/img/portfolio/vv/diablo_cover.jpg",
+        "link": "https://diablo2.blizzard.com/"
+    },
+    {
+        "title": "Destiny 2",
         "year": "C++, 2018",
         "blurb": "Destiny 2 is an online shared-world first-person shooter primarily developed by Bungie. As a Junior Software Engineer at Vicarious Visions, I worked on a collaborative, high-caliber team helping Bungie to expand the Destiny franchise.",
         "focuses": [

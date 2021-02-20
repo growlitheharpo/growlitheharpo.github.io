@@ -14,7 +14,7 @@
             "timespan": "Jun 2018 - Present",
             "workplace": "Vicarious Visions",
             "location": "Albany, NY USA",
-            "description": "Working on the game client for an unannounced project. Primary owner of core functionality such as the job system. Member of the engine performance team. Assisting audio designers by expanding the capabilities of our audio solution, including a C++17 layer around FMOD. Previously worked with a large team to expand the Destiny franchise, focusing primarily on UI engineering.",
+            "description": "Member of the systems expertise group with a focus on performance. Author of core engine components for Diablo II: Resurrected including the C++17 job system and Render Graph. Owner of the Translation Layer which converts info from the underlying 2D game into 3D. Assisted with audio engineering, replacing a 20-year-old DirectSound implementation with FMOD and enabling multi-platform support. Previous projects: Destiny Guardians.",
             "previoustitles": [{
                     "title": "Junior Software Engineer",
                     "start": "Jun 2018",
@@ -36,7 +36,7 @@
             "timespan": "May 2017 - Aug 2017",
             "workplace": "Behaviour Interactive",
             "location": "Montreal, QC Canada",
-            "description": "Worked as a full-time intern on back-end server development. Created general systems for this server as well as game-specific extensions in a test-driven environment. Participated in code reviews for all team pull requests and actively responded to feedback and comments."
+            "description": "Worked as a full-time intern on back-end server development. Created general systems for this server as well as game-specific extensions in a test-driven environment. Participated in code reviews for all team pull requests and actively responded to feedback."
         },{
             "title": "Creative Developer Intern",
             "timespan": "Jan 2017 - Apr 2017",
