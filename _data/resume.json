@@ -12,9 +12,9 @@
     "workexp": [{
             "title": "Software Engineer",
             "timespan": "Jun 2018 - Present",
-            "workplace": "Vicarious Visions",
+            "workplace": "Blizzard Entertainment",
             "location": "Albany, NY USA",
-            "description": "Member of the systems expertise group with a focus on performance. Author of core engine components for Diablo II: Resurrected including the C++17 job system and Render Graph. Owner of the Translation Layer which converts info from the underlying 2D game into 3D. Assisted with audio engineering, replacing a 20-year-old DirectSound implementation with FMOD and enabling multi-platform support. Previous projects: Destiny Guardians.",
+            "description": "Member of the systems expertise group with a focus on performance. Author of core engine components for Diablo II: Resurrected including the C++17 job system and Render Graph. Owner of the Translation Layer which converts info from the underlying 2D game into 3D. Assisted with audio engineering, replacing a 20-year-old DirectSound implementation with FMOD and enabling multi-platform support. Previously Vicarious Visions. Past projects include Destiny 2: Foresaken.",
             "previoustitles": [{
                     "title": "Junior Software Engineer",
                     "start": "Jun 2018",
