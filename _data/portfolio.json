@@ -4,8 +4,8 @@
         "year": "C++, 2019 - 2021",
         "blurb": "A Timeless Classic. Diablo II: Resurrected is a remastered version of the quintessential action RPG Diablo II. Pursue the mysterious Dark Wanderer and fight the denizens of hell as you uncover the fate of the Prime Evils Diablo, Mephisto, and Baal.",
         "focuses": [
-            "Authoring core components of the Resurrected engine, including the C++17 job system and Render Graph technology",
-            "Ownership of the Translation Layer, the system that translates events and info from the underlying 2D game into the 3D world",
+            "Authoring core engine components for Diablo II: Resurrected including the C++17 job system and render graph technology",
+            "Ownership of the \"Translation Layer\" which remaps events and information from the underlying 2D game into 3D",
             "Audio engineering, replacing a 20-year-old DirectSound implementation with FMOD and enabling multi-platform support"
         ],
         "img": "/assets/img/portfolio/vv/diablo_cover.jpg",
@@ -20,7 +20,7 @@
             "Assisting making changes to the base game that were required to ship Destiny Guardians, a version of Destiny 2 for the South Korean market"
         ],
         "img": "/assets/img/portfolio/vv/d2_cover.jpg",
-        "link": "/portfolio/destiny2.html"
+        "link": "https://www.bungie.net/"
     },
     {
         "title": "re[Mod]",
