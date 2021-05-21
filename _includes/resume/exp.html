@@ -1,19 +1,20 @@
 <div class="mb-4">
-    {% if include.nowrapheader %}
-    <div class="flex flex-wrap items-center">
-            <div class="w-full font-head text-xl text-orange-700">{{ include.expdata.title }}</div>
-            <div class="w-full font-head text-xl font-head text-orange-700">{{ include.expdata.workplace }}</div>
-            <div class="w-full font-head text-md text-orange-500">{{ include.expdata.timespan }}</div>
-            <div class="w-full font-head text-md font-head text-orange-500">{{ include.expdata.location }}</div>
+
+    <div class="flex flex-wrap items-center justify-between">
+            {% if include.expdata.titlefirst %}
+            <div class="font-head text-xl text-orange-700">{{ include.expdata.title }}</div>
+            <div class="font-head text-xl font-head text-orange-700">{{ include.expdata.workplace }}</div>
+            <div class="w-full"></div>
+            <div class="font-head text-md mr-4 text-orange-500">{{ include.expdata.location }}</div>
+            <div class="font-head text-md font-head text-orange-500">{{ include.expdata.timespan }}</div>
+            {% else %}
+            <div class="font-head text-xl mr-4 text-orange-700">{{ include.expdata.workplace }}</div>
+            <div class="font-head text-xl font-head text-orange-700">{{ include.expdata.location }}</div>
+            <div class="w-full"></div>
+            <div class="font-head text-md mr-4 text-orange-500">{{ include.expdata.title }}</div>
+            <div class="font-head text-md font-head text-orange-500">{{ include.expdata.timespan }}</div>
+            {% endif %}
     </div>
-    {% else %}
-    <div class="flex flex-wrap items-center">
-            <div class="w-full sm:w-3/5 font-head text-xl text-orange-700">{{ include.expdata.title }}</div>
-            <div class="w-full sm:w-2/5 font-head text-left sm:text-right text-xl font-head text-orange-700">{{ include.expdata.workplace }}</div>
-            <div class="w-full sm:w-3/5 font-head text-md text-orange-500">{{ include.expdata.timespan }}</div>
-            <div class="w-full sm:w-2/5 font-head text-left sm:text-right text-md font-head text-orange-500">{{ include.expdata.location }}</div>
-    </div>
-    {% endif %}
     <div class="mb-4">
         {% if include.expdata.bullets %}
         <ul class="list-disc ml-8">
@@ -29,20 +30,23 @@
 
         {% if include.expdata.coursework %}
         <div class="font-body text-gray-600 print:text-gray-700 mt-4">
-            Selected coursework: {{ include.expdata.coursework }}
+            Selected coursework:
+            <ul class="list-disc flex flex-wrap">
+                {% for c in include.expdata.courses %}
+                <li class="mx-4 md:ml-6 md:mr-0 font-body text-gray-600 print:text-gray-700">{{c}}</li>
+                {% endfor %}
+            </ul>
         </div>
         {% endif %}
 
         {% if include.expdata.previoustitles %}
-        <div class="font-body text-gray-600 print:text-gray-700 mt-2">
-            Previously
-            <span>
-                {% for title in include.expdata.previoustitles %}
-                    {{title.title}} ({{title.start}} - {{title.end}}){% if forloop.last %}. {% else %}; {% endif %}
-                {% endfor %}
-            </span>
+        <div class="flex flex-wrap items-center justify-between">
+            {% for title in include.expdata.previoustitles %}
+                <div class="font-head text-md text-orange-500">{{ title.title }}</div>
+                <div class="font-head text-md font-head text-orange-500">{{title.start}} - {{title.end}}</div>
+                <div class="w-full"></div>
+            {% endfor %}
         </div>
         {% endif %}
-
     </div>
 </div>

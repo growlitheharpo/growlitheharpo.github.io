@@ -9,7 +9,7 @@
     "abstract": "Creative software engineer focused on low-level systems. Strives to write code that runs fast and is memory-efficient, but is easy for the whole team to use and understand. Enjoys debugging and learning about the next big problem.",
     "workexp": [{
             "title": "Software Engineer",
-            "timespan": "Jun 2018 - Present",
+            "timespan": "Jul 2020 - Present",
             "workplace": "Blizzard Entertainment",
             "location": "Albany, NY USA",
             "bullets": [
@@ -21,24 +21,24 @@
             ],
             "description": "Member of the systems expertise group with a focus on performance. Author of core engine components for Diablo II: Resurrected including the C++17 job system and render graph. Owner of the \"Translation Layer\" which remaps info from the underlying 2D game into 3D. Assisted with audio engineering, replacing a 20-year-old DirectSound implementation with FMOD and enabling multi-platform support. Location was previously Vicarious Visions, an Activision studio. Past projects include Destiny 2: Foresaken.",
             "previoustitles": [{
-                    "title": "Junior Engineer",
+                    "title": "Associate Software Engineer",
+                    "start": "Mar 2019",
+                    "end": "Jul 2020"
+                },{
+                    "title": "Junior Software Engineer",
                     "start": "Jun 2018",
                     "end": "Mar 2019"
-                }, {
-                    "title": "Associate Engineer",
-                    "start": "Apr 2019",
-                    "end": "Jul 2020"
                 }
             ]
         },{
             "title": "Platform Programming Intern/Co-op",
-            "timespan": "Jan 2016 - Dec 2016; Sep 2018 - May 2018",
+            "timespan": "Sep 2017 - May 2018",
             "workplace": "Emergent Media Center",
             "location": "Burlington, VT USA",
             "bullets": [
                 "Solved gameplay tasks for projects using the Xbox Kinect 2, Oculus Rift, and HTC Vive",
                 "Lead the mobile optimization effort for BREAKAWAY, a Unity game targeting low-end Android devices",
-                "Assisted on an interactive art project currently installed in the Burlington Airport North Concourse"
+                "Assisted on an interactive art project currently installed in Burlington Airport"
             ],
             "description": "Developed software for the Sandbox Team. Solved gameplay and AI tasks for projects using the Xbox Kinect 2, Oculus Rift, and HTC Vive. Lead the mobile optimization effort for BREAKAWAY. Assisted on an interactive art installation project for Burlington Airport which is now in their North Concourse."
         },{
@@ -59,19 +59,28 @@
             "location": "Montreal, QC Canada",
             "bullets": [
                 "Used advanced technology, including a Velodyne LiDAR Puck, to develop gamified experiences with the Interactif Team",
-                "Partnered with other interns and full-time team members to build Unity and TouchDesigner projects",
+                "Partnered with other interns and full-time team members to build Unity and TouchDesigner prototypes",
                 "Completed tasks involving gameplay and network programming"
             ],
             "description": "Developed gamified experiences for Moment Factory’s Interactif Team. Worked with advanced technology, including a Velodyne LiDAR Puck. Closely interacted with other interns and full-time members of the team to implement engaging and innovative Unity and TouchDesigner projects. Completed tasks involving gameplay and network programming."
         }
     ],
     "edexp": {
+        "titlefirst": true,
         "title": "Game Programming, BS",
         "timespan": "Aug 2014 - May 2018",
         "workplace": "Champlain College",
         "location": "Burlington, VT USA",
         "description": "Completed solo and team projects, including PC, mobile, and virtual reality games. Studied abroad in Montreal Jan-May 2017. Experience as a gameplay, AI, network, and tools programmer.",
-        "coursework": "Vectors & 3D Math; Graphics Programming; Game Architecture; AI for Games; Networking for Games; Artificial Opponents."
+        "coursework": "Vectors & 3D Math; Graphics Programming; Game Architecture; AI for Games; Networking for Games; Artificial Opponents.",
+        "courses": [
+            "Vectors & 3D Math",
+            "OpenGL Programming",
+            "Game Architecture",
+            "AI for Games",
+            "Networking for Games",
+            "Artificial Opponents",
+        ]
     },
     "tech": [{
             "head": "Languages",

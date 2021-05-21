@@ -54,7 +54,7 @@ title: James Keats - Resume
                     </div>
                 </div>
             </div>
-            <div class="p-0 my-2 md:px-8 print:px-8">
+            <div class="p-0 my-2 mb-4 md:px-8 print:px-8">
                 <div class="font-body text-gray-600 print:text-gray-700 text-justify">
                     {{ site.data.resume.abstract }}
                 </div>
@@ -71,7 +71,7 @@ title: James Keats - Resume
                     <div class="">
                         <div class="font-head text-gray-700 text-3xl print:text-prlg text-center md:text-left print:text-left">Education</div>
                         {% assign edexp=site.data.resume.edexp %}
-                        {% include resume/exp.html nowrapheader=1 expdata=edexp %}
+                        {% include resume/exp.html expdata=edexp %}
                     </div>
                     <div class="">
                         <div class="font-head text-gray-700 text-3xl print:text-prlg text-center md:text-left print:text-left">Skills & Tech</div>
