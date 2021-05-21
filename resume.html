@@ -35,21 +35,28 @@ title: James Keats - Resume
     </div>
 
     <div class="px-4 print:px-0 pb-4 print:pb-0">
-        <div class="max-w-4xl mx-auto p-0 md:pt-4 print:pt-2 border-0 md:border md:border-gray-300 print:border-0 shadow-none md:shadow-lg">
-            <div class="flex flex-wrap items-center">
-                <div class="w-full md:w-3/5 print:w-3/5 text-center md:text-left print:text-left p-0 md:px-8 print:px-8">
-                    <span class="font-head text-gray-700 text-4xl"><a href="https://jameskeats.com">James Keats</a></span>
-                    <div class="clear"></div>
-                    <span class="text-md font-head font-light text-gray-700">Game Programmer</span>
-                    <div class="clear"></div>
-                    <span class="text-md font-head font-light text-orange-600 hover:text-orange-400"><a href="https://jameskeats.com">www.jameskeats.com</a></span>
+        <div class="max-w-4xl mx-auto p-0 border-0 md:border md:border-gray-300 print:border-0 shadow-none md:shadow-lg">
+            <div class="bg-orange-700 print:bg-white py-4 border-orange-700 flex md:px-8 print:px-8 items-center flex-wrap md:flex-no-wrap print:flex-no-wrap" style="border-bottom-width: 1px;">
+                <!-- Nameplate -->
+                <div class="font-head text-white print:text-gray-700 text-3xl print:text-4xl flex-shrink-0 mr-0 md:mr-6 print:mr-6 w-full md:w-auto print:w-auto text-center md:text-left print:text-left">
+                    <span><a href="https://jameskeats.com">James Keats</a></span>
                 </div>
-                <div class="my-4 bg-orange-700 text-white font-head w-4/5 md:w-2/5 print:w-2/5 text-center md:text-right print:text-right mx-auto md:mx-0 print:mx-0">
-                    <div class="p-0 md:pr-8 print:pr-8">
+                <div class="text-md font-head font-light w-full md:w-auto print:w-auto text-center md:text-left print:text-left">
+                    <span class="text-white print:text-gray-700">Game Programmer</span>
+                    <br>
+                    <span class="text-white print:text-orange-600 hover:text-orange-200"><a href="mailto:contact@jameskeats.com">contact@jameskeats.com</a></span>
+                </div>
+                <div class="justify-self-stretch w-full">
+                    <div class="text-md font-head font-light text-white print:text-gray-700 my-2 w-full md:w-auto print:w-auto text-center md:text-right print:text-right">
                         {% for contactinfo in site.data.resume.contactinfo %}
-                        <div class="m-2 md:m-3"><a href="{{ contactinfo.link }}">{{contactinfo.text}}</a></div>
+                        <div><a href="{{ contactinfo.link }}">{{contactinfo.text}}</a></div>
                         {% endfor %}
                     </div>
+                </div>
+            </div>
+            <div class="p-0 my-2 md:px-8 print:px-8">
+                <div class="font-body text-gray-600 print:text-gray-700 text-justify">
+                    {{ site.data.resume.abstract }}
                 </div>
             </div>
             <div class="p-0 md:px-8 print:px-8">

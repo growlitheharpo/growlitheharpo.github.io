@@ -2,13 +2,11 @@
     "contactinfo": [{
         "link": "tel:1-413-626-6074",
         "text": "(413) 626-6074"
-    }, {
-        "link": "mailto:contact@jameskeats.com",
-        "text": "contact@jameskeats.com"
-    }, {
+    },  {
         "link": "https://www.linkedin.com/in/jamesjkeats",
         "text": "www.linkedin.com/in/jamesjkeats"
     }],
+    "abstract": "Creative software engineer focused on low-level systems. Strives to write code that runs fast, is memory-efficient, but is easy for the whole team to use and understand. Enjoys debugging and learning about the next big problem.",
     "workexp": [{
             "title": "Software Engineer",
             "timespan": "Jun 2018 - Present",
@@ -51,7 +49,7 @@
         "workplace": "Champlain College",
         "location": "Burlington, VT USA",
         "description": "Completed several solo and team projects, including PC, mobile, and virtual reality games. Studied abroad in Montreal Jan-May 2017. Experience as a gameplay, artificial intelligence, network, and tools programmer. Often worked as repo manager and build master on team projects.",
-        "coursework": "Matrices, Vectors, & 3D Math; Graphics Programming I&nbsp;&amp;&nbsp;II; Game Architecture; AI for Games; Networking for Games; Artificial Opponents."
+        "coursework": "Vectors & 3D Math; Graphics Programming; Game Architecture; AI for Games; Networking for Games; Artificial Opponents."
     },
     "tech": [{
             "head": "Languages",
