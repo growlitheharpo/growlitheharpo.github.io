@@ -36,7 +36,7 @@ title: James Keats - Resume
 
     <div class="px-4 print:px-0 pb-4 print:pb-0">
         <div class="max-w-4xl mx-auto p-0 border-0 md:border md:border-gray-300 print:border-0 shadow-none md:shadow-lg">
-            <div class="bg-orange-700 print:bg-white py-4 border-orange-700 flex md:px-8 print:px-8 items-center flex-wrap md:flex-no-wrap print:flex-no-wrap" style="border-bottom-width: 1px;">
+            <div class="bg-orange-700 print:bg-white py-4 flex md:px-8 print:px-8 items-center flex-wrap md:flex-no-wrap print:flex-no-wrap" style="border-bottom-width: 1px;">
                 <!-- Nameplate -->
                 <div class="font-head text-white print:text-gray-700 text-3xl print:text-4xl flex-shrink-0 mr-0 md:mr-6 print:mr-6 w-full md:w-auto print:w-auto text-center md:text-left print:text-left">
                     <span><a href="https://jameskeats.com">James Keats</a></span>
@@ -59,21 +59,22 @@ title: James Keats - Resume
                     {{ site.data.resume.abstract }}
                 </div>
             </div>
-            <div class="p-0 md:px-8 print:px-8">
-                <div class="font-head text-gray-700 text-3xl print:text-prlg text-center md:text-left print:text-left">Experience</div>
-                {% for job in site.data.resume.workexp %}
-                {% include resume/exp.html expdata=job %}
-                {% endfor %}
-            </div>
-            <div class="p-0 md:px-8 print:px-8">
-                <div class="flex flex-wrap">
-                    <div class="w-full md:w-3/5 lg:w-2/3 print:w-3/5 md:pr-6 print:pr-6 md:border-r-2 md:border-orange-700 print:border-r-2 print:border-orange-700">
-                        <div class="font-head text-gray-700 text-3xl print:text-prlg text-center md:text-left">Education</div>
+            <div class="p-0 md:px-8 print:px-8 flex flex-wrap">
+                <div class="w-full md:w-3/4 print:w-3/4 p-0 md:pr-4 print:pr-4 border-0 md:border-r-2 print:border-r-2 w-px">
+                    <div class="font-head text-gray-700 text-3xl print:text-prlg text-center md:text-left print:text-left">Experience</div>
+                    {% for job in site.data.resume.workexp %}
+                    {% include resume/exp.html expdata=job %}
+                    {% endfor %}
+                </div>
+                <div class="border-orange-700"></div>
+                <div class="w-full md:w-1/4 print:w-1/4 p-0 md:pl-4 print:pl-4">
+                    <div class="">
+                        <div class="font-head text-gray-700 text-3xl print:text-prlg text-center md:text-left print:text-left">Education</div>
                         {% assign edexp=site.data.resume.edexp %}
-                        {% include resume/exp.html expdata=edexp %}
+                        {% include resume/exp.html nowrapheader=1 expdata=edexp %}
                     </div>
-                    <div class="w-full md:w-2/5 lg:w-1/3 print:w-2/5 md:pl-6 print:pl-6">
-                        <div class="font-head text-gray-700 text-3xl print:text-prlg text-center md:text-left">Technology & Skills</div>
+                    <div class="">
+                        <div class="font-head text-gray-700 text-3xl print:text-prlg text-center md:text-left print:text-left">Skills & Tech</div>
                         {% for t in site.data.resume.tech %}
                         <div class="mb-4">
                             <div class="font-head text-orange-700 text-xl">{{t.head}}</div>
@@ -84,7 +85,7 @@ title: James Keats - Resume
                 </div>
             </div>
             <div class="mt-6">
-                <div class="flex justify-between bg-orange-700 px-3 sm:px-8 py-5">
+                <div class="flex justify-between bg-orange-700 px-3 sm:px-8 py-6">
                     {% for logoimage in site.data.resume.logoimages %}
                     <div class="max-w-2 md:max-w-3"><img src="{{logoimage}}"></div>
                     {% endfor %}
