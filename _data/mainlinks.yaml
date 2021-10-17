@@ -5,6 +5,9 @@ links:
     -   title: "LinkedIn"
         target: https://www.linkedin.com/in/jamesjkeats/
         icon: "fab fa-linkedin"
+    -   title: "Twitter"
+        target: https://www.twitter.com/growlitheharpo
+        icon: "fab fa-twitter"
     -   title: "Email"
         target: mailto:contact@jameskeats.com
         icon: "fas fa-envelope"
