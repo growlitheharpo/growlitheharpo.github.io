@@ -1,22 +1,38 @@
 {
     "contactinfo": [{
-        "link": "tel:1-413-626-6074",
-        "text": "(413) 626-6074"
-    },  {
+        "link": "mailto:contact@jameskeats.com?subject=Resume",
+        "text": "Phone: by request"
+    },{
         "link": "https://www.linkedin.com/in/jamesjkeats",
         "text": "www.linkedin.com/in/jamesjkeats"
     }],
     "abstract": "Creative software engineer focused on low-level systems. Strives to write code that runs fast and is memory-efficient, but is easy for the whole team to use and understand. Enjoys debugging and learning about the next big problem.",
-    "workexp": [{
+    "workexp": [
+        {
+            "title": "Systems Programmer",
+            "timespan": "Nov 2021 - Present",
+            "workplace": "Behaviour Interactive",
+            "location": "Montreal, QC Canada",
+            "bullets": [
+                "Optimizing both memory and performance in systems that have to scale from high-end to mobile platforms",
+                "Diagnosing and solving common problems - such as load times, memory usage, and performance problems - to improve the robustness of the engine",
+                "Previously worked as a full-time intern on back-end server development"
+            ],
+            "previoustitles": [{
+                "title": "Network Programming Intern",
+                "start": "May 2017",
+                "end": "Aug 2017"
+            }],
+            "description": "Worked as a full-time intern on back-end server development. Created general systems for this server as well as game-specific extensions in a test-driven environment. Participated in code reviews for all team pull requests and actively responded to feedback."
+        },{
             "title": "Software Engineer",
-            "timespan": "Jul 2020 - Present",
+            "timespan": "Jul 2020 - Oct 2021",
             "workplace": "Blizzard Entertainment",
             "location": "Albany, NY USA",
             "bullets": [
                 "Member of the systems expertise group with a focus on performance",
-                "Author of core engine components for Diablo II: Resurrected including the C++17 job system, file streamer, and render graph",
-                "Owner of the \"Translation Layer\" which remaps events and information from the underlying 2D game into 3D",
-                "Replaced a 20-year-old DirectSound implementation with FMOD, enabling multi-platform support; designed and implemented in-game tooling for audio designers",
+                "Authored core engine components for Diablo II: Resurrected including the C++17 job system, file streamer, and render graph",
+                "Owned the \"Translation Layer\" system which remapped events and information from the underlying 2D game into 3D",
                 "Location was previously Vicarious Visions, an Activision studio; past projects include Destiny 2: Foresaken and support on Call of Duty: Black Ops 4"
             ],
             "description": "Member of the systems expertise group with a focus on performance. Author of core engine components for Diablo II: Resurrected including the C++17 job system and render graph. Owner of the \"Translation Layer\" which remaps info from the underlying 2D game into 3D. Assisted with audio engineering, replacing a 20-year-old DirectSound implementation with FMOD and enabling multi-platform support. Location was previously Vicarious Visions, an Activision studio. Past projects include Destiny 2: Foresaken.",
@@ -41,17 +57,6 @@
                 "Assisted on an interactive art project currently installed in Burlington Airport"
             ],
             "description": "Developed software for the Sandbox Team. Solved gameplay and AI tasks for projects using the Xbox Kinect 2, Oculus Rift, and HTC Vive. Lead the mobile optimization effort for BREAKAWAY. Assisted on an interactive art installation project for Burlington Airport which is now in their North Concourse."
-        },{
-            "title": "Network Programming Intern",
-            "timespan": "May 2017 - Aug 2017",
-            "workplace": "Behaviour Interactive",
-            "location": "Montreal, QC Canada",
-            "bullets": [
-                "Worked as a full-time intern on back-end server development",
-                "Created general systems for the server as well as game-specific extensions in a test-driven environment",
-                "Participated in code reviews for all team pull requests and actively responded to feedback"
-            ],
-            "description": "Worked as a full-time intern on back-end server development. Created general systems for this server as well as game-specific extensions in a test-driven environment. Participated in code reviews for all team pull requests and actively responded to feedback."
         },{
             "title": "Creative Developer Intern",
             "timespan": "Jan 2017 - Apr 2017",
