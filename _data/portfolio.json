@@ -1,5 +1,17 @@
 [
     {
+        "title": "Meet Your Maker",
+        "year": "C++, 2021 - 2023",
+        "blurb": "Create. Protect. Survive. Meet Your Maker is a post-apocalyptic first-person building-and-raiding game where every level is designed by players for players.",
+        "focuses": [
+            "Owning the integration of several external technologies such as Wwise, AMD FidelityFX Super Resolution, and more",
+            "Profiling and optimizing memory and performance across Gen 8 consoles, Gen 9 consoles, and PC",
+            "Assisting in migration of mature, mid-production codebase from Unreal Engine 4 to Unreal Engine 5"
+        ],
+        "img": "/assets/img/portfolio/bhvr/meetyourmaker_cover.jpg",
+        "link": "https://meetyourmakergame.com/"
+    },
+    {
         "title": "Diablo II: Resurrected",
         "year": "C++, 2019 - 2021",
         "blurb": "A Timeless Classic. Diablo II: Resurrected is a remastered version of the quintessential action RPG Diablo II. Pursue the mysterious Dark Wanderer and fight the denizens of hell as you uncover the fate of the Prime Evils Diablo, Mephisto, and Baal.",
