@@ -9,16 +9,20 @@
     "abstract": "Creative software engineer focused on low-level systems. Strives to write code that runs fast and is memory-efficient, but is easy for the whole team to use and understand. Enjoys debugging and learning about the next big problem.",
     "workexp": [
         {
-            "title": "Systems Programmer",
-            "timespan": "Nov 2021 - Present",
+            "title": "Senior Systems Programmer",
+            "timespan": "Dec 2022 - Present",
             "workplace": "Behaviour Interactive",
             "location": "Montreal, QC Canada",
             "bullets": [
-                "Optimizing both memory and performance in systems that have to scale from high-end to mobile platforms",
-                "Diagnosing and solving common problems - such as load times, memory usage, and performance problems - to improve the robustness of the engine",
+                "Owning the integration of several external technologies on Meet Your Maker including Wwise, AMD FidelityFX Super Resolution, and Sony DualShock for PC Games",
+                "Profiling and optimizing memory and performance across Gen 8, Gen 9, and PC",
                 "Previously worked as a full-time intern on back-end server development"
             ],
             "previoustitles": [{
+                "title": "Systems Programmer",
+                "start": "Nov 2021",
+                "end": "Nov 2022"
+            },{
                 "title": "Network Programming Intern",
                 "start": "May 2017",
                 "end": "Aug 2017"
@@ -76,7 +80,7 @@
         "timespan": "Aug 2014 - May 2018",
         "workplace": "Champlain College",
         "location": "Burlington, VT USA",
-        "description": "Completed solo and team projects, including PC, mobile, and virtual reality games. Studied abroad in Montreal (Jan-May 2017). Experience as a gameplay, AI, network, and tools programmer.",
+        "description": "Completed solo and team projects, including PC, mobile, and VR games. Studied abroad in Montreal (Jan-May 2017). Experience as a gameplay, AI, network, and tools programmer.",
         "coursework": "Vectors & 3D Math; Graphics Programming; Game Architecture; AI for Games; Networking for Games; Artificial Opponents.",
         "courses": [
             "Vectors & 3D Math",

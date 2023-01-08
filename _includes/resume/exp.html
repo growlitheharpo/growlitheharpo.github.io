@@ -40,10 +40,10 @@
         {% endif %}
 
         {% if include.expdata.previoustitles %}
-        <div class="flex flex-wrap items-center justify-between">
+        <div class="flex flex-wrap items-center justify-between ml-2">
             {% for title in include.expdata.previoustitles %}
-                <div class="font-head text-md text-orange-500">{{ title.title }}</div>
-                <div class="font-head text-md font-head text-orange-500">{{title.start}} - {{title.end}}</div>
+                <div class="font-head text-sm text-orange-500">{{ title.title }}</div>
+                <div class="font-head text-sm font-head text-orange-500">{{title.start}} - {{title.end}}</div>
                 <div class="w-full"></div>
             {% endfor %}
         </div>
