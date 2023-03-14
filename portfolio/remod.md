@@ -23,7 +23,7 @@ meta:
         - "Natalie Frost // VFX Designer"
         - "Michael Manfredi // Environment Artist"
         - "Justin Mulkin // Gameplay & Analytics Programmer"
-        - "Jake Buzzell & Max Johnson // Music Composer"
+        - "Riley Buzzell & Max Johnson // Music Composer"
     links:
         -   title: "Source Code"
             target: https://github.com/growlitheharpo/capstone-2017-18-t13/
