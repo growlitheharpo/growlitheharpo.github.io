@@ -46,7 +46,7 @@ def createPosts(rootDir, tags):
                 f"---\n",
                 f"layout: taglist\n",
                 f"selectedurl: Blog\n"
-                f"title: James Keats - Game Programmer\n",
+                f"title: Allie Keats - Game Programmer\n",
                 f"tag: {tag}\n",
                 f"---\n",
             ])

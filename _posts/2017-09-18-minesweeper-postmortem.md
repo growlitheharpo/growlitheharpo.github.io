@@ -1,7 +1,7 @@
 ---
 title: Artificial Opponents - Minesweeper Post-Mortem
 layout: blogpost
-author: James Keats
+author: Allie Keats
 selectedurl: Blog
 tags: programming postmortem college ai
 ---

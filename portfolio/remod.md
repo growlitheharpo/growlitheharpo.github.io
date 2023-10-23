@@ -1,5 +1,5 @@
 ---
-title: James Keats - re[Mod] (Senior Capstone Champlain College)
+title: Allie Keats - re[Mod] (Senior Capstone Champlain College)
 byline: "Full-Year Project by The Firing Squad"
 layout: portfoliomd
 selectedurl: Portfolio
@@ -15,7 +15,7 @@ meta:
     team:
         - "Tyler Bolster // Lead Artist & Animator"
         - "Charlie Carucci // Lead Designer & Product Owner"
-        - "James Keats // Lead Programmer & Build Master"
+        - "Allie Keats // Lead Programmer & Build Master"
         - "Max Sanel // Project Manager & Scrum Master"
     auxteamname: "Recruits: Joined Jan 2018"
     auxteam:

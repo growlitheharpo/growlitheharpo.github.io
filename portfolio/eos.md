@@ -1,5 +1,5 @@
 ---
-title: James Keats - Eos (Champlain College Production II)
+title: Allie Keats - Eos (Champlain College Production II)
 byline: "Semester Project (Montreal) - Team \"Good Vives\""
 layout: portfoliomd
 selectedurl: Portfolio
@@ -14,7 +14,7 @@ meta:
     teamname: "Team \"Good Vives\""
     team:
         - "Tyler Chermely // Game Programmer"
-        - "James Keats // Game Programmer"
+        - "Allie Keats // Game Programmer"
         - "Richie Conti // Game Designer"
         - "Alex Frey // Game Designer"
         - "Megan McAvoy // 3D Artist"

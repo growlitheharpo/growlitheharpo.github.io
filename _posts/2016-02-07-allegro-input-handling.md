@@ -1,7 +1,7 @@
 ---
 title: Allegro Input Handling
 layout: blogpost
-author: James Keats
+author: Allie Keats
 selectedurl: Blog
 published: false
 tags: programming college game-architecture

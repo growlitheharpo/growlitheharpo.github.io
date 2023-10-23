@@ -1,7 +1,7 @@
 ---
 title: Unity-esque Coroutines in C++
 layout: blogpost
-author: James Keats
+author: Allie Keats
 selectedurl: Blog
 tags: programming college game-architecture unity
 ---

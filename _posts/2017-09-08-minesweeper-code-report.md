@@ -1,7 +1,7 @@
 ---
 title: Artificial Opponents - Minesweeper Code Report
 layout: blogpost
-author: James Keats
+author: Allie Keats
 selectedurl: Blog
 published: false
 tags: programming college ai

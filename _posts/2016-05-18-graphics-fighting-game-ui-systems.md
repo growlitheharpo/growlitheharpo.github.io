@@ -1,7 +1,7 @@
 ---
 title: Graphics Fighting Game and UI Systems
 layout: blogpost
-author: James Keats
+author: Allie Keats
 selectedurl: Blog
 tags: programming college ui
 ---

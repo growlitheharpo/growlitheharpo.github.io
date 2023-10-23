@@ -1,10 +1,10 @@
 {
     "contactinfo": [{
-        "link": "mailto:contact@jameskeats.com?subject=Resume",
+        "link": "mailto:contact@alliekeats.com?subject=Resume",
         "text": "Phone: by request"
     },{
-        "link": "https://www.linkedin.com/in/jamesjkeats",
-        "text": "www.linkedin.com/in/jamesjkeats"
+        "link": "https://www.linkedin.com/in/alliekeats",
+        "text": "www.linkedin.com/in/alliekeats"
     }],
     "abstract": "Creative software engineer focused on low-level systems. Strives to write code that runs fast and is memory-efficient, but is easy for the whole team to use and understand. Enjoys debugging and learning about the next big problem.",
     "workexp": [

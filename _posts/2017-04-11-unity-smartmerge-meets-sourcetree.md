@@ -1,7 +1,7 @@
 ---
 title: Unity's SmartMerge Meets SourceTree
 layout: blogpost
-author: James Keats
+author: Allie Keats
 selectedurl: Blog
 tags: programming college unity
 ---

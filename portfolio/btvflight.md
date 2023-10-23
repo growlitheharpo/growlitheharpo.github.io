@@ -1,5 +1,5 @@
 ---
-title: James Keats - BTV Flight (Burlington International Airport)
+title: Allie Keats - BTV Flight (Burlington International Airport)
 byline: "Emergent Media Center - Sandbox Team"
 layout: portfoliomd
 selectedurl: Portfolio
@@ -13,7 +13,7 @@ meta:
 
     teamname: Emergent Media Center - Sandbox Team
     team:
-        - "James Keats // Programmer"
+        - "Allie Keats // Programmer"
         - "Tyler Bolster // Prop Artist"
         - "Cait Kenney // Environment & Prop Artist"
     links:

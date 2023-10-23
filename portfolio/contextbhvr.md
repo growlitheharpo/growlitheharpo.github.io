@@ -1,5 +1,5 @@
 ---
-title: James Keats - Context Behaviors
+title: Allie Keats - Context Behaviors
 byline: "Final Project for AI For Games"
 layout: portfoliomd
 selectedurl: Portfolio
@@ -16,7 +16,7 @@ meta:
         - "Just me!"
     links:
         -   title: "Binary Demo"
-            target: /assets/bin/jameskeats_context_demo.zip
+            target: /assets/bin/alliekeats_context_demo.zip
             icon: "fas fa-cogs"
 ---
 
@@ -117,7 +117,7 @@ Compared to Steering, Context is much more customizable. Here, there are only tw
 
 Overall, I massively prefer Context Behavior to Steering. The code is significantly simpler for mostly better and at worst similar behavior. It is much more scalable and allows you to dynamically adjust the required processing time on the fly without totally sacrificing behavior fidelity. To my knowledge, while the blog posts linked above are very helpful and informative, there are no interactive demos of Context Behavior available online right now. With this in mind, I've decided to upload the executable project here so that you can try it out and see what you think:
 
-### [Download the Context Behavior demo now!](/assets/bin/jameskeats_context_demo.zip)
+### [Download the Context Behavior demo now!](/assets/bin/alliekeats_context_demo.zip)
 
 This was one of those projects that I spent a lot of time playing with and trying out fun things while procrastinating on other work (like writing this blog post). As a bonus, here's one of my favorite accidents I discovered while experimenting with how the agents would react to different situations:
 

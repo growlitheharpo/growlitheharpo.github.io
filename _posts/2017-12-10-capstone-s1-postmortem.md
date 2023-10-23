@@ -1,7 +1,7 @@
 ---
 title: Capstone - Semester 1 Postmortem
 layout: blogpost
-author: James Keats
+author: Allie Keats
 selectedurl: Blog
 tags: programming college postmortem capstone
 ---

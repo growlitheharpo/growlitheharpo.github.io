@@ -1,7 +1,7 @@
 ---
 title: Artificial Opponents - Minesweeper Planning
 layout: blogpost
-author: James Keats
+author: Allie Keats
 selectedurl: Blog
 tags: programming college ai
 ---

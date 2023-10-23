@@ -1,6 +1,6 @@
 ---
 layout: taglist
 selectedurl: Blog
-title: James Keats - Game Programmer
+title: Allie Keats - Game Programmer
 tag: college
 ---

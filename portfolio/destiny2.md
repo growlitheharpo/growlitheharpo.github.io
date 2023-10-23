@@ -1,5 +1,5 @@
 ---
-title: James Keats - Destiny 2 (Vicarious Visions)
+title: Allie Keats - Destiny 2 (Vicarious Visions)
 byline: "Destiny 2 - a game by Bungie, Inc"
 layout: portfoliomd
 selectedurl: Portfolio
