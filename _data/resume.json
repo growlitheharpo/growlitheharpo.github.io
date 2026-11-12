@@ -9,16 +9,20 @@
     "abstract": "Creative software engineer focused on low-level systems. Strives to write code that runs fast and is memory-efficient, but is easy for the whole team to use and understand. Enjoys debugging and learning about the next big problem.",
     "workexp": [
         {
-            "title": "Senior Systems Programmer",
-            "timespan": "Dec 2022 - Present",
+            "title": "Senior Systems Programmer II",
+            "timespan": "Nov 2025 - Present",
             "workplace": "Behaviour Interactive",
             "location": "Montreal, QC Canada",
             "bullets": [
-                "Owning the integration of several external technologies on Meet Your Maker including Wwise, AMD FidelityFX Super Resolution, and Sony DualShock for PC Games",
-                "Profiling and optimizing memory and performance across Gen 8, Gen 9, and PC",
-                "Previously worked as a full-time intern on back-end server development"
+                "Owner and creator of critical game systems on an unannounced UE5 project including itemization and inventory, save game serialization and versioning, player progression, enemy encounter spawning, streaming world persistence, and multiplayer loading flow",
+                "Handling profiling and optimizing memory and CPU performance across Gen 9 and PC",
+                "Owned the integration of several external technologies on Meet Your Maker (including AudioKinetic Wwise and AMD FidelityFX Super Resolution)"
             ],
             "previoustitles": [{
+                "title": "Senior Systems Programmer I",
+                "start": "Dec 2022",
+                "end": "Oct 2025"
+            },{
                 "title": "Systems Programmer",
                 "start": "Nov 2021",
                 "end": "Nov 2022"
@@ -31,13 +35,12 @@
         },{
             "title": "Software Engineer",
             "timespan": "Jul 2020 - Oct 2021",
-            "workplace": "Blizzard Entertainment",
+            "workplace": "Vicarious Visions / Blizzard Entertainment",
             "location": "Albany, NY USA",
             "bullets": [
                 "Member of the systems expertise group with a focus on performance",
-                "Authored core engine components for Diablo II: Resurrected including the C++17 job system, file streamer, and render graph",
-                "Owned the \"Translation Layer\" system which remapped events and information from the underlying 2D game into 3D",
-                "Location was previously Vicarious Visions, an Activision studio; past projects include Destiny 2: Foresaken and support on Call of Duty: Black Ops 4"
+                "Authored core components for Diablo II: Resurrected's proprietary engine including the C++17 job system, file streamer, and render graph. Also owned the \"Translation Layer\" system which remapped events and information from the underlying 2D game into 3D",
+                "Prior projects include Destiny 2: Foresaken and support on Call of Duty: Black Ops 4"
             ],
             "description": "Member of the systems expertise group with a focus on performance. Author of core engine components for Diablo II: Resurrected including the C++17 job system and render graph. Owner of the \"Translation Layer\" which remaps info from the underlying 2D game into 3D. Assisted with audio engineering, replacing a 20-year-old DirectSound implementation with FMOD and enabling multi-platform support. Location was previously Vicarious Visions, an Activision studio. Past projects include Destiny 2: Foresaken.",
             "previoustitles": [{
@@ -67,8 +70,7 @@
             "workplace": "Moment Factory",
             "location": "Montreal, QC Canada",
             "bullets": [
-                "Used advanced technology, including a Velodyne LiDAR Puck, to develop gamified experiences with the Interactif Team",
-                "Partnered with other interns and full-time team members to build Unity and TouchDesigner prototypes",
+                "Developed gamified experiences with the Interactif Team while partnered with other interns and full-time team members to build Unity and TouchDesigner prototypes",
                 "Completed tasks involving gameplay and network programming"
             ],
             "description": "Developed gamified experiences for Moment Factory’s Interactif Team. Worked with advanced technology, including a Velodyne LiDAR Puck. Closely interacted with other interns and full-time members of the team to implement engaging and innovative Unity and TouchDesigner projects. Completed tasks involving gameplay and network programming."
@@ -88,7 +90,7 @@
             "Game Architecture",
             "AI for Games",
             "Networking for Games",
-            "Artificial Opponents",
+            "Artificial Opponents"
         ]
     },
     "tech": [{
@@ -99,7 +101,7 @@
             "val": "Visual Studio; Perforce; Git; Clang/LLVM; Jira."
         }, {
             "head": "Personal",
-            "val": "Native English; CEFR B2 French; team leadership; strong public speaker; musician and gamer."
+            "val": "Native English; CEFR B2 French; public speaking; team leadership and mentoring."
         }
     ],
     "logoimages": [
